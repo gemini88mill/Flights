@@ -24,16 +24,36 @@ public class Main {
     //global instance of JSON factory
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
+    private String arrivalIATA;
+    private String departureIATA;
+    private String dateOfDeparture;
+
+    public Main(String arrivalIATA, String departureIATA, String dateOfDeparture) {
+        this.arrivalIATA = arrivalIATA;
+        this.departureIATA = departureIATA;
+        this.dateOfDeparture = dateOfDeparture;
+    }
+
+
+
     public static void main(String[] args) {
 	// write your code here
+        Main main = new Main(null, null, null);
         UIInterface ui = new UIInterface();
 
-        List<TripOption> tripOption = googleCommunicate();
-        ui.displayValues(tripOption);
+        ui.UImain(main);
+        //System.out.println(main.getArrivalIATA() + "\n" + main.getDateOfDeparture() + "\n" + main.getDepartureIATA());
+
+
+        List<TripOption> tripOption = main.googleCommunicate();
+        UIInterface.displayValues(tripOption);
+
 
     }
 
-    private static <T>List<TripOption> googleCommunicate() {
+
+
+    private List<TripOption> googleCommunicate() {
         List<TripOption> tripResults = null;
         try {
             httpTransport = GoogleNetHttpTransport.newTrustedTransport();
@@ -77,5 +97,29 @@ public class Main {
             e.printStackTrace();
         }
         return tripResults;
+    }
+
+    public String getArrivalIATA() {
+        return arrivalIATA;
+    }
+
+    public void setArrivalIATA(String arrivalIATA) {
+        this.arrivalIATA = arrivalIATA;
+    }
+
+    public String getDepartureIATA() {
+        return departureIATA;
+    }
+
+    public void setDepartureIATA(String departureIATA) {
+        this.departureIATA = departureIATA;
+    }
+
+    public String getDateOfDeparture() {
+        return dateOfDeparture;
+    }
+
+    public void setDateOfDeparture(String dateOfDeparture) {
+        this.dateOfDeparture = dateOfDeparture;
     }
 }

@@ -3,12 +3,38 @@ package net.raphaelmiller;
 import com.google.api.services.qpxExpress.model.*;
 
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by raphael on 5/17/15.
  */
 public class UIInterface {
-    static void displayValues(List<TripOption> tripResults) {
+
+
+
+    public void UImain(Main main){
+
+        String[] userResponse = new String[3];
+
+        System.out.println("Enter departure location:(IATA Code)");
+        userResponse[0] = userInput();
+        System.out.println("Enter Arrival Location(IATA Code)");
+        userResponse[1] = userInput();
+        System.out.println("Enter Date of Departure:(YYYY-MM-DD)");
+        userResponse[2] = userInput();
+
+        main.setDateOfDeparture(userResponse[2]);
+        main.setArrivalIATA(userResponse[1]);
+        main.setDepartureIATA(userResponse[0]);
+
+    }
+
+    private String userInput(){
+        Scanner scan = new Scanner(System.in);
+        return scan.nextLine();
+    }
+
+    public static void displayValues(List<TripOption> tripResults) {
         String id;
 
         for (int i = 0; i < tripResults.size(); i++) {
