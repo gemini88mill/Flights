@@ -12,7 +12,22 @@ Fist push: core program functional allowing the user to get requests back using 
 information. (05.17.2015). 
 
 next push - more options for user, allowing use of specific information for flight times. perhaps
-implementing whatever Java's version of ncurses are. Please contact me for any questions. 
+implementing whatever Java's version of ncurses are. Please contact me for any questions.
+
+--update--
+
+05.17.2015
+Completed basic functionality of the program. Now for the hard stuff. My goals for this project is to 
+utlize different features of Java and to see what I can do with it. So next steps will include adding
+a little more comments for people who happen to come across my programs. Additionally, I would like to
+add save and compare functionality. In order to do that I will have to implement more of a back-end 
+to the program. This will be the next steps. 
+
+Therefore I am going to add some SQL functionality to my program. Since I would like to make an actual
+functioning program. I will have to implement some kind of way to have the back end class to create a 
+SQL database schema and establish a connection. perhaps have some kind of back up that allows to choose 
+either a csv, txt or SQL database (which ever is more effective). 
+ 
 
 Raphael Miller 
 gemini88mill@gmail.com

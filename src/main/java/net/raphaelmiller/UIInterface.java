@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class UIInterface {
 
-
+    private final int IATA_LENGTH = 3;
 
     public void UImain(Main main){
 
@@ -23,9 +23,9 @@ public class UIInterface {
         System.out.println("Enter Date of Departure:(YYYY-MM-DD)");
         userResponse[2] = userInput();
 
-        main.setDateOfDeparture(userResponse[2]);
-        main.setArrivalIATA(userResponse[1]);
-        main.setDepartureIATA(userResponse[0]);
+        main.setDateOfDeparture(userResponse[2].toUpperCase());
+        main.setArrivalIATA(userResponse[1].toUpperCase());
+        main.setDepartureIATA(userResponse[0].toUpperCase());
 
     }
 
