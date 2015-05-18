@@ -42,8 +42,32 @@ public class UIInterface {
             id = tripResults.get(i).getId();
             System.out.println("id " + id);
 
-            //Slice
             List<SliceInfo> sliceInfo = tripResults.get(i).getSlice();
+            for (int j = 0; j < sliceInfo.size(); j++){
+                int duration = sliceInfo.get(j).getDuration();
+                System.out.print("Duration: " + duration + "\n");
+                List<SegmentInfo> segInfo = sliceInfo.get(j).getSegment();
+                for(int k = 0; k < segInfo.size(); k++){
+                    FlightInfo flightInfo = segInfo.get(k).getFlight();
+                    String flightCarr = flightInfo.getCarrier();
+                    String flightNum = flightInfo.getNumber();
+                    System.out.println("Carrier: " + flightCarr + "\t Flight No: " + flightNum);
+                    List<LegInfo> leg = segInfo.get(k).getLeg();
+                    for (int l = 0; l < leg.size(); l++){
+                        String aircraft = leg.get(l).getAircraft();
+                        String arrivalTime = leg.get(l).getArrivalTime();
+                        String departureTime = leg.get(l).getDepartureTime();
+                        String meal = leg.get(l).getMeal();
+                        int durationLeg = leg.get(l).getDuration();
+
+                        System.out.print("Aircraft \t\t Arrival \t\t\t Depart \t\t\t\t\t Meal?\n");
+                        System.out.print(aircraft + "\t\t\t" + arrivalTime + "\t\t" + departureTime + "\t\t" + meal + "\n" );
+                    }
+                }
+            }
+
+            //Slice
+            /*List<SliceInfo> sliceInfo = tripResults.get(i).getSlice();
             for (int j = 0; j < sliceInfo.size(); j++) {
                 int duration = sliceInfo.get(j).getDuration();
                 System.out.println("duration " + duration);
@@ -84,7 +108,7 @@ public class UIInterface {
             for (int p = 0; p < priceInfo.size(); p++) {
                 String price = priceInfo.get(p).getSaleTotal();
                 System.out.println("Price " + price);
-            }
+            }*/
         }
 
 
