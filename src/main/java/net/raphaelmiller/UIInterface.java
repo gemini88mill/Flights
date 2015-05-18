@@ -17,9 +17,9 @@ public class UIInterface {
         String[] userResponse = new String[3];
 
         System.out.println("Enter departure location:(IATA Code)");
-        userResponse[0] = userInput();
-        System.out.println("Enter Arrival Location(IATA Code)");
         userResponse[1] = userInput();
+        System.out.println("Enter Arrival Location(IATA Code)");
+        userResponse[0] = userInput();
         System.out.println("Enter Date of Departure:(YYYY-MM-DD)");
         userResponse[2] = userInput();
 
@@ -58,48 +58,16 @@ public class UIInterface {
                         String arrivalTime = leg.get(l).getArrivalTime();
                         String departureTime = leg.get(l).getDepartureTime();
                         String meal = leg.get(l).getMeal();
+
+                        String origin = leg.get(l).getOrigin();
+                        String destination = leg.get(l).getDestination();
+
                         int durationLeg = leg.get(l).getDuration();
 
+                        System.out.print("Leg Duration: " + durationLeg + "\n");
                         System.out.print("Aircraft \t\t Arrival \t\t\t Depart \t\t\t\t\t Meal?\n");
                         System.out.print(aircraft + "\t\t\t" + arrivalTime + "\t\t" + departureTime + "\t\t" + meal + "\n" );
-                    }
-                }
-            }
-
-            //Slice
-            /*List<SliceInfo> sliceInfo = tripResults.get(i).getSlice();
-            for (int j = 0; j < sliceInfo.size(); j++) {
-                int duration = sliceInfo.get(j).getDuration();
-                System.out.println("duration " + duration);
-                List<SegmentInfo> segInfo = sliceInfo.get(j).getSegment();
-                for (int k = 0; k < segInfo.size(); k++) {
-                    String bookingCode = segInfo.get(k).getBookingCode();
-                    System.out.println("bookingCode " + bookingCode);
-                    FlightInfo flightInfo = segInfo.get(k).getFlight();
-                    String flightNum = flightInfo.getNumber();
-                    System.out.println("flightNum " + flightNum);
-                    String flightCarrier = flightInfo.getCarrier();
-                    System.out.println("flightCarrier " + flightCarrier);
-                    List<LegInfo> leg = segInfo.get(k).getLeg();
-                    for (int l = 0; l < leg.size(); l++) {
-                        String aircraft = leg.get(l).getAircraft();
-                        System.out.println("aircraft " + aircraft);
-                        String arrivalTime = leg.get(l).getArrivalTime();
-                        System.out.println("arrivalTime " + arrivalTime);
-                        String departTime = leg.get(l).getDepartureTime();
-                        System.out.println("departTime " + departTime);
-                        String dest = leg.get(l).getDestination();
-                        System.out.println("Destination " + dest);
-                        String destTer = leg.get(l).getDestinationTerminal();
-                        System.out.println("DestTer " + destTer);
-                        String origin = leg.get(l).getOrigin();
-                        System.out.println("origun " + origin);
-                        String originTer = leg.get(l).getOriginTerminal();
-                        System.out.println("OriginTer " + originTer);
-                        int durationLeg = leg.get(l).getDuration();
-                        System.out.println("durationleg " + durationLeg);
-                        int mil = leg.get(l).getMileage();
-                        System.out.println("Milleage " + mil);
+                        System.out.println("Leg: " + origin + " to " + destination);
 
                     }
                 }
@@ -107,8 +75,10 @@ public class UIInterface {
             List<PricingInfo> priceInfo = tripResults.get(i).getPricing();
             for (int p = 0; p < priceInfo.size(); p++) {
                 String price = priceInfo.get(p).getSaleTotal();
-                System.out.println("Price " + price);
-            }*/
+                System.out.println("Price " + price + "\n\n");
+            }
+
+            
         }
 
 
