@@ -66,10 +66,15 @@ public class Main {
             List<SliceInput> slices = new ArrayList<SliceInput>();
             //array list that sends information requested to google.
 
+            String origin = getArrivalIATA();
+            String destination = getDepartureIATA();
+            String date = getDateOfDeparture();
+            //user input
+
             SliceInput slice = new SliceInput();
-            slice.setOrigin("MCO");
-            slice.setDestination("NRT");
-            slice.setDate("2015-05-17");
+            slice.setOrigin(origin);
+            slice.setDestination(destination);
+            slice.setDate(date);
             slices.add(slice);
             //list slice I am assuming sends that information and prepares to format data requested to JSON
 
