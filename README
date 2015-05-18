@@ -1,0 +1,18 @@
+Flights
+
+This program was created by Raphael Miller using Intellij Idea. All terms of service with google API's apply
+
+https://developers.google.com/terms/ <-- for more information. 
+
+This program is designed to implement Google's QPX API for flight times and information. User inputs a value
+for departure and arrival. QPX handles the request and returns the information for pricing and flight times 
+for the given date. 
+
+Fist push: core program functional allowing the user to get requests back using hard coding for flight 
+information. (05.17.2015). 
+
+next push - more options for user, allowing use of specific information for flight times. perhaps
+implementing whatever Java's version of ncurses are. Please contact me for any questions. 
+
+Raphael Miller 
+gemini88mill@gmail.com
