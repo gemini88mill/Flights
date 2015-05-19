@@ -41,7 +41,6 @@ public class UIInterface {
             //Trip Option ID
             id = tripResults.get(i).getId();
             System.out.println("id " + id);
-
             List<SliceInfo> sliceInfo = tripResults.get(i).getSlice();
             for (int j = 0; j < sliceInfo.size(); j++){
                 int duration = sliceInfo.get(j).getDuration();
@@ -61,6 +60,7 @@ public class UIInterface {
 
                         String origin = leg.get(l).getOrigin();
                         String destination = leg.get(l).getDestination();
+
 
                         int durationLeg = leg.get(l).getDuration();
 

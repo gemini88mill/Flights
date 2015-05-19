@@ -28,11 +28,14 @@ public class Main {
     private String departureIATA;
     private String dateOfDeparture;
 
+    List<CityData> tripData = null;
+
     public Main(String arrivalIATA, String departureIATA, String dateOfDeparture) {
         this.arrivalIATA = arrivalIATA;
         this.departureIATA = departureIATA;
         this.dateOfDeparture = dateOfDeparture;
     }
+
 
 
 
@@ -46,8 +49,12 @@ public class Main {
 
 
 
-        List<CityData> tripData = null;
         List<TripOption> tripOption = main.googleCommunicate();
+        for (int x = 0; x < main.tripData.size(); x++){
+            String city = main.tripData.get(x).getName();
+            System.out.println(city);
+        }
+
         UIInterface.displayValues(tripOption);
 
 
@@ -67,6 +74,7 @@ public class Main {
             //sets passengers for passenger method to 1 adult, change here if you want to change number of travellers
 
             List<SliceInput> slices = new ArrayList<SliceInput>();
+            List<CityData> cities = new ArrayList<CityData>();
             //array list that sends information requested to google.
 
             String origin = getArrivalIATA();
@@ -80,7 +88,6 @@ public class Main {
             slice.setDate(date);
             slices.add(slice);
             //list slice I am assuming sends that information and prepares to format data requested to JSON
-
 
             TripOptionsRequest request = new TripOptionsRequest();
             request.setSolutions(10);
@@ -97,7 +104,7 @@ public class Main {
             TripsSearchResponse list = qpxExpress.trips().search(parameters).execute();
             //gets the response from qpx api
             tripResults = list.getTrips().getTripOption();
-            
+            tripData = list.getTrips().getData().getCity();
             //gets trip options to list.
 
 
