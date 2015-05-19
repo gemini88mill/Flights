@@ -45,6 +45,8 @@ public class Main {
         //System.out.println(main.getArrivalIATA() + "\n" + main.getDateOfDeparture() + "\n" + main.getDepartureIATA());
 
 
+
+        List<CityData> tripData = null;
         List<TripOption> tripOption = main.googleCommunicate();
         UIInterface.displayValues(tripOption);
 
@@ -55,6 +57,7 @@ public class Main {
 
     private List<TripOption> googleCommunicate() {
         List<TripOption> tripResults = null;
+
         try {
             httpTransport = GoogleNetHttpTransport.newTrustedTransport();
             //sends a generic httptransport to QPX API
@@ -78,6 +81,7 @@ public class Main {
             slices.add(slice);
             //list slice I am assuming sends that information and prepares to format data requested to JSON
 
+
             TripOptionsRequest request = new TripOptionsRequest();
             request.setSolutions(10);
             request.setPassengers(passengers);
@@ -93,6 +97,7 @@ public class Main {
             TripsSearchResponse list = qpxExpress.trips().search(parameters).execute();
             //gets the response from qpx api
             tripResults = list.getTrips().getTripOption();
+            
             //gets trip options to list.
 
 

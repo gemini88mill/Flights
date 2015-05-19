@@ -45,7 +45,7 @@ public class UIInterface {
             List<SliceInfo> sliceInfo = tripResults.get(i).getSlice();
             for (int j = 0; j < sliceInfo.size(); j++){
                 int duration = sliceInfo.get(j).getDuration();
-                System.out.print("Duration: " + duration + "\n");
+                System.out.print("Duration: " + duration + " mins\n");
                 List<SegmentInfo> segInfo = sliceInfo.get(j).getSegment();
                 for(int k = 0; k < segInfo.size(); k++){
                     FlightInfo flightInfo = segInfo.get(k).getFlight();
@@ -64,7 +64,7 @@ public class UIInterface {
 
                         int durationLeg = leg.get(l).getDuration();
 
-                        System.out.print("Leg Duration: " + durationLeg + "\n");
+                        System.out.print("Leg Duration: " + durationLeg + " mins\n");
                         System.out.print("Aircraft \t\t Arrival \t\t\t Depart \t\t\t\t\t Meal?\n");
                         System.out.print(aircraft + "\t\t\t" + arrivalTime + "\t\t" + departureTime + "\t\t" + meal + "\n" );
                         System.out.println("Leg: " + origin + " to " + destination);
@@ -78,7 +78,7 @@ public class UIInterface {
                 System.out.println("Price " + price + "\n\n");
             }
 
-            
+
         }
 
 
