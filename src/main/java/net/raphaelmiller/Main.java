@@ -29,6 +29,8 @@ public class Main {
     private String dateOfDeparture;
 
     List<CityData> tripData = null;
+    List<AircraftData> aircraftData = null;
+    List<CarrierData> carrierData = null;
 
     public Main(String arrivalIATA, String departureIATA, String dateOfDeparture) {
         this.arrivalIATA = arrivalIATA;
@@ -53,6 +55,14 @@ public class Main {
         for (int x = 0; x < main.tripData.size(); x++){
             String city = main.tripData.get(x).getName();
             System.out.println(city);
+            for (int i = 0; i < main.carrierData.size(); i++){
+                String carrier = main.carrierData.get(i).getName();
+                System.out.println("\t" + carrier);
+                for (int j = 0; j < main.aircraftData.size(); j++){
+                    String aircraft = main.aircraftData.get(j).getName();
+                    System.out.println("\t\t" + aircraft);
+                }
+            }
         }
 
         UIInterface.displayValues(tripOption);
@@ -105,6 +115,8 @@ public class Main {
             //gets the response from qpx api
             tripResults = list.getTrips().getTripOption();
             tripData = list.getTrips().getData().getCity();
+            aircraftData = list.getTrips().getData().getAircraft();
+            carrierData = list.getTrips().getData().getCarrier();
             //gets trip options to list.
 
 
