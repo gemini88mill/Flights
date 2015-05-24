@@ -15,6 +15,7 @@ import java.util.List;
 
 public class Main {
 
+    //Constants for google developers console
     private static final String APPLICATION_NAME = "Airline";
     private static final String API_KEY = "AIzaSyDBglpQwcHNv7KuZu1CChuzaCdJr0sO-V4";
 
@@ -24,34 +25,43 @@ public class Main {
     //global instance of JSON factory
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
+    //user manipulated objects
     private String arrivalIATA;
     private String departureIATA;
     private String dateOfDeparture;
 
+    //QPX Express API defined lists
     List<CityData> tripData = null;
     List<AircraftData> aircraftData = null;
     List<CarrierData> carrierData = null;
 
+    //Main Class Constructor
     public Main(String arrivalIATA, String departureIATA, String dateOfDeparture) {
         this.arrivalIATA = arrivalIATA;
         this.departureIATA = departureIATA;
         this.dateOfDeparture = dateOfDeparture;
     }
 
-
-
-
+    /**
+     * main method - starts program and maintains program chronological structure.
+     *
+     * psuedo code statements:
+     *      declare necessary class objects (Main class, UIInterface class)
+     *      send program to UImain method (see UImain())
+     *      send program to displayValues method (see displayValues())
+     * @param args
+     */
     public static void main(String[] args) {
 	// write your code here
         Main main = new Main(null, null, null);
         UIInterface ui = new UIInterface();
 
+        //go to UIInterface -> UImain() method.
         ui.UImain(main);
         //System.out.println(main.getArrivalIATA() + "\n" + main.getDateOfDeparture() + "\n" + main.getDepartureIATA());
 
-
-
         List<TripOption> tripOption = main.googleCommunicate();
+        //test for debug... to be moved or replaced later
         for (int x = 0; x < main.tripData.size(); x++){
             String city = main.tripData.get(x).getName();
             System.out.println(city);
@@ -65,13 +75,21 @@ public class Main {
             }
         }
 
+        //goto UIInterface -> displayValues() method.
         UIInterface.displayValues(tripOption);
 
 
-    }
+    } //end of main
 
 
-
+    /**
+     * googleCommunicate() method -
+     * method call uses OPX Express objects and api.clent objects to create a connection for QPX. Additionally, method
+     * creates a json element to send to QPX Express and returns List<TripOption> in order to collect data for program.
+     *
+     * @return List <TripOption> tripResults
+     *
+     */
     private List<TripOption> googleCommunicate() {
         List<TripOption> tripResults = null;
 
@@ -128,6 +146,8 @@ public class Main {
         return tripResults;
     }
 
+
+    //getters and setters for main class. ----------------------
     public String getArrivalIATA() {
         return arrivalIATA;
     }
