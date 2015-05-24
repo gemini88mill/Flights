@@ -6,12 +6,20 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
+ * UIInterface Class - all methods within clas are used to use basic I/O functions for the user.
+ * UImain - main method that asks for value from user
+ * userInput - simple input interface for the user
+ * displayValues - displays values for user
  * Created by raphael on 5/17/15.
  */
 public class UIInterface {
 
     private final int IATA_LENGTH = 3;
 
+    /**
+     * UImain() - asks user for 3 strings to input for QPX json
+     * @param main
+     */
     public void UImain(Main main){
 
         String[] userResponse = new String[3];
@@ -29,11 +37,19 @@ public class UIInterface {
 
     }
 
+    /**
+     * userInput() - simple input method that accepts scanner object and sends data back through call stack
+     * @return scan.nextLine (String)
+     */
     private String userInput(){
         Scanner scan = new Scanner(System.in);
         return scan.nextLine();
     }
 
+    /**
+     * uses List <TripOption> and parses data collect in form viewable to user. (to be modified later for better UI).
+     * @param tripResults
+     */
     public static void displayValues(List<TripOption> tripResults) {
         String id;
 
