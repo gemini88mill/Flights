@@ -34,6 +34,7 @@ public class Main {
     List<CityData> tripData = null;
     List<AircraftData> aircraftData = null;
     List<CarrierData> carrierData = null;
+    List<AirportData> airportData = null;
 
     //Main Class Constructor
     public Main(String arrivalIATA, String departureIATA, String dateOfDeparture) {
@@ -76,7 +77,7 @@ public class Main {
         }
 
         //goto UIInterface -> displayValues() method.
-        UIInterface.displayValues(tripOption);
+        UIInterface.displayValues(tripOption, main.tripData, main.aircraftData, main.carrierData, main.airportData);
 
 
     } //end of main
@@ -135,7 +136,12 @@ public class Main {
             tripData = list.getTrips().getData().getCity();
             aircraftData = list.getTrips().getData().getAircraft();
             carrierData = list.getTrips().getData().getCarrier();
+            airportData = list.getTrips().getData().getAirport();
             //gets trip options to list.
+
+            //debug
+
+
 
 
         } catch (GeneralSecurityException e) {

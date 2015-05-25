@@ -49,8 +49,13 @@ public class UIInterface {
     /**
      * uses List <TripOption> and parses data collect in form viewable to user. (to be modified later for better UI).
      * @param tripResults
+     * @param tripData
+     * @param aircraftData
+     * @param carrierData
+     * @param airportData
      */
-    public static void displayValues(List<TripOption> tripResults) {
+    public static void displayValues(List<TripOption> tripResults, List<CityData> tripData, List<AircraftData>
+            aircraftData, List<CarrierData> carrierData, List<AirportData> airportData) {
         String id;
 
         for (int i = 0; i < tripResults.size(); i++) {
@@ -66,6 +71,13 @@ public class UIInterface {
                     FlightInfo flightInfo = segInfo.get(k).getFlight();
                     String flightCarr = flightInfo.getCarrier();
                     String flightNum = flightInfo.getNumber();
+
+                    for (int m = 0; m < carrierData.size(); m++){
+                        if(carrierData.get(m).getCode().equals(flightCarr)){
+                            flightCarr = carrierData.get(m).getName();
+                        }
+                    }
+
                     System.out.println("Carrier: " + flightCarr + "\t Flight No: " + flightNum);
                     List<LegInfo> leg = segInfo.get(k).getLeg();
                     for (int l = 0; l < leg.size(); l++){
@@ -77,6 +89,16 @@ public class UIInterface {
                         String origin = leg.get(l).getOrigin();
                         String destination = leg.get(l).getDestination();
 
+                        for (int n = 0; n < airportData.size(); n++){
+                            if (airportData.get(n).getCode().equals(origin)){
+                                origin = airportData.get(n).getName() + ", " + airportData.get(n).getCity();
+                            }
+                        }
+                        for (int o = 0; o < airportData.size(); o++){
+                            if (airportData.get(o).getCode().equals(destination)){
+                                destination = airportData.get(o).getName() + ", " + airportData.get(o).getCity();
+                            }
+                        }
 
                         int durationLeg = leg.get(l).getDuration();
 
