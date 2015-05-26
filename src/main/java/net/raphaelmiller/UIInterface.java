@@ -26,7 +26,7 @@ public class UIInterface {
 
         String[] userResponse = new String[3];
 
-        System.out.println("Enter departure location:(IATA Code)");
+        System.out.println("Enter Departure location:(IATA Code)");
         userResponse[1] = userInput();
         System.out.println("Enter Arrival Location(IATA Code)");
         userResponse[0] = userInput();
@@ -51,7 +51,7 @@ public class UIInterface {
     /**
      * uses List <TripOption> and parses data collect in form viewable to user. Matches information from other QPX lists
      * gathered to give a more readable interpretation of data for the average user. tripData <CityData> containing city
-     * information, aircraftData, carrierData (Airline), and airportData, for airports. 
+     * information, aircraftData, carrierData (Airline), and airportData, for airports.
      * @param tripResults
      * @param tripData
      * @param aircraftData
@@ -94,7 +94,6 @@ public class UIInterface {
                                 aircraft = aircraftData.get(r).getName();
                             }
                         }
-
                         String arrivalTime = leg.get(l).getArrivalTime();
                         String departureTime = leg.get(l).getDepartureTime();
                         String meal = leg.get(l).getMeal();
@@ -131,7 +130,6 @@ public class UIInterface {
                         System.out.print("Aircraft \t\t\t Arrival \t\t\t\t\t Departure \t\t\t\t\t Meal?\n");
                         System.out.print(aircraft + "\t\t\t" + arrivalTime + "\t\t" + departureTime + "\t\t" + meal + "\n" );
                         System.out.println("Leg: " + origin + " to\n " + destination + "\n");
-
                     }
                 }
             }
@@ -140,10 +138,6 @@ public class UIInterface {
                 String price = priceInfo.get(p).getSaleTotal();
                 System.out.println("Price: " + price + "\n\n");
             }
-
-
         }
-
-
     }
 }

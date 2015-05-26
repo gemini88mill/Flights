@@ -62,19 +62,7 @@ public class Main {
         //System.out.println(main.getArrivalIATA() + "\n" + main.getDateOfDeparture() + "\n" + main.getDepartureIATA());
 
         List<TripOption> tripOption = main.googleCommunicate();
-        //test for debug... to be moved or replaced later
-        /*for (int x = 0; x < main.tripData.size(); x++){
-            String city = main.tripData.get(x).getName();
-            System.out.println(city);
-            for (int i = 0; i < main.carrierData.size(); i++){
-                String carrier = main.carrierData.get(i).getName();
-                System.out.println("\t" + carrier);
-                for (int j = 0; j < main.aircraftData.size(); j++){
-                    String aircraft = main.aircraftData.get(j).getName();
-                    System.out.println("\t\t" + aircraft);
-                }
-            }
-        }*/
+
 
         //goto UIInterface -> displayValues() method.
         UIInterface.displayValues(tripOption, main.tripData, main.aircraftData, main.carrierData, main.airportData);
