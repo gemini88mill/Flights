@@ -63,7 +63,7 @@ public class Main {
 
         List<TripOption> tripOption = main.googleCommunicate();
         //test for debug... to be moved or replaced later
-        for (int x = 0; x < main.tripData.size(); x++){
+        /*for (int x = 0; x < main.tripData.size(); x++){
             String city = main.tripData.get(x).getName();
             System.out.println(city);
             for (int i = 0; i < main.carrierData.size(); i++){
@@ -74,7 +74,7 @@ public class Main {
                     System.out.println("\t\t" + aircraft);
                 }
             }
-        }
+        }*/
 
         //goto UIInterface -> displayValues() method.
         UIInterface.displayValues(tripOption, main.tripData, main.aircraftData, main.carrierData, main.airportData);

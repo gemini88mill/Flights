@@ -91,12 +91,22 @@ public class UIInterface {
 
                         for (int n = 0; n < airportData.size(); n++){
                             if (airportData.get(n).getCode().equals(origin)){
-                                origin = airportData.get(n).getName() + ", " + airportData.get(n).getCity();
+                                origin = airportData.get(n).getName();
+                                for (int q = 0; q < tripData.size(); q++){
+                                    if(tripData.get(q).getCode().equals(airportData.get(n).getCity())){
+                                        origin = origin + ", " + tripData.get(q).getName();
+                                    }
+                                }
                             }
                         }
                         for (int o = 0; o < airportData.size(); o++){
                             if (airportData.get(o).getCode().equals(destination)){
-                                destination = airportData.get(o).getName() + ", " + airportData.get(o).getCity();
+                                destination = airportData.get(o).getName();
+                                for (int p = 0; p < tripData.size(); p++){
+                                    if(tripData.get(p).getCode().equals(airportData.get(o).getCity())){
+                                        destination = destination + ", " + tripData.get(p).getName();
+                                    }
+                                }
                             }
                         }
 
@@ -105,7 +115,7 @@ public class UIInterface {
                         System.out.print("Leg Duration: " + durationLeg + " mins\n");
                         System.out.print("Aircraft \t\t Arrival \t\t\t Depart \t\t\t\t\t Meal?\n");
                         System.out.print(aircraft + "\t\t\t" + arrivalTime + "\t\t" + departureTime + "\t\t" + meal + "\n" );
-                        System.out.println("Leg: " + origin + " to " + destination);
+                        System.out.println("Leg: " + origin + " to\n " + destination + "\n");
 
                     }
                 }
@@ -113,7 +123,7 @@ public class UIInterface {
             List<PricingInfo> priceInfo = tripResults.get(i).getPricing();
             for (int p = 0; p < priceInfo.size(); p++) {
                 String price = priceInfo.get(p).getSaleTotal();
-                System.out.println("Price " + price + "\n\n");
+                System.out.println("Price: " + price + "\n\n");
             }
 
 
