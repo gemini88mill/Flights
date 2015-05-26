@@ -49,7 +49,9 @@ public class UIInterface {
     }
 
     /**
-     * uses List <TripOption> and parses data collect in form viewable to user. (to be modified later for better UI).
+     * uses List <TripOption> and parses data collect in form viewable to user. Matches information from other QPX lists
+     * gathered to give a more readable interpretation of data for the average user. tripData <CityData> containing city
+     * information, aircraftData, carrierData (Airline), and airportData, for airports. 
      * @param tripResults
      * @param tripData
      * @param aircraftData
@@ -126,7 +128,7 @@ public class UIInterface {
                         double durationLegInHrs = durationLeg / HR_CONVERT;
 
                         System.out.print("Leg Duration: " + df.format(durationLegInHrs) + " hrs\n");
-                        System.out.print("Aircraft \t\t Arrival \t\t\t Departure \t\t\t\t\t Meal?\n");
+                        System.out.print("Aircraft \t\t\t Arrival \t\t\t\t\t Departure \t\t\t\t\t Meal?\n");
                         System.out.print(aircraft + "\t\t\t" + arrivalTime + "\t\t" + departureTime + "\t\t" + meal + "\n" );
                         System.out.println("Leg: " + origin + " to\n " + destination + "\n");
 
