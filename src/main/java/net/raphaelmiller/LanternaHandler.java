@@ -22,32 +22,14 @@ public class LanternaHandler  {
 
     public void LanternaTerminal(){
         //creates lanterna terminal window
-
-        Terminal terminal = TerminalFacade.createTerminal(System.in, System.out, Charset.forName("UTF8"));
-        Screen screen = new Screen(terminal);
-        GUIScreen guiScreen = new GUIScreen(screen);
-
-        terminal.enterPrivateMode();
-
-        TerminalSize screenSize = terminal.getTerminalSize();
-       // terminal.moveCursor(screenSize.getColumns() - 1, screenSize.getRows() - 1);
-        terminal.applyBackgroundColor(Terminal.Color.BLACK);
-
-        LanternaScreen(guiScreen);
-
-        terminal.exitPrivateMode();
-    }
-
-    private void LanternaScreen(GUIScreen guiScreen) {
-
-        guiScreen.showWindow(new Window("QPX"));
-        guiScreen.getScreen().startScreen();
-        LanternaGUI(guiScreen);
-
-    }
-
-    private void LanternaGUI(GUIScreen guiScreen) {
         TerminalWindow tw = new TerminalWindow("QPX");
+
+        GUIScreen guiScreen = TerminalFacade.createGUIScreen();
+        guiScreen.getScreen().startScreen();
+        //guiScreen.setTitle("QPX");
+
         guiScreen.showWindow(tw, GUIScreen.Position.CENTER);
     }
+
+
 }
