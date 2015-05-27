@@ -1,7 +1,14 @@
 package net.raphaelmiller;
 
 import com.google.api.services.qpxExpress.model.*;
+import com.googlecode.lanterna.TerminalFacade;
+import com.googlecode.lanterna.gui.GUIScreen;
+import com.googlecode.lanterna.gui.Window;
+import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.TerminalSize;
 
+
+import java.nio.charset.Charset;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Scanner;
@@ -140,4 +147,9 @@ public class UIInterface {
             }
         }
     }
+
+    /**
+     * Method used to manipulate Laterna TextUI
+     */
+
 }

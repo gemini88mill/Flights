@@ -7,6 +7,8 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.qpxExpress.QPXExpress;
 import com.google.api.services.qpxExpress.QPXExpressRequestInitializer;
 import com.google.api.services.qpxExpress.model.*;
+import com.googlecode.lanterna.TerminalFacade;
+import com.googlecode.lanterna.gui.GUIScreen;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -56,7 +58,9 @@ public class Main {
 	// write your code here
         Main main = new Main(null, null, null);
         UIInterface ui = new UIInterface();
+        LanternaHandler lh = new LanternaHandler();
 
+        lh.LanternaTerminal();
         //go to UIInterface -> UImain() method.
         ui.UImain(main);
         //System.out.println(main.getArrivalIATA() + "\n" + main.getDateOfDeparture() + "\n" + main.getDepartureIATA());
@@ -104,6 +108,7 @@ public class Main {
             slice.setDestination(destination);
             slice.setDate(date);
             slices.add(slice);
+
             //list slice I am assuming sends that information and prepares to format data requested to JSON
 
             TripOptionsRequest request = new TripOptionsRequest();
