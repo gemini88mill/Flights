@@ -30,7 +30,7 @@ public class LanternaHandler  {
         terminal.enterPrivateMode();
 
         TerminalSize screenSize = terminal.getTerminalSize();
-        terminal.moveCursor(screenSize.getColumns() - 1, screenSize.getRows() - 1);
+       // terminal.moveCursor(screenSize.getColumns() - 1, screenSize.getRows() - 1);
         terminal.applyBackgroundColor(Terminal.Color.BLACK);
 
         LanternaScreen(guiScreen);
@@ -42,6 +42,12 @@ public class LanternaHandler  {
 
         guiScreen.showWindow(new Window("QPX"));
         guiScreen.getScreen().startScreen();
+        LanternaGUI(guiScreen);
 
+    }
+
+    private void LanternaGUI(GUIScreen guiScreen) {
+        TerminalWindow tw = new TerminalWindow("QPX");
+        guiScreen.showWindow(tw, GUIScreen.Position.CENTER);
     }
 }
