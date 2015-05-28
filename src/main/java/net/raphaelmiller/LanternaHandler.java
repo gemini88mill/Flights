@@ -30,6 +30,8 @@ public class LanternaHandler  {
         //guiScreen.setTitle("QPX");
 
         guiScreen.showWindow(tw, GUIScreen.Position.CENTER);
+
+
     }
 
 
