@@ -21,9 +21,9 @@ import java.nio.charset.Charset;
 public class LanternaHandler  {
 
 
-    public void LanternaTerminal(){
+    public void LanternaTerminal(FlightsClient flc){
         //creates lanterna terminal window
-        TerminalWindow tw = new TerminalWindow("QPX");
+        TerminalWindow tw = new TerminalWindow("QPX", flc);
 
         GUIScreen guiScreen = TerminalFacade.createGUIScreen();
         guiScreen.getScreen().startScreen();
