@@ -40,7 +40,22 @@ search requests. (QPX accepts request from IATA codes not from city names which 
 instead). 
 
 Im going to attempt to use laterna use make a more UI interface that retro feel. As if this program was
-written in the 80's for employees that worked for an airline.   
+written in the 80's for employees that worked for an airline.
+
+--Update--
+
+05.28.2015
+
+Functionality with Lanterna almost complete, although I am not an expert with lanterna it has alot of 
+really interesting features that I would like to play around with. The main problem with lanterna is 
+the fact that the API is currently going through a major overhaul, most of the functions will be 
+deprecated by the time Lanterna 3 comes onto the scene. Lanterna 3 was announced in Feb 2014 and 
+not very much has been done as far as documentation. The guys that are working on it are probably 
+doing this as a hobby so it doesnt really have alot of support. 
+
+Many issues still havent been resolved but all in all Lanterna is a pretty simple TextUI to use for
+anyone wanting to create a little blast from the past program. I hope that 3 comes out soon. 
+   
 
 Raphael Miller 
 gemini88mill@gmail.com
