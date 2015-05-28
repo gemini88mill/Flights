@@ -20,6 +20,7 @@ import java.nio.charset.Charset;
  */
 public class LanternaHandler  {
 
+
     public void LanternaTerminal(){
         //creates lanterna terminal window
         TerminalWindow tw = new TerminalWindow("QPX");

@@ -1,14 +1,8 @@
 package net.raphaelmiller;
 
 import com.google.api.services.qpxExpress.model.*;
-import com.googlecode.lanterna.TerminalFacade;
-import com.googlecode.lanterna.gui.GUIScreen;
-import com.googlecode.lanterna.gui.Window;
-import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.TerminalSize;
 
 
-import java.nio.charset.Charset;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Scanner;
@@ -27,22 +21,24 @@ public class UIInterface {
 
     /**
      * UImain() - asks user for 3 strings to input for QPX json
-     * @param main
+     * @param flightsClient
      */
-    public void UImain(Main main){
+    public void UImain(FlightsClient flightsClient){
 
         String[] userResponse = new String[3];
 
+        //region Input Fields
         System.out.println("Enter Departure location:(IATA Code)");
         userResponse[1] = userInput();
         System.out.println("Enter Arrival Location(IATA Code)");
         userResponse[0] = userInput();
         System.out.println("Enter Date of Departure:(YYYY-MM-DD)");
         userResponse[2] = userInput();
+        //endregion
 
-        main.setDateOfDeparture(userResponse[2].toUpperCase());
-        main.setArrivalIATA(userResponse[1].toUpperCase());
-        main.setDepartureIATA(userResponse[0].toUpperCase());
+        flightsClient.setDateOfDeparture(userResponse[2].toUpperCase());
+        flightsClient.setArrivalIATA(userResponse[1].toUpperCase());
+        flightsClient.setDepartureIATA(userResponse[0].toUpperCase());
 
     }
 
