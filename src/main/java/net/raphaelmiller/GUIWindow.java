@@ -65,6 +65,7 @@ public class GUIWindow extends Window {
 
         guiOutput.quitButton();
         guiOutput.horizontalPanel.addComponent(new TextArea(new TerminalSize(400, 300), "test"));
+        //variable texa area, modify to store data from display values
     }
 
     private void lanternaLogin() {
