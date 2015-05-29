@@ -5,6 +5,7 @@ import com.googlecode.lanterna.gui.component.*;
 import com.googlecode.lanterna.gui.layout.LayoutParameter;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.TerminalSize;
 
 
 /**
@@ -33,7 +34,7 @@ public class GUIWindow extends Window {
 
 
 
-        addComponent(new Label("Welcome To Flights(Alpha)"));
+        //addComponent(new Label("Welcome To Flights(Alpha)"));
         //lanternaLogin();
         //lanternaStartMenu(flc);
 
@@ -53,13 +54,17 @@ public class GUIWindow extends Window {
         }));
     }
 
-    public void enterButton(final GUIScreen guiScreen){
+    public void enterButton(final GUIScreen guiScreen, final GUIWindow guiOutput){
         addComponent(new Button("ENTER", new Action() {
             @Override
             public void doAction() {
-                guiScreen.getScreen().getTerminal().clearScreen();
+                guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
+
             }
         }));
+
+        guiOutput.quitButton();
+        guiOutput.horizontalPanel.addComponent(new TextArea(new TerminalSize(400, 300), "test"));
     }
 
     private void lanternaLogin() {
