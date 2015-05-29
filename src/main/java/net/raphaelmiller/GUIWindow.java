@@ -15,26 +15,19 @@ public class GUIWindow extends Window {
     private String uiUser;
     private String uiPassword;
 
-    Panel horizontalPanel;
-    Panel leftPanel;
+    Panel horizontalPanel, leftPanel, rightPanel, middlePanel;
+
 
     Button quit;
 
     public GUIWindow(String title, FlightsClient flc) {
         super(title);
         horizontalPanel = new Panel(new Border.Invisible(), Panel.Orientation.HORISONTAL);
-        leftPanel = new Panel(new Border.Bevel(true), Panel.Orientation.HORISONTAL);
-        //Panel rightPanel = new Panel(new Border.Bevel(true), Panel.Orientation.VERTICAL);
-        //Panel middlePanel = new Panel(new Border.Bevel(true), Panel.Orientation.VERTICAL);
+        leftPanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
+        middlePanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
+        rightPanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
 
-        quit = new Button("QUIT", new Action() {
-            @Override
-            public void doAction() {
-                System.exit(0);
-            }
-        });
-
-        addComponent(leftPanel);
+        //addComponent(leftPanel);
         //horizontalPanel.addComponent(middlePanel);
         //horizontalPanel.addComponent(rightPanel);
 
@@ -42,11 +35,31 @@ public class GUIWindow extends Window {
 
         addComponent(new Label("Welcome To Flights(Alpha)"));
         //lanternaLogin();
-        lanternaStartMenu(flc);
+        //lanternaStartMenu(flc);
 
 
-
+        horizontalPanel.addComponent(leftPanel);
+        horizontalPanel.addComponent(middlePanel);
+        horizontalPanel.addComponent(rightPanel);
         addComponent(horizontalPanel);
+    }
+
+    public void quitButton(){
+        addComponent(new Button("QUIT", new Action() {
+            @Override
+            public void doAction() {
+                System.exit(0);
+            }
+        }));
+    }
+
+    public void enterButton(final GUIScreen guiScreen){
+        addComponent(new Button("ENTER", new Action() {
+            @Override
+            public void doAction() {
+                guiScreen.getScreen().getTerminal().clearScreen();
+            }
+        }));
     }
 
     private void lanternaLogin() {
@@ -115,7 +128,9 @@ public class GUIWindow extends Window {
     }
 
     private void info() {
-        TextBox info = new TextBox("test", 400);  //formatted information from displayValues should go here 
+
+
+        TextBox info = new TextBox("test", 400);  //formatted information from displayValues should go here
 
         Panel panel = new Panel(new Border.Invisible(), Panel.Orientation.HORISONTAL);
         panel.setVisible(true);
