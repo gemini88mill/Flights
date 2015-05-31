@@ -54,18 +54,27 @@ public class GUIWindow extends Window {
         }));
     }
 
-    public void enterButton(final GUIScreen guiScreen, final GUIWindow guiOutput){
+    public void enterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, final TextBox destinationBox,
+                            final TextBox departureLocationBox, final TextBox dateOfDepartureBox){
+        final String[] input = new String[3];
+
         addComponent(new Button("ENTER", new Action() {
             @Override
             public void doAction() {
+                input[0] = destinationBox.getText();
+                input[1] = departureLocationBox.getText();
+                input[2] = dateOfDepartureBox.getText();
+
                 guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
 
             }
         }));
 
+
+
         guiOutput.quitButton();
         guiOutput.horizontalPanel.addComponent(new TextArea(new TerminalSize(400, 300), "test"));
-        //variable texa area, modify to store data from display values
+        //variable text area, modify to store data from display values
     }
 
     private void lanternaLogin() {
