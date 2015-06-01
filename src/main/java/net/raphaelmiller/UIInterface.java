@@ -136,10 +136,12 @@ public class UIInterface {
                                 " \t\t\t\t\t Departure \t\t\t\t\t Meal?\n" + aircraft + "\t\t\t" + arrivalTime + "\t\t"
                                 + departureTime + "\t\t" + meal + "\n" + "Leg: " + origin + " to\n " + destination + "\n";
 
-                        System.out.print("Leg Duration: " + df.format(durationLegInHrs) + " hrs\n");
-                        System.out.print("Aircraft \t\t\t Arrival \t\t\t\t\t Departure \t\t\t\t\t Meal?\n");
-                        System.out.print(aircraft + "\t\t\t" + arrivalTime + "\t\t" + departureTime + "\t\t" + meal + "\n" );
-                        System.out.println("Leg: " + origin + " to\n " + destination + "\n");
+
+                        System.out.println(result);
+                        //System.out.print("Leg Duration: " + df.format(durationLegInHrs) + " hrs\n");
+                        //System.out.print("Aircraft \t\t\t Arrival \t\t\t\t\t Departure \t\t\t\t\t Meal?\n");
+                        //System.out.print(aircraft + "\t\t\t" + arrivalTime + "\t\t" + departureTime + "\t\t" + meal + "\n" );
+                        //System.out.println("Leg: " + origin + " to\n " + destination + "\n");
                     }
                 }
             }

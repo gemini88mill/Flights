@@ -53,7 +53,7 @@ public class GUIWindow extends Window {
 
         final TextArea results = new TextArea(new TerminalSize(400, 300), null);
         final String[] input = new String[3];
-        final String textValues = null;
+        final String[] textValues = {null};
 
         addComponent(new Button("ENTER", new Action() {
             @Override
@@ -67,17 +67,17 @@ public class GUIWindow extends Window {
                 flc.setArrivalIATA(input[0]);
 
                 //sends information to googleCommunicate() in FlightsClient...
-                sendToGoogle(input, textValues);
+                textValues[0] = sendToGoogle(input);
 
                 //prints Data line by line ()
-                results.appendLine(flc.getArrivalIATA());
+                results.appendLine(textValues[0]);
 
                 guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
 
             }
         }));
 
-        drawPage(guiOutput, results, textValues);
+        drawPage(guiOutput, results);
 
         System.out.println(input[0]);
 
@@ -85,22 +85,23 @@ public class GUIWindow extends Window {
         //variable text area, modify to store data from display values
     }
 
-    private void sendToGoogle(String[] input, String textValues) {
+    private String sendToGoogle(String[] input) {
         //connection established with doAction()
         //System.out.println(input[1]);
 
         //sending firstPage Data to googleCommunicate...
         List<TripOption> tripResults = flc.googleCommunicate(input);
 
-        textValues = UIInterface.displayValues(tripResults, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData);
+        String textValues = UIInterface.displayValues(tripResults, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData);
+        return textValues;
 
     }
 
-    private void drawPage(GUIWindow guiOutput, TextArea results, String textValues) {
+    private void drawPage(GUIWindow guiOutput, TextArea results) {
 
         guiOutput.quitButton();
         guiOutput.horizontalPanel.addComponent(results);
-        results.appendLine(textValues);
+        //results.appendLine(textValues);
     }
 
 
