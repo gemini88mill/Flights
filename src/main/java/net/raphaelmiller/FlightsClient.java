@@ -63,11 +63,11 @@ public class FlightsClient {
         ui.UImain(flc);
         //System.out.println(main.getArrivalIATA() + "\n" + main.getDateOfDeparture() + "\n" + main.getDepartureIATA());
 
-        List<TripOption> tripOption = flc.googleCommunicate();
+        //List<TripOption> tripOption = flc.googleCommunicate(input);
 
 
         //goto UIInterface -> displayValues() method.
-        UIInterface.displayValues(tripOption, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData);
+        //UIInterface.displayValues(tripOption, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData);
 
 
     } //end of main
@@ -80,8 +80,9 @@ public class FlightsClient {
      *
      * @return List <TripOption> tripResults
      *
+     * @param input
      */
-    public List<TripOption> googleCommunicate() {
+    public List<TripOption> googleCommunicate(String[] input) {
         List<TripOption> tripResults = null;
 
         try {
@@ -102,9 +103,13 @@ public class FlightsClient {
             //user input
 
             SliceInput slice = new SliceInput();
-            slice.setOrigin(origin);
-            slice.setDestination(destination);
-            slice.setDate(date);
+            slice.setOrigin(input[0]);
+            slice.setDestination(input[1]);
+            slice.setDate(input[2]);
+
+            //slice.setOrigin(origin);
+            //slice.setDestination(destination);
+            //slice.setDate(date);
             slices.add(slice);
 
             //list slice I am assuming sends that information and prepares to format data requested to JSON

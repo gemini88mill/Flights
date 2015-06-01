@@ -1,9 +1,12 @@
 package net.raphaelmiller;
 
+import com.google.api.services.qpxExpress.model.TripOption;
 import com.googlecode.lanterna.gui.*;
 import com.googlecode.lanterna.gui.component.*;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.TerminalSize;
+
+import java.util.List;
 
 
 /**
@@ -50,6 +53,7 @@ public class GUIWindow extends Window {
 
         final TextArea results = new TextArea(new TerminalSize(400, 300), null);
         final String[] input = new String[3];
+        final String textValues = null;
 
         addComponent(new Button("ENTER", new Action() {
             @Override
@@ -58,15 +62,12 @@ public class GUIWindow extends Window {
                 input[1] = departureLocationBox.getText();
                 input[2] = dateOfDepartureBox.getText();
 
-
-
                 flc.setDateOfDeparture(input[2]);
                 flc.setDepartureIATA(input[1]);
                 flc.setArrivalIATA(input[0]);
 
-
                 //sends information to googleCommunicate() in FlightsClient...
-                sendToGoogle();
+                sendToGoogle(input, textValues);
 
                 //prints Data line by line ()
                 results.appendLine(flc.getArrivalIATA());
@@ -76,7 +77,7 @@ public class GUIWindow extends Window {
             }
         }));
 
-        drawPage(guiOutput, results);
+        drawPage(guiOutput, results, textValues);
 
         System.out.println(input[0]);
 
@@ -84,14 +85,22 @@ public class GUIWindow extends Window {
         //variable text area, modify to store data from display values
     }
 
-    private void sendToGoogle() {
+    private void sendToGoogle(String[] input, String textValues) {
+        //connection established with doAction()
+        //System.out.println(input[1]);
+
+        //sending firstPage Data to googleCommunicate...
+        List<TripOption> tripResults = flc.googleCommunicate(input);
+
+        textValues = UIInterface.displayValues(tripResults, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData);
 
     }
 
-    private void drawPage(GUIWindow guiOutput, TextArea results) {
+    private void drawPage(GUIWindow guiOutput, TextArea results, String textValues) {
 
         guiOutput.quitButton();
         guiOutput.horizontalPanel.addComponent(results);
+        results.appendLine(textValues);
     }
 
 

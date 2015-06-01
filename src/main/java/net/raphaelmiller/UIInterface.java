@@ -61,9 +61,10 @@ public class UIInterface {
      * @param carrierData
      * @param airportData
      */
-    public static void displayValues(List<TripOption> tripResults, List<CityData> tripData, List<AircraftData>
+    public static String displayValues(List<TripOption> tripResults, List<CityData> tripData, List<AircraftData>
             aircraftData, List<CarrierData> carrierData, List<AirportData> airportData) {
         String id;
+        String result = null;
 
         DecimalFormat df = new DecimalFormat("#.##");
 
@@ -129,6 +130,12 @@ public class UIInterface {
                         int durationLeg = leg.get(l).getDuration();
                         double durationLegInHrs = durationLeg / HR_CONVERT;
 
+
+
+                        result = "Leg Duration: " + df.format(durationLegInHrs) + " hrs\n" + "Aircraft \t\t\t Arrival" +
+                                " \t\t\t\t\t Departure \t\t\t\t\t Meal?\n" + aircraft + "\t\t\t" + arrivalTime + "\t\t"
+                                + departureTime + "\t\t" + meal + "\n" + "Leg: " + origin + " to\n " + destination + "\n";
+
                         System.out.print("Leg Duration: " + df.format(durationLegInHrs) + " hrs\n");
                         System.out.print("Aircraft \t\t\t Arrival \t\t\t\t\t Departure \t\t\t\t\t Meal?\n");
                         System.out.print(aircraft + "\t\t\t" + arrivalTime + "\t\t" + departureTime + "\t\t" + meal + "\n" );
@@ -142,6 +149,8 @@ public class UIInterface {
                 System.out.println("Price: " + price + "\n\n");
             }
         }
+
+        return result;
     }
 
     /**
