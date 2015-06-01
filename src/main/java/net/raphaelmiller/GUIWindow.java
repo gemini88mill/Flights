@@ -47,6 +47,8 @@ public class GUIWindow extends Window {
 
     public void enterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, final TextBox destinationBox,
                             final TextBox departureLocationBox, final TextBox dateOfDepartureBox){
+
+        final TextArea results = new TextArea(new TerminalSize(400, 300), null);
         final String[] input = new String[3];
 
         addComponent(new Button("ENTER", new Action() {
@@ -55,6 +57,8 @@ public class GUIWindow extends Window {
                 input[0] = destinationBox.getText();
                 input[1] = departureLocationBox.getText();
                 input[2] = dateOfDepartureBox.getText();
+
+                results.appendLine(input[0]);
 
                 flc.setDateOfDeparture(input[2]);
                 flc.setDepartureIATA(input[1]);
@@ -65,17 +69,18 @@ public class GUIWindow extends Window {
             }
         }));
 
+        drawPage(guiOutput, results);
+
+        System.out.println(input[0]);
 
 
+        //variable text area, modify to store data from display values
+    }
 
-        String algoOut = null;
-        for (int x = 0; x < input.length; x++){
-            algoOut += "\n" + input[x];
-        }
+    private void drawPage(GUIWindow guiOutput, TextArea results) {
 
         guiOutput.quitButton();
-        guiOutput.horizontalPanel.addComponent(new TextArea(new TerminalSize(400, 300), algoOut));
-        //variable text area, modify to store data from display values
+        guiOutput.horizontalPanel.addComponent(results);
     }
 
 
