@@ -2,8 +2,6 @@ package net.raphaelmiller;
 
 import com.googlecode.lanterna.gui.*;
 import com.googlecode.lanterna.gui.component.*;
-import com.googlecode.lanterna.gui.layout.LayoutParameter;
-import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.TerminalSize;
 
@@ -18,11 +16,14 @@ public class GUIWindow extends Window {
 
     Panel horizontalPanel, leftPanel, rightPanel, middlePanel;
 
-
+    FlightsClient flc;
     Button quit;
 
     public GUIWindow(String title, FlightsClient flc) {
         super(title);
+
+        this.flc = flc;
+
         horizontalPanel = new Panel(new Border.Invisible(), Panel.Orientation.HORISONTAL);
         leftPanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
         middlePanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
@@ -65,6 +66,10 @@ public class GUIWindow extends Window {
                 input[1] = departureLocationBox.getText();
                 input[2] = dateOfDepartureBox.getText();
 
+                flc.setDateOfDeparture(input[2]);
+                flc.setDepartureIATA(input[1]);
+                flc.setArrivalIATA(input[0]);
+
                 guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
 
             }
@@ -72,11 +77,19 @@ public class GUIWindow extends Window {
 
 
 
+
+        String algoOut = null;
+        for (int x = 0; x < input.length; x++){
+            algoOut += "\n" + input[x];
+        }
+
         guiOutput.quitButton();
-        guiOutput.horizontalPanel.addComponent(new TextArea(new TerminalSize(400, 300), "test"));
+        guiOutput.horizontalPanel.addComponent(new TextArea(new TerminalSize(400, 300), algoOut));
         //variable text area, modify to store data from display values
     }
 
+
+    //attempts at second page, left in for reference ----------------------------------
     private void lanternaLogin() {
         final TextBox username = new TextBox("Username", 400);
         final PasswordBox password = new PasswordBox(null, 400);

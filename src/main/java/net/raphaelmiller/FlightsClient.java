@@ -81,7 +81,7 @@ public class FlightsClient {
      * @return List <TripOption> tripResults
      *
      */
-    private List<TripOption> googleCommunicate() {
+    public List<TripOption> googleCommunicate() {
         List<TripOption> tripResults = null;
 
         try {

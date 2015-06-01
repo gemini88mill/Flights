@@ -29,24 +29,24 @@
       <file leaf-file-name="FlightsClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/FlightsClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="888" max-vertical-offset="3204">
-              <caret line="62" column="23" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="942" max-vertical-offset="3204">
+              <caret line="83" column="10" selection-start-line="83" selection-start-column="10" selection-end-line="83" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3539#3551#0" expanded="true" />
-                <element signature="e#3604#3614#0" expanded="true" />
-                <element signature="e#5694#5695#0" expanded="true" />
-                <element signature="e#5728#5729#0" expanded="true" />
-                <element signature="e#5782#5783#0" expanded="true" />
-                <element signature="e#5828#5829#0" expanded="true" />
-                <element signature="e#5869#5870#0" expanded="true" />
-                <element signature="e#5905#5906#0" expanded="true" />
-                <element signature="e#5963#5964#0" expanded="true" />
-                <element signature="e#6013#6014#0" expanded="true" />
-                <element signature="e#6055#6056#0" expanded="true" />
-                <element signature="e#6093#6094#0" expanded="true" />
-                <element signature="e#6155#6156#0" expanded="true" />
-                <element signature="e#6209#6210#0" expanded="true" />
+                <element signature="e#3538#3550#0" expanded="true" />
+                <element signature="e#3603#3613#0" expanded="true" />
+                <element signature="e#5693#5694#0" expanded="true" />
+                <element signature="e#5727#5728#0" expanded="true" />
+                <element signature="e#5781#5782#0" expanded="true" />
+                <element signature="e#5827#5828#0" expanded="true" />
+                <element signature="e#5868#5869#0" expanded="true" />
+                <element signature="e#5904#5905#0" expanded="true" />
+                <element signature="e#5962#5963#0" expanded="true" />
+                <element signature="e#6012#6013#0" expanded="true" />
+                <element signature="e#6054#6055#0" expanded="true" />
+                <element signature="e#6092#6093#0" expanded="true" />
+                <element signature="e#6154#6155#0" expanded="true" />
+                <element signature="e#6208#6209#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -67,8 +67,8 @@
       <file leaf-file-name="LanternaHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/LanternaHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="1098">
-              <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="1116">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,22 +79,22 @@
       <file leaf-file-name="GUIWindow.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.57419354" vertical-offset="744" max-vertical-offset="1674">
-              <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.75698924" vertical-offset="934" max-vertical-offset="1908">
+              <caret line="91" column="87" selection-start-line="91" selection-start-column="87" selection-end-line="91" selection-end-column="87" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1508#1637#0" expanded="true" />
-                <element signature="e#1636#1637#0" expanded="true" />
-                <element signature="e#1947#2296#0" expanded="true" />
-                <element signature="e#2295#2296#0" expanded="true" />
+                <element signature="e#1451#1580#0" expanded="true" />
+                <element signature="e#1579#1580#0" expanded="true" />
+                <element signature="e#1890#2384#0" expanded="true" />
+                <element signature="e#2383#2384#0" expanded="true" />
                 <element signature="method#lanternaLogin#0;class#GUIWindow#0" expanded="false" />
-                <element signature="e#2908#3203#0" expanded="true" />
-                <element signature="e#3202#3203#0" expanded="true" />
-                <element signature="e#3247#3376#0" expanded="true" />
-                <element signature="e#3375#3376#0" expanded="true" />
+                <element signature="e#3217#3512#0" expanded="true" />
+                <element signature="e#3511#3512#0" expanded="true" />
+                <element signature="e#3556#3685#0" expanded="true" />
+                <element signature="e#3684#3685#0" expanded="true" />
                 <element signature="method#lanternaStartMenu#0;class#GUIWindow#0" expanded="false" />
-                <element signature="e#4084#4377#0" expanded="true" />
-                <element signature="e#4376#4377#0" expanded="true" />
+                <element signature="e#4393#4686#0" expanded="true" />
+                <element signature="e#4685#4686#0" expanded="true" />
                 <element signature="method#info#0;class#GUIWindow#0" expanded="false" />
               </folding>
             </state>
@@ -119,8 +119,8 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/UIInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/FlightsClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/TerminalWindow.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/FlightsClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/LanternaHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java" />
       </list>
@@ -472,7 +472,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1920" height="1056" extended-state="7" />
+    <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -538,20 +538,20 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3539#3551#0" expanded="true" />
-            <element signature="e#3604#3614#0" expanded="true" />
-            <element signature="e#5694#5695#0" expanded="true" />
-            <element signature="e#5728#5729#0" expanded="true" />
-            <element signature="e#5782#5783#0" expanded="true" />
-            <element signature="e#5828#5829#0" expanded="true" />
-            <element signature="e#5869#5870#0" expanded="true" />
-            <element signature="e#5905#5906#0" expanded="true" />
-            <element signature="e#5963#5964#0" expanded="true" />
-            <element signature="e#6013#6014#0" expanded="true" />
-            <element signature="e#6055#6056#0" expanded="true" />
-            <element signature="e#6093#6094#0" expanded="true" />
-            <element signature="e#6155#6156#0" expanded="true" />
-            <element signature="e#6209#6210#0" expanded="true" />
+            <element signature="e#3538#3550#0" expanded="true" />
+            <element signature="e#3603#3613#0" expanded="true" />
+            <element signature="e#5693#5694#0" expanded="true" />
+            <element signature="e#5727#5728#0" expanded="true" />
+            <element signature="e#5781#5782#0" expanded="true" />
+            <element signature="e#5827#5828#0" expanded="true" />
+            <element signature="e#5868#5869#0" expanded="true" />
+            <element signature="e#5904#5905#0" expanded="true" />
+            <element signature="e#5962#5963#0" expanded="true" />
+            <element signature="e#6012#6013#0" expanded="true" />
+            <element signature="e#6054#6055#0" expanded="true" />
+            <element signature="e#6092#6093#0" expanded="true" />
+            <element signature="e#6154#6155#0" expanded="true" />
+            <element signature="e#6208#6209#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -581,20 +581,20 @@
           <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3539#3551#0" expanded="true" />
-            <element signature="e#3604#3614#0" expanded="true" />
-            <element signature="e#5694#5695#0" expanded="true" />
-            <element signature="e#5728#5729#0" expanded="true" />
-            <element signature="e#5782#5783#0" expanded="true" />
-            <element signature="e#5828#5829#0" expanded="true" />
-            <element signature="e#5869#5870#0" expanded="true" />
-            <element signature="e#5905#5906#0" expanded="true" />
-            <element signature="e#5963#5964#0" expanded="true" />
-            <element signature="e#6013#6014#0" expanded="true" />
-            <element signature="e#6055#6056#0" expanded="true" />
-            <element signature="e#6093#6094#0" expanded="true" />
-            <element signature="e#6155#6156#0" expanded="true" />
-            <element signature="e#6209#6210#0" expanded="true" />
+            <element signature="e#3538#3550#0" expanded="true" />
+            <element signature="e#3603#3613#0" expanded="true" />
+            <element signature="e#5693#5694#0" expanded="true" />
+            <element signature="e#5727#5728#0" expanded="true" />
+            <element signature="e#5781#5782#0" expanded="true" />
+            <element signature="e#5827#5828#0" expanded="true" />
+            <element signature="e#5868#5869#0" expanded="true" />
+            <element signature="e#5904#5905#0" expanded="true" />
+            <element signature="e#5962#5963#0" expanded="true" />
+            <element signature="e#6012#6013#0" expanded="true" />
+            <element signature="e#6054#6055#0" expanded="true" />
+            <element signature="e#6092#6093#0" expanded="true" />
+            <element signature="e#6154#6155#0" expanded="true" />
+            <element signature="e#6208#6209#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -696,32 +696,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/FlightsClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="3204">
-          <caret line="62" column="23" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="942" max-vertical-offset="3204">
+          <caret line="83" column="10" selection-start-line="83" selection-start-column="10" selection-end-line="83" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3539#3551#0" expanded="true" />
-            <element signature="e#3604#3614#0" expanded="true" />
-            <element signature="e#5694#5695#0" expanded="true" />
-            <element signature="e#5728#5729#0" expanded="true" />
-            <element signature="e#5782#5783#0" expanded="true" />
-            <element signature="e#5828#5829#0" expanded="true" />
-            <element signature="e#5869#5870#0" expanded="true" />
-            <element signature="e#5905#5906#0" expanded="true" />
-            <element signature="e#5963#5964#0" expanded="true" />
-            <element signature="e#6013#6014#0" expanded="true" />
-            <element signature="e#6055#6056#0" expanded="true" />
-            <element signature="e#6093#6094#0" expanded="true" />
-            <element signature="e#6155#6156#0" expanded="true" />
-            <element signature="e#6209#6210#0" expanded="true" />
+            <element signature="e#3538#3550#0" expanded="true" />
+            <element signature="e#3603#3613#0" expanded="true" />
+            <element signature="e#5693#5694#0" expanded="true" />
+            <element signature="e#5727#5728#0" expanded="true" />
+            <element signature="e#5781#5782#0" expanded="true" />
+            <element signature="e#5827#5828#0" expanded="true" />
+            <element signature="e#5868#5869#0" expanded="true" />
+            <element signature="e#5904#5905#0" expanded="true" />
+            <element signature="e#5962#5963#0" expanded="true" />
+            <element signature="e#6012#6013#0" expanded="true" />
+            <element signature="e#6054#6055#0" expanded="true" />
+            <element signature="e#6092#6093#0" expanded="true" />
+            <element signature="e#6154#6155#0" expanded="true" />
+            <element signature="e#6208#6209#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/LanternaHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="1098">
-          <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="1116">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -730,22 +730,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57419354" vertical-offset="744" max-vertical-offset="1674">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.75698924" vertical-offset="934" max-vertical-offset="1908">
+          <caret line="91" column="87" selection-start-line="91" selection-start-column="87" selection-end-line="91" selection-end-column="87" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1508#1637#0" expanded="true" />
-            <element signature="e#1636#1637#0" expanded="true" />
-            <element signature="e#1947#2296#0" expanded="true" />
-            <element signature="e#2295#2296#0" expanded="true" />
+            <element signature="e#1451#1580#0" expanded="true" />
+            <element signature="e#1579#1580#0" expanded="true" />
+            <element signature="e#1890#2384#0" expanded="true" />
+            <element signature="e#2383#2384#0" expanded="true" />
             <element signature="method#lanternaLogin#0;class#GUIWindow#0" expanded="false" />
-            <element signature="e#2908#3203#0" expanded="true" />
-            <element signature="e#3202#3203#0" expanded="true" />
-            <element signature="e#3247#3376#0" expanded="true" />
-            <element signature="e#3375#3376#0" expanded="true" />
+            <element signature="e#3217#3512#0" expanded="true" />
+            <element signature="e#3511#3512#0" expanded="true" />
+            <element signature="e#3556#3685#0" expanded="true" />
+            <element signature="e#3684#3685#0" expanded="true" />
             <element signature="method#lanternaStartMenu#0;class#GUIWindow#0" expanded="false" />
-            <element signature="e#4084#4377#0" expanded="true" />
-            <element signature="e#4376#4377#0" expanded="true" />
+            <element signature="e#4393#4686#0" expanded="true" />
+            <element signature="e#4685#4686#0" expanded="true" />
             <element signature="method#info#0;class#GUIWindow#0" expanded="false" />
           </folding>
         </state>
