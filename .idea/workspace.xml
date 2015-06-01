@@ -79,23 +79,23 @@
       <file leaf-file-name="GUIWindow.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54723126" vertical-offset="618" max-vertical-offset="1692">
-              <caret line="60" column="42" selection-start-line="60" selection-start-column="42" selection-end-line="60" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.47882736" vertical-offset="840" max-vertical-offset="1890">
+              <caret line="70" column="45" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#quitButton#0;class#GUIWindow#0" expanded="false" />
                 <element signature="e#1271#1400#0" expanded="true" />
                 <element signature="e#1399#1400#0" expanded="true" />
-                <element signature="e#1792#2333#0" expanded="true" />
-                <element signature="e#2332#2333#0" expanded="true" />
+                <element signature="e#1792#2506#0" expanded="true" />
+                <element signature="e#2505#2506#0" expanded="true" />
                 <element signature="method#lanternaLogin#0;class#GUIWindow#0" expanded="false" />
-                <element signature="e#3145#3440#0" expanded="true" />
-                <element signature="e#3439#3440#0" expanded="true" />
-                <element signature="e#3484#3613#0" expanded="true" />
-                <element signature="e#3612#3613#0" expanded="true" />
+                <element signature="e#3360#3655#0" expanded="true" />
+                <element signature="e#3654#3655#0" expanded="true" />
+                <element signature="e#3699#3828#0" expanded="true" />
+                <element signature="e#3827#3828#0" expanded="true" />
                 <element signature="method#lanternaStartMenu#0;class#GUIWindow#0" expanded="false" />
-                <element signature="e#4321#4614#0" expanded="true" />
-                <element signature="e#4613#4614#0" expanded="true" />
+                <element signature="e#4536#4829#0" expanded="true" />
+                <element signature="e#4828#4829#0" expanded="true" />
                 <element signature="method#info#0;class#GUIWindow#0" expanded="false" />
               </folding>
             </state>
@@ -731,23 +731,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54723126" vertical-offset="618" max-vertical-offset="1692">
-          <caret line="60" column="42" selection-start-line="60" selection-start-column="42" selection-end-line="60" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.47882736" vertical-offset="840" max-vertical-offset="1890">
+          <caret line="70" column="45" selection-start-line="70" selection-start-column="45" selection-end-line="70" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#quitButton#0;class#GUIWindow#0" expanded="false" />
             <element signature="e#1271#1400#0" expanded="true" />
             <element signature="e#1399#1400#0" expanded="true" />
-            <element signature="e#1792#2333#0" expanded="true" />
-            <element signature="e#2332#2333#0" expanded="true" />
+            <element signature="e#1792#2506#0" expanded="true" />
+            <element signature="e#2505#2506#0" expanded="true" />
             <element signature="method#lanternaLogin#0;class#GUIWindow#0" expanded="false" />
-            <element signature="e#3145#3440#0" expanded="true" />
-            <element signature="e#3439#3440#0" expanded="true" />
-            <element signature="e#3484#3613#0" expanded="true" />
-            <element signature="e#3612#3613#0" expanded="true" />
+            <element signature="e#3360#3655#0" expanded="true" />
+            <element signature="e#3654#3655#0" expanded="true" />
+            <element signature="e#3699#3828#0" expanded="true" />
+            <element signature="e#3827#3828#0" expanded="true" />
             <element signature="method#lanternaStartMenu#0;class#GUIWindow#0" expanded="false" />
-            <element signature="e#4321#4614#0" expanded="true" />
-            <element signature="e#4613#4614#0" expanded="true" />
+            <element signature="e#4536#4829#0" expanded="true" />
+            <element signature="e#4828#4829#0" expanded="true" />
             <element signature="method#info#0;class#GUIWindow#0" expanded="false" />
           </folding>
         </state>

@@ -58,11 +58,18 @@ public class GUIWindow extends Window {
                 input[1] = departureLocationBox.getText();
                 input[2] = dateOfDepartureBox.getText();
 
-                results.appendLine(input[0]);
+
 
                 flc.setDateOfDeparture(input[2]);
                 flc.setDepartureIATA(input[1]);
                 flc.setArrivalIATA(input[0]);
+
+
+                //sends information to googleCommunicate() in FlightsClient...
+                sendToGoogle();
+
+                //prints Data line by line ()
+                results.appendLine(flc.getArrivalIATA());
 
                 guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
 
@@ -75,6 +82,10 @@ public class GUIWindow extends Window {
 
 
         //variable text area, modify to store data from display values
+    }
+
+    private void sendToGoogle() {
+
     }
 
     private void drawPage(GUIWindow guiOutput, TextArea results) {
