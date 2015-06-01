@@ -29,23 +29,13 @@ public class GUIWindow extends Window {
         middlePanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
         rightPanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
 
-        //addComponent(leftPanel);
-        //horizontalPanel.addComponent(middlePanel);
-        //horizontalPanel.addComponent(rightPanel);
-
-
-
-        //addComponent(new Label("Welcome To Flights(Alpha)"));
-        //lanternaLogin();
-        //lanternaStartMenu(flc);
-
-
         horizontalPanel.addComponent(leftPanel);
         horizontalPanel.addComponent(middlePanel);
         horizontalPanel.addComponent(rightPanel);
         addComponent(horizontalPanel);
     }
 
+    //generic quit button that leaves the GUI and shuts down the program whenever pressed
     public void quitButton(){
         addComponent(new Button("QUIT", new Action() {
             @Override
