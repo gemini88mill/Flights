@@ -42,8 +42,8 @@ public class LanternaHandler  {
 
         //adds Labels for TextBoxes
         guiInput.rightPanel.addComponent(new Label("Date of Departure\t\t", Terminal.Color.RED));
-        guiInput.middlePanel.addComponent(new Label("Leaving From(IATA)\t\t", Terminal.Color.RED));
-        guiInput.leftPanel.addComponent(new Label("Destination (IATA)\t\t", Terminal.Color.RED));
+        guiInput.middlePanel.addComponent(new Label("Arriving to(IATA code)\t\t", Terminal.Color.RED));
+        guiInput.leftPanel.addComponent(new Label("Leaving from(IATA code)\t\t", Terminal.Color.RED));
 
         //places TextBoxes
         guiInput.leftPanel.addComponent(destinationBox);
