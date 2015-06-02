@@ -4,6 +4,7 @@ import com.google.api.services.qpxExpress.model.*;
 
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -134,7 +135,19 @@ public class UIInterface {
                         /*final string data is now converted to single string and prints out via System.out.println()
                         * below, println's left in order to debug later if necessary. String is now sent to GUI and
                          * placed according to GUI. (see LanternaHandler.java and GUIWindow.java)*/
-                        result = "Leg Duration: " + df.format(durationLegInHrs) + " hrs\n" + "Aircraft \t\t\t Arrival" +
+
+
+                        List <String> information = new ArrayList<String>();
+
+                        information.add(df.format(duration));
+                        information.add(aircraft);
+                        information.add(arrivalTime);
+                        information.add(departureTime);
+                        information.add(meal);
+                        information.add(origin);
+                        information.add(destination);
+
+                         result = "Leg Duration: " + df.format(durationLegInHrs) + " hrs\n" + "Aircraft \t\t\t Arrival" +
                                 " \t\t\t\t\t Departure \t\t\t\t\t Meal?\n" + aircraft + "\t\t\t" + arrivalTime + "\t\t"
                                 + departureTime + "\t\t" + meal + "\n" + "Leg: " + origin + " to\n " + destination + "\n";
 

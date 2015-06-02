@@ -1,11 +1,12 @@
 package net.raphaelmiller;
 
-import com.google.api.services.qpxExpress.model.TripOption;
+import com.google.api.services.qpxExpress.model.*;
 import com.googlecode.lanterna.gui.*;
 import com.googlecode.lanterna.gui.component.*;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.TerminalSize;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 
@@ -91,10 +92,10 @@ public class GUIWindow extends Window {
                 flc.setArrivalIATA(input[0]);
 
                 //sends information to googleCommunicate() in FlightsClient...
-                textValues[0] = sendToGoogle(input);
+                List<TripOption> tripOptions = sendToGoogle(input);
+                formatToScreen(tripOptions, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData, results);
 
-                //prints Data line by line ()
-                results.appendLine(textValues[0]);
+                //results.appendLine(textValues[0] + "\n");
 
                 guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
 
@@ -109,6 +110,87 @@ public class GUIWindow extends Window {
         //variable text area, modify to store data from display values
     }
 
+    private void formatToScreen(List<TripOption> tripOptions, List<CityData> tripData, List<AircraftData> aircraftData,
+                                List<CarrierData> carrierData, List<AirportData> airportData, TextArea results) {
+        DecimalFormat df = new DecimalFormat("#.##");
+
+        String id;
+            for (int i = 0; i < tripOptions.size(); i++){
+                id = tripOptions.get(i).getId();
+                results.appendLine(id);
+                List<SliceInfo> sliceInfo = tripOptions.get(i).getSlice();
+                for(int j = 0; j < sliceInfo.size(); j++){
+                    int duration = sliceInfo.get(j).getDuration();
+                    double durationInHours = duration / 60;
+                    results.appendLine("Duration: " + df.format(durationInHours) + " hrs" );
+                    List<SegmentInfo> segInfo = sliceInfo.get(j).getSegment();
+                    for (int k = 0; k < segInfo.size(); k++){
+                        FlightInfo flightInfo = segInfo.get(k).getFlight();
+                        String flightCarr = flightInfo.getCarrier();
+                        String flightNum = flightInfo.getNumber();
+                        for (int m = 0; m < carrierData.size(); m++){
+                            if (carrierData.get(m).getCode().equals(flightCarr)){
+                                flightCarr = carrierData.get(m).getName();
+                            }
+                        }
+                        results.appendLine("Carrier: " + flightCarr + "\t Flight No: " + flightNum);
+                        List<LegInfo> leg = segInfo.get(k).getLeg();
+                        for(int l = 0; l < leg.size(); l++){
+                            String aircraft = leg.get(l).getAircraft();
+                            for (int r = 0; r < aircraftData.size(); r++){
+                                if (aircraftData.get(r).getCode().equals(aircraft)){
+                                    aircraft = aircraftData.get(r).getName();
+                                }
+                            }
+                            String arrivalTime = leg.get(l).getArrivalTime();
+                            String departureTime = leg.get(l).getDepartureTime();
+                            String meal = leg.get(l).getMeal();
+
+                            String origin = leg.get(l).getOrigin();
+                            String destination = leg.get(l).getDestination();
+
+                            for(int n = 0; n < airportData.size(); n++){
+                                if (airportData.get(n).getCode().equals(origin)){
+                                    origin = airportData.get(n).getName();
+                                    for (int q = 0; q < tripData.size(); q++){
+                                        if (tripData.get(q).getCode().equals(airportData.get(n).getCity())){
+                                            origin = origin + ", " + tripData.get(q).getName();
+                                        }
+                                    }
+                                }
+                            }
+
+                            for (int o = 0; o < airportData.size(); o++){
+                                if (airportData.get(o).getCode().equals(destination)){
+                                    destination = airportData.get(o).getName();
+                                    for (int p = 0; p < tripData.size(); p++){
+                                        if(tripData.get(p).getCode().equals(airportData.get(o).getCity())){
+                                            destination = destination + ", " + tripData.get(p).getName();
+                                        }
+                                    }
+                                }
+                            }
+                            int durationLeg = leg.get(l).getDuration();
+                            double durationLeginHours = durationLeg / 60;
+
+                            results.appendLine("Leg Duration: " + df.format(durationLeginHours) + " hrs\n");
+                            results.appendLine("Aircraft \t\t\t Arrival \t\t\t\t\t Departure \t\t\t\t\t Meal?\n");
+                            results.appendLine(aircraft + "\t\t\t" + arrivalTime + "\t\t" + departureTime + "\t\t" + meal + "\n" );
+                            results.appendLine("Leg: " + origin + " to\n " + destination + "\n");
+
+
+                        }
+                    }
+                }
+                List<PricingInfo> priceInfo = tripOptions.get(i).getPricing();
+                for (int p = 0; p < priceInfo.size(); p++) {
+                    String price = priceInfo.get(p).getSaleTotal();
+                    results.appendLine("Price: " + price + "\n\n");
+                    results.appendLine("");
+                }
+            }
+    }
+
     /**
      * sendToGoogle() method
      *
@@ -116,15 +198,15 @@ public class GUIWindow extends Window {
      * @param input
      * @return
      */
-    private String sendToGoogle(String[] input) {
+    private List<TripOption> sendToGoogle(String[] input) {
         //connection established with doAction()
         //System.out.println(input[1]);
 
         //sending firstPage Data to googleCommunicate...
         List<TripOption> tripResults = flc.googleCommunicate(input);
 
-        String textValues = UIInterface.displayValues(tripResults, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData);
-        return textValues;
+        //String textValues = UIInterface.displayValues(tripResults, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData);
+        return tripResults;
 
     }
 
