@@ -131,7 +131,9 @@ public class UIInterface {
                         double durationLegInHrs = durationLeg / HR_CONVERT;
 
 
-
+                        /*final string data is now converted to single string and prints out via System.out.println()
+                        * below, println's left in order to debug later if necessary. String is now sent to GUI and
+                         * placed according to GUI. (see LanternaHandler.java and GUIWindow.java)*/
                         result = "Leg Duration: " + df.format(durationLegInHrs) + " hrs\n" + "Aircraft \t\t\t Arrival" +
                                 " \t\t\t\t\t Departure \t\t\t\t\t Meal?\n" + aircraft + "\t\t\t" + arrivalTime + "\t\t"
                                 + departureTime + "\t\t" + meal + "\n" + "Leg: " + origin + " to\n " + destination + "\n";
@@ -145,6 +147,7 @@ public class UIInterface {
                     }
                 }
             }
+            //pricing not yet placed in String result.
             List<PricingInfo> priceInfo = tripResults.get(i).getPricing();
             for (int p = 0; p < priceInfo.size(); p++) {
                 String price = priceInfo.get(p).getSaleTotal();
@@ -155,8 +158,5 @@ public class UIInterface {
         return result;
     }
 
-    /**
-     * Method used to manipulate Laterna TextUI
-     */
 
 }

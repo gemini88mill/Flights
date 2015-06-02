@@ -11,13 +11,23 @@ import com.googlecode.lanterna.terminal.TerminalSize;
 
 /**
  * Created by raphael on 5/26/15.
+ *
+ * LanternaHandler Class -
+ *      Lanterna Handler handles all functions used to manipulate the Lanterna Framework within the program and uses
+ *      creates the GUI system. Actual GUI functions are placed in GUIWindow.
  */
 public class LanternaHandler  {
 
-
+    /**
+     * LanternaTerminal() -
+     *
+     * Creates a terminal, screen and prepares for a GUI Window within the program. Handles all essential functions with
+     * Lanterna Gui and places two windows, guiInput and guiOutput and creates arguments for said Gui Windows.
+     * @param flc
+     */
     public void LanternaTerminal(FlightsClient flc){
 
-        //initializes TextBoxes for frist page of GUI
+        //initializes TextBoxes for first page of GUI
         TextBox destinationBox = new TextBox(null, 125);
         TextBox departureLocationBox = new TextBox(null, 125);
         TextBox dateOfDepartureBox = new TextBox(null, 125);

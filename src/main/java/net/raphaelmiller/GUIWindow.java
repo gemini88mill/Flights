@@ -11,6 +11,10 @@ import java.util.List;
 
 /**
  * Created by raphael on 5/27/15.
+ *
+ * GuiWindow Class -- extends Window (Lanterna)
+ *
+ * Houses all functions for Gui functionality, also houses common buttons and information for said Windows.
  */
 public class GUIWindow extends Window {
 
@@ -22,6 +26,11 @@ public class GUIWindow extends Window {
     FlightsClient flc;
     Button quit;
 
+    /**
+     * Constructor for GUIWindow, creates gui framework, and allows for modulation.
+     * @param title
+     * @param flc
+     */
     public GUIWindow(String title, FlightsClient flc) {
         super(title);
 
@@ -38,7 +47,12 @@ public class GUIWindow extends Window {
         addComponent(horizontalPanel);
     }
 
-    //generic quit button that leaves the GUI and shuts down the program whenever pressed
+    /**
+     * quitButton() method
+     *
+     * generic quit button that leaves the GUI and shuts down the program whenever pressed
+     *
+     */
     public void quitButton(){
         addComponent(new Button("QUIT", new Action() {
             @Override
@@ -48,6 +62,16 @@ public class GUIWindow extends Window {
         }));
     }
 
+    /**
+     * enterButton() method
+     *
+     * Gives action to what happens when the enter button is pressed.
+     * @param guiScreen
+     * @param guiOutput
+     * @param destinationBox
+     * @param departureLocationBox
+     * @param dateOfDepartureBox
+     */
     public void enterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, final TextBox destinationBox,
                             final TextBox departureLocationBox, final TextBox dateOfDepartureBox){
 
@@ -85,6 +109,13 @@ public class GUIWindow extends Window {
         //variable text area, modify to store data from display values
     }
 
+    /**
+     * sendToGoogle() method
+     *
+     * sends information to QPX Express from gui.
+     * @param input
+     * @return
+     */
     private String sendToGoogle(String[] input) {
         //connection established with doAction()
         //System.out.println(input[1]);
@@ -97,12 +128,22 @@ public class GUIWindow extends Window {
 
     }
 
+    /**
+     * drawPage() method
+     *
+     * opens up new window for data stream from QPX
+     * @param guiOutput
+     * @param results
+     */
     private void drawPage(GUIWindow guiOutput, TextArea results) {
 
         guiOutput.quitButton();
         guiOutput.horizontalPanel.addComponent(results);
         //results.appendLine(textValues);
     }
+
+    //--------------------methods not in use------------------------------------------
+    //--------------------------------------------------------------------------------
 
 
     //attempts at second page, left in for reference ----------------------------------

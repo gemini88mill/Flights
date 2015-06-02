@@ -58,6 +58,8 @@ public class FlightsClient {
         UIInterface ui = new UIInterface();
         LanternaHandler lh = new LanternaHandler();
 
+
+        //sends information to GUI, acts as main class (to add threading later...)
         lh.LanternaTerminal(flc);
         //go to UIInterface -> UImain() method.
         ui.UImain(flc);
@@ -107,6 +109,7 @@ public class FlightsClient {
             slice.setDestination(input[1]);
             slice.setDate(input[2]);
 
+            //former data sent in from UIInterface.UIMain method, used for raw terminal construction...
             //slice.setOrigin(origin);
             //slice.setDestination(destination);
             //slice.setDate(date);
