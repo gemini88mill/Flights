@@ -55,7 +55,54 @@ doing this as a hobby so it doesnt really have alot of support.
 
 Many issues still havent been resolved but all in all Lanterna is a pretty simple TextUI to use for
 anyone wanting to create a little blast from the past program. I hope that 3 comes out soon. 
-   
+
+06.02.2015
+
+Completed Lanterna API's. Pretty much set up the exact same thing from terminal output and placed it 
+into a method via the DoAction method. (occurs when you press enter) That being said, I have created
+a fully functional installable program that can be used to find a cheap flight going one way. Not 
+vey much use in the real world as of yet but the next steps for the project would be to create more 
+functionality within the project and applying it to lanterna. First steps would be to refactor what 
+I currently have produced. Currently, my code is a sloppy mess that functions, but i think it could 
+do better. 
+
+Next steps: Refactor the program, allow for modulability, and have all methods set up to where 
+another user can take the methods created and be able to take those methods and use it in some other
+project. 
+
+Create more functionality within the program. First thing would be to allow the terminal to run in
+the background while the GUI is just waiting for instruction. Currently, the GUI is running the show 
+and I have been told that bad form. Perhaps that is a quirk from my instructor but he does have a 
+point. based on a primitive model the business end of the code should be in the middle. As to not
+create unnessesary errors for the end user (I would imagine this would be a little more apparent in 
+more complex code). Current rough draft is as follows
+
+Terminal (Core Program) --->	 Lanterna (GUI)
+Data Collection 		Holds GUI functionality 
+				Displays info to user. 
+
+Current program has the gui doing everything which means that I probably need to use threads... 
+something I need more practice in. Lanterna also sports a loading bar, which is something I would
+like to play with. 
+
+Another thing I would like to play with would be functionality within QPX Express. There are alot
+of different aspects within the API that are very useful. Im not trying to make a better KayaK or
+Expedia, but the idea of making something comparable (although much more primitive) is very exciting
+to me. Not to go off on a tangent, but if I could create something that benefits someone somewhere 
+in someway, I think I have done my job as a programmer. 
+
+Lanterna Look and feel is something I need to adjust, right now its a glorified terminal. Although
+I am not a designer, I believe I can make a few adjustments to the end user experience. /brianmcdo 
+hopefully will tell me a bit about better methods and practices for this project along with in 
+general.
+
+Refactoring of the project structure to make it more navicapable. At this moment, I have the 
+default Intelij Idea preferences set and havent really changed anything major. I see some complex
+projects that offer much better project structure. This will probably be the last thing on my todo 
+list for this project. Since its something that doesnt really effect the code in a direct way. 
+
+These posts are less of a readme and more of a journal entry for the development of this tiny 
+project. Either way thanks for reading. 
 
 Raphael Miller 
 gemini88mill@gmail.com
