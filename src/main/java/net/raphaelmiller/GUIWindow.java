@@ -110,6 +110,19 @@ public class GUIWindow extends Window {
         //variable text area, modify to store data from display values
     }
 
+    /**
+     * formatToScreen() - method
+     *
+     * private functions that mimics the same method as displayValues() to be modified to allow for it to be displayed
+     * in the Lanterna GUI. See UIInterface.displayValues() for more information. 
+     *
+     * @param tripOptions
+     * @param tripData
+     * @param aircraftData
+     * @param carrierData
+     * @param airportData
+     * @param results
+     */
     private void formatToScreen(List<TripOption> tripOptions, List<CityData> tripData, List<AircraftData> aircraftData,
                                 List<CarrierData> carrierData, List<AirportData> airportData, TextArea results) {
         DecimalFormat df = new DecimalFormat("#.##");
@@ -224,7 +237,7 @@ public class GUIWindow extends Window {
         //results.appendLine(textValues);
     }
 
-    
+
 
 
 

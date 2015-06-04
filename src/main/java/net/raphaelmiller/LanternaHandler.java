@@ -3,11 +3,8 @@ package net.raphaelmiller;
 import com.googlecode.lanterna.TerminalFacade;
 import com.googlecode.lanterna.gui.GUIScreen;
 import com.googlecode.lanterna.gui.component.Label;
-import com.googlecode.lanterna.gui.component.TextArea;
 import com.googlecode.lanterna.gui.component.TextBox;
-import com.googlecode.lanterna.gui.layout.LayoutParameter;
 import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.TerminalSize;
 
 /**
  * Created by raphael on 5/26/15.
