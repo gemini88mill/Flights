@@ -13,6 +13,9 @@ import java.util.Scanner;
  * UImain - main method that asks for value from user
  * userInput - simple input interface for the user
  * displayValues - displays values for user
+ *
+ * UserInterface class no longer used in program. 
+ *
  * Created by raphael on 5/17/15.
  */
 public class UIInterface {

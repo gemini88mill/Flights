@@ -80,6 +80,8 @@ public class FlightsClient {
      * method call uses OPX Express objects and api.clent objects to create a connection for QPX. Additionally, method
      * creates a json element to send to QPX Express and returns List<TripOption> in order to collect data for program.
      *
+     * accepts a String array, and returns a List<TripOption>
+     *
      * @return List <TripOption> tripResults
      *
      * @param input
@@ -99,21 +101,22 @@ public class FlightsClient {
             List<CityData> cities = new ArrayList<CityData>();
             //array list that sends information requested to google.
 
-            String origin = getArrivalIATA();
-            String destination = getDepartureIATA();
-            String date = getDateOfDeparture();
+            //String origin = getArrivalIATA();
+            //String destination = getDepartureIATA();
+            //String date = getDateOfDeparture();
             //user input
 
             SliceInput slice = new SliceInput();
             slice.setOrigin(input[0]);
             slice.setDestination(input[1]);
             slice.setDate(input[2]);
+            slices.add(slice);
 
             //former data sent in from UIInterface.UIMain method, used for raw terminal construction...
             //slice.setOrigin(origin);
             //slice.setDestination(destination);
             //slice.setDate(date);
-            slices.add(slice);
+
 
             //list slice I am assuming sends that information and prepares to format data requested to JSON
 
@@ -138,11 +141,6 @@ public class FlightsClient {
             airportData = list.getTrips().getData().getAirport();
             //gets trip options to list.
 
-            //debug
-
-
-
-
         } catch (GeneralSecurityException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -160,7 +158,6 @@ public class FlightsClient {
     public void setArrivalIATA(String arrivalIATA) {
         this.arrivalIATA = arrivalIATA;
     }
-
 
     public String getDepartureIATA() {
         return departureIATA;

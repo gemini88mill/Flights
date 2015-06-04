@@ -80,26 +80,24 @@ public class GUIWindow extends Window {
         final String[] input = new String[3];
         final String[] textValues = {null};
 
-        addComponent(new Button("ENTER", new Action() {
-            @Override
-            public void doAction() {
-                input[0] = destinationBox.getText();
-                input[1] = departureLocationBox.getText();
-                input[2] = dateOfDepartureBox.getText();
+        // lambdas :)
+        addComponent(new Button("ENTER", () -> {
+            input[0] = destinationBox.getText();
+            input[1] = departureLocationBox.getText();
+            input[2] = dateOfDepartureBox.getText();
 
-                flc.setDateOfDeparture(input[2]);
-                flc.setDepartureIATA(input[1]);
-                flc.setArrivalIATA(input[0]);
+            flc.setDateOfDeparture(input[2]);
+            flc.setDepartureIATA(input[1]);
+            flc.setArrivalIATA(input[0]);
 
-                //sends information to googleCommunicate() in FlightsClient...
-                List<TripOption> tripOptions = sendToGoogle(input);
-                formatToScreen(tripOptions, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData, results);
+            //sends information to googleCommunicate() in FlightsClient...
+            List<TripOption> tripOptions = sendToGoogle(input);
+            formatToScreen(tripOptions, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData, results);
 
-                //results.appendLine(textValues[0] + "\n");
+            //results.appendLine(textValues[0] + "\n");
 
-                guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
+            guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
 
-            }
         }));
 
         drawPage(guiOutput, results);
@@ -114,7 +112,7 @@ public class GUIWindow extends Window {
      * formatToScreen() - method
      *
      * private functions that mimics the same method as displayValues() to be modified to allow for it to be displayed
-     * in the Lanterna GUI. See UIInterface.displayValues() for more information. 
+     * in the Lanterna GUI. See UIInterface.displayValues() for more information.
      *
      * @param tripOptions
      * @param tripData
