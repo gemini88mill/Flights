@@ -157,6 +157,15 @@ public class GUIWindow extends Window {
             }
     }
 
+    /**
+     * getPricingInfo
+     *
+     * displays pricing info for total flight, prints results to GUI
+     *
+     * @param tripOptions
+     * @param results
+     * @param i
+     */
     private void getPricingInfo(List<TripOption> tripOptions, TextArea results, int i) {
         List<PricingInfo> priceInfo = tripOptions.get(i).getPricing();
         for (int p = 0; p < priceInfo.size(); p++) {
@@ -166,6 +175,18 @@ public class GUIWindow extends Window {
         }
     }
 
+    /**
+     * printToGui()
+     *
+     * prints results to GUI
+     *
+     * @param results
+     * @param df
+     * @param durationLeginHours
+     * @param legInfo
+     * @param origin
+     * @param destination
+     */
     private void printToGui(TextArea results, DecimalFormat df, double durationLeginHours, List<String> legInfo,
                             String origin, String destination) {
         results.appendLine("Leg Duration: " + df.format(durationLeginHours) + " hrs\n");
@@ -174,6 +195,18 @@ public class GUIWindow extends Window {
         results.appendLine("Leg: " + origin + " to\n " + destination + "\n");
     }
 
+    /**
+     * getLegInfo()
+     *
+     * gets list from leg and converts to string list, ready to be displayed to GUI
+     *
+     * @param leg List<LegInfo>
+     * @param l int
+     * @param airportData List<AirportData>
+     * @param tripData List<tripData>
+     * @param aircraftData List<AircraftData>
+     * @return result
+     */
     private List<String> getLegInfo(List<LegInfo> leg, int l, List<AirportData> airportData, List<CityData> tripData,
                                     List<AircraftData> aircraftData) {
         List<String> result = new ArrayList<>();
@@ -193,6 +226,15 @@ public class GUIWindow extends Window {
         return result;
     }
 
+    /**
+     * getAircraftname()
+     *
+     * compares aircraft data codes with aircraft on file in QPX in order to get a more user friendly version of the name
+     *
+     * @param aircraftData List<AircraftData>
+     * @param aircraft String
+     * @return aircraft
+     */
     private String getAircraftname(List<AircraftData> aircraftData, String aircraft) {
         for (int r = 0; r < aircraftData.size(); r++){
             if (aircraftData.get(r).getCode().equals(aircraft)){
@@ -202,6 +244,17 @@ public class GUIWindow extends Window {
         return aircraft;
     }
 
+    /**
+     * getDestinationNames()
+     *
+     * gets IATA code for city destination and converts to full city name
+     *
+     * @param airportData List<AirportData>
+     * @param destination String
+     * @param o int
+     * @param tripData List<CityData>
+     * @return destination String
+     */
     private String getDestinationName(List<AirportData> airportData, String destination, int o, List<CityData> tripData) {
         if (airportData.get(o).getCode().equals(destination)){
             destination = airportData.get(o).getName();
@@ -214,6 +267,17 @@ public class GUIWindow extends Window {
         return destination;
     }
 
+    /**
+     * getOriginName()
+     *
+     * gets IATA code for origin city and converts it to full name for city.
+     *
+     * @param airportData List<AirportData>
+     * @param n int
+     * @param origin String
+     * @param tripData List<CityData>
+     * @return origin
+     */
     private String getOriginName(List<AirportData> airportData, int n, String origin, List<CityData> tripData) {
         if (airportData.get(n).getCode().equals(origin)){
             origin = airportData.get(n).getName();
@@ -226,6 +290,18 @@ public class GUIWindow extends Window {
         return origin;
     }
 
+    /**
+     * getFlightInfo()
+     *
+     * gets flight info, checks flight IATA code and compares to Carrier name from QPX, converts to user friendly name
+     * returns rest of leg information.
+     *
+     * @param segInfo List<SegmentInfo>
+     * @param k int
+     * @param carrierData List<CarrierData>
+     * @param results TextArea
+     * @return leg
+     */
     private List<LegInfo> getFlightInfo(List<SegmentInfo> segInfo, int k, List<CarrierData> carrierData, TextArea results) {
         FlightInfo flightInfo = segInfo.get(k).getFlight();
         String flightCarr = flightInfo.getCarrier();
@@ -240,6 +316,17 @@ public class GUIWindow extends Window {
         return leg;
     }
 
+    /**
+     * getSliceInfo
+     *
+     * sets up slice info for parse, gets total duration of flight, returns seg info for rest of chain
+     *
+     * @param j int
+     * @param sliceInfo List<SliceInfo>
+     * @param results TextArea
+     * @param df DecimalFormat
+     * @return segInfo
+     */
     private List<SegmentInfo> getSliceInfo(int j, List<SliceInfo> sliceInfo, TextArea results, DecimalFormat df) {
         int duration = sliceInfo.get(j).getDuration();
         double durationInHours = duration / 60;
@@ -248,6 +335,17 @@ public class GUIWindow extends Window {
         return segInfo;
     }
 
+    /**
+     * getID()
+     *
+     * gets ID for flight number and prints to GUI, returns slice info for rest of chain.
+     *
+     * @param id String
+     * @param i int
+     * @param tripOptions List<tripOption>
+     * @param results TextArea
+     * @return sliceInfo
+     */
     private List<SliceInfo> getID(String id, int i, List<TripOption> tripOptions, TextArea results) {
         id = tripOptions.get(i).getId();
         results.appendLine(id);
