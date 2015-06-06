@@ -48,7 +48,7 @@
       <file leaf-file-name="UIInterface.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/UIInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="288" max-vertical-offset="774">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="774">
               <caret line="16" column="49" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -64,10 +64,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LanternaHandler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LanternaHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/LanternaHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5765472" vertical-offset="366" max-vertical-offset="1134">
+            <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1134">
               <caret line="40" column="80" selection-start-line="40" selection-start-column="80" selection-end-line="40" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -76,24 +76,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GUIWindow.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GUIWindow.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="826" max-vertical-offset="1440">
-              <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.7032258" vertical-offset="1884" max-vertical-offset="5418">
+              <caret line="141" column="25" selection-start-line="141" selection-start-column="25" selection-end-line="141" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="docComment;method#GUIWindow#0;class#GUIWindow#0" expanded="false" />
-                <element signature="docComment;method#quitButton#0;class#GUIWindow#0" expanded="false" />
-                <element signature="method#quitButton#0;class#GUIWindow#0" expanded="false" />
-                <element signature="docComment;method#enterButton#0;class#GUIWindow#0" expanded="false" />
-                <element signature="method#enterButton#0;class#GUIWindow#0" expanded="false" />
-                <element signature="docComment;method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
-                <element signature="method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
-                <element signature="docComment;method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
-                <element signature="method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
-                <element signature="e#8856#8896#0" expanded="false" />
-                <element signature="method#drawPage#0;class#GUIWindow#0" expanded="false" />
+                <element signature="e#1836#1837#0" expanded="true" />
+                <element signature="e#1882#1883#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -107,10 +98,10 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/TerminalWindow.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/FlightsClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/UIInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/LanternaHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java" />
       </list>
     </option>
   </component>
@@ -443,7 +434,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2497332" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -535,17 +526,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="docComment;method#GUIWindow#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#quitButton#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#quitButton#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#enterButton#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#enterButton#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
-            <element signature="e#8856#8896#0" expanded="false" />
-            <element signature="method#drawPage#0;class#GUIWindow#0" expanded="false" />
+            <element signature="e#1836#1837#0" expanded="true" />
+            <element signature="e#1882#1883#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -707,6 +689,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/LanternaHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="412" max-vertical-offset="1134">
+          <caret line="40" column="80" selection-start-line="40" selection-start-column="80" selection-end-line="40" selection-end-column="80" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/UIInterface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="774">
@@ -726,31 +718,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="826" max-vertical-offset="1440">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.7032258" vertical-offset="1884" max-vertical-offset="5418">
+          <caret line="141" column="25" selection-start-line="141" selection-start-column="25" selection-end-line="141" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="docComment;method#GUIWindow#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#quitButton#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#quitButton#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#enterButton#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#enterButton#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
-            <element signature="e#8856#8896#0" expanded="false" />
-            <element signature="method#drawPage#0;class#GUIWindow#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/LanternaHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5765472" vertical-offset="366" max-vertical-offset="1134">
-          <caret line="40" column="80" selection-start-line="40" selection-start-column="80" selection-end-line="40" selection-end-column="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1836#1837#0" expanded="true" />
+            <element signature="e#1882#1883#0" expanded="true" />
           </folding>
         </state>
       </provider>

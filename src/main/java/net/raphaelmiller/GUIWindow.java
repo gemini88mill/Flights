@@ -7,6 +7,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.TerminalSize;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -125,81 +126,133 @@ public class GUIWindow extends Window {
                                 List<CarrierData> carrierData, List<AirportData> airportData, TextArea results) {
         DecimalFormat df = new DecimalFormat("#.##");
 
-        String id;
+        String id = null;
             for (int i = 0; i < tripOptions.size(); i++){
-                id = tripOptions.get(i).getId();
-                results.appendLine(id);
-                List<SliceInfo> sliceInfo = tripOptions.get(i).getSlice();
+                List<SliceInfo> sliceInfo = getID(id, i, tripOptions, results);
                 for(int j = 0; j < sliceInfo.size(); j++){
-                    int duration = sliceInfo.get(j).getDuration();
-                    double durationInHours = duration / 60;
-                    results.appendLine("Duration: " + df.format(durationInHours) + " hrs" );
-                    List<SegmentInfo> segInfo = sliceInfo.get(j).getSegment();
+                    List<SegmentInfo> segInfo = getSliceInfo(j, sliceInfo, results, df);
                     for (int k = 0; k < segInfo.size(); k++){
-                        FlightInfo flightInfo = segInfo.get(k).getFlight();
-                        String flightCarr = flightInfo.getCarrier();
-                        String flightNum = flightInfo.getNumber();
-                        for (int m = 0; m < carrierData.size(); m++){
-                            if (carrierData.get(m).getCode().equals(flightCarr)){
-                                flightCarr = carrierData.get(m).getName();
-                            }
-                        }
-                        results.appendLine("Carrier: " + flightCarr + "\t Flight No: " + flightNum);
-                        List<LegInfo> leg = segInfo.get(k).getLeg();
+                        List<LegInfo> leg = getFlightInfo(segInfo, k, carrierData, results);
                         for(int l = 0; l < leg.size(); l++){
-                            String aircraft = leg.get(l).getAircraft();
-                            for (int r = 0; r < aircraftData.size(); r++){
-                                if (aircraftData.get(r).getCode().equals(aircraft)){
-                                    aircraft = aircraftData.get(r).getName();
-                                }
-                            }
-                            String arrivalTime = leg.get(l).getArrivalTime();
-                            String departureTime = leg.get(l).getDepartureTime();
-                            String meal = leg.get(l).getMeal();
+                            List<String> legInfo = getLegInfo(leg, l, airportData, tripData, aircraftData);
 
                             String origin = leg.get(l).getOrigin();
                             String destination = leg.get(l).getDestination();
 
                             for(int n = 0; n < airportData.size(); n++){
-                                if (airportData.get(n).getCode().equals(origin)){
-                                    origin = airportData.get(n).getName();
-                                    for (int q = 0; q < tripData.size(); q++){
-                                        if (tripData.get(q).getCode().equals(airportData.get(n).getCity())){
-                                            origin = origin + ", " + tripData.get(q).getName();
-                                        }
-                                    }
-                                }
+                                origin = getOriginName(airportData, n, origin, tripData);
+                            }
+                            for (int o = 0; o < airportData.size(); o++){
+                                destination = getDestinationName(airportData, destination, o, tripData);
                             }
 
-                            for (int o = 0; o < airportData.size(); o++){
-                                if (airportData.get(o).getCode().equals(destination)){
-                                    destination = airportData.get(o).getName();
-                                    for (int p = 0; p < tripData.size(); p++){
-                                        if(tripData.get(p).getCode().equals(airportData.get(o).getCity())){
-                                            destination = destination + ", " + tripData.get(p).getName();
-                                        }
-                                    }
-                                }
-                            }
                             int durationLeg = leg.get(l).getDuration();
                             double durationLeginHours = durationLeg / 60;
 
-                            results.appendLine("Leg Duration: " + df.format(durationLeginHours) + " hrs\n");
-                            results.appendLine("Aircraft \t\t\t Arrival \t\t\t\t\t Departure \t\t\t\t\t Meal?\n");
-                            results.appendLine(aircraft + "\t\t\t" + arrivalTime + "\t\t" + departureTime + "\t\t" + meal + "\n" );
-                            results.appendLine("Leg: " + origin + " to\n " + destination + "\n");
-
-
+                            printToGui(results, df, durationLeginHours, legInfo, origin, destination);
                         }
                     }
                 }
-                List<PricingInfo> priceInfo = tripOptions.get(i).getPricing();
-                for (int p = 0; p < priceInfo.size(); p++) {
-                    String price = priceInfo.get(p).getSaleTotal();
-                    results.appendLine("Price: " + price + "\n\n");
-                    results.appendLine("");
+                getPricingInfo(tripOptions, results, i);
+            }
+    }
+
+    private void getPricingInfo(List<TripOption> tripOptions, TextArea results, int i) {
+        List<PricingInfo> priceInfo = tripOptions.get(i).getPricing();
+        for (int p = 0; p < priceInfo.size(); p++) {
+            String price = priceInfo.get(p).getSaleTotal();
+            results.appendLine("Price: " + price + "\n\n");
+            results.appendLine("");
+        }
+    }
+
+    private void printToGui(TextArea results, DecimalFormat df, double durationLeginHours, List<String> legInfo,
+                            String origin, String destination) {
+        results.appendLine("Leg Duration: " + df.format(durationLeginHours) + " hrs\n");
+        results.appendLine("Aircraft \t\t\t Arrival \t\t\t\t\t Departure \t\t\t\t\t Meal?\n");
+        results.appendLine(legInfo.get(0) + "\t\t\t" + legInfo.get(1) + "\t\t" + legInfo.get(2) + "\t\t" + legInfo.get(3) + "\n" );
+        results.appendLine("Leg: " + origin + " to\n " + destination + "\n");
+    }
+
+    private List<String> getLegInfo(List<LegInfo> leg, int l, List<AirportData> airportData, List<CityData> tripData,
+                                    List<AircraftData> aircraftData) {
+        List<String> result = new ArrayList<>();
+
+        String aircraft = leg.get(l).getAircraft();
+        aircraft = getAircraftname(aircraftData, aircraft);
+
+        String arrivalTime = leg.get(l).getArrivalTime();
+        String departureTime = leg.get(l).getDepartureTime();
+        String meal = leg.get(l).getMeal();
+
+        result.add(aircraft);
+        result.add(arrivalTime);
+        result.add(departureTime);
+        result.add(meal);
+
+        return result;
+    }
+
+    private String getAircraftname(List<AircraftData> aircraftData, String aircraft) {
+        for (int r = 0; r < aircraftData.size(); r++){
+            if (aircraftData.get(r).getCode().equals(aircraft)){
+                aircraft = aircraftData.get(r).getName();
+            }
+        }
+        return aircraft;
+    }
+
+    private String getDestinationName(List<AirportData> airportData, String destination, int o, List<CityData> tripData) {
+        if (airportData.get(o).getCode().equals(destination)){
+            destination = airportData.get(o).getName();
+            for (int p = 0; p < tripData.size(); p++){
+                if(tripData.get(p).getCode().equals(airportData.get(o).getCity())){
+                    destination = destination + ", " + tripData.get(p).getName();
                 }
             }
+        }
+        return destination;
+    }
+
+    private String getOriginName(List<AirportData> airportData, int n, String origin, List<CityData> tripData) {
+        if (airportData.get(n).getCode().equals(origin)){
+            origin = airportData.get(n).getName();
+            for (int q = 0; q < tripData.size(); q++){
+                if (tripData.get(q).getCode().equals(airportData.get(n).getCity())){
+                    origin = origin + ", " + tripData.get(q).getName();
+                }
+            }
+        }
+        return origin;
+    }
+
+    private List<LegInfo> getFlightInfo(List<SegmentInfo> segInfo, int k, List<CarrierData> carrierData, TextArea results) {
+        FlightInfo flightInfo = segInfo.get(k).getFlight();
+        String flightCarr = flightInfo.getCarrier();
+        String flightNum = flightInfo.getNumber();
+        for (int m = 0; m < carrierData.size(); m++){
+            if (carrierData.get(m).getCode().equals(flightCarr)){
+                flightCarr = carrierData.get(m).getName();
+            }
+        }
+        results.appendLine("Carrier: " + flightCarr + "\t Flight No: " + flightNum);
+        List<LegInfo> leg = segInfo.get(k).getLeg();
+        return leg;
+    }
+
+    private List<SegmentInfo> getSliceInfo(int j, List<SliceInfo> sliceInfo, TextArea results, DecimalFormat df) {
+        int duration = sliceInfo.get(j).getDuration();
+        double durationInHours = duration / 60;
+        results.appendLine("Duration: " + df.format(durationInHours) + " hrs" );
+        List<SegmentInfo> segInfo = sliceInfo.get(j).getSegment();
+        return segInfo;
+    }
+
+    private List<SliceInfo> getID(String id, int i, List<TripOption> tripOptions, TextArea results) {
+        id = tripOptions.get(i).getId();
+        results.appendLine(id);
+        List<SliceInfo> sliceInfo = tripOptions.get(i).getSlice();
+        return sliceInfo;
     }
 
     /**
