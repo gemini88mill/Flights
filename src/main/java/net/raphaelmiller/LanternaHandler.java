@@ -38,7 +38,7 @@ public class LanternaHandler  {
         //guiScreen.setTitle("QPX");
 
         //adds Labels for TextBoxes
-        guiInput.rightPanel.addComponent(new Label("Date of Departure\t\t", Terminal.Color.RED));
+        guiInput.rightPanel.addComponent(new Label("Date of Departure(YYYY-MM-DD)\t\t", Terminal.Color.RED));
         guiInput.middlePanel.addComponent(new Label("Arriving to(IATA code)\t\t", Terminal.Color.RED));
         guiInput.leftPanel.addComponent(new Label("Leaving from(IATA code)\t\t", Terminal.Color.RED));
 
@@ -50,13 +50,7 @@ public class LanternaHandler  {
         guiInput.enterButton(guiScreen, guiOutput, destinationBox, departureLocationBox, dateOfDepartureBox);
         guiInput.quitButton();
 
-
-
         guiScreen.showWindow(guiInput, GUIScreen.Position.CENTER);
-
-
-
-
     }
 
 

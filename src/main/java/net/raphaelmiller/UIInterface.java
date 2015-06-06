@@ -14,7 +14,7 @@ import java.util.Scanner;
  * userInput - simple input interface for the user
  * displayValues - displays values for user
  *
- * UserInterface class no longer used in program. 
+ * UserInterface class no longer used in program.
  *
  * Created by raphael on 5/17/15.
  */
