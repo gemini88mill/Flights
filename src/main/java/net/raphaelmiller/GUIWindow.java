@@ -101,7 +101,7 @@ public class GUIWindow extends Window {
 
         }));
 
-        drawPage(guiOutput, results);
+        drawPage(guiOutput, results, guiScreen);
 
         System.out.println(input[0]);
 
@@ -357,8 +357,8 @@ public class GUIWindow extends Window {
      * sendToGoogle() method
      *
      * sends information to QPX Express from gui.
-     * @param input
-     * @return
+     * @param input String[]
+     * @return tripResults
      */
     private List<TripOption> sendToGoogle(String[] input) {
         //connection established with doAction()
@@ -376,18 +376,24 @@ public class GUIWindow extends Window {
      * drawPage() method
      *
      * opens up new window for data stream from QPX
-     * @param guiOutput
-     * @param results
+     * @param guiOutput GUIWindow
+     * @param results TextArea
      */
-    private void drawPage(GUIWindow guiOutput, TextArea results) {
+    private void drawPage(GUIWindow guiOutput, TextArea results, GUIScreen guiScreen) {
 
+        guiOutput.backButton(guiScreen);
         guiOutput.quitButton();
         guiOutput.horizontalPanel.addComponent(results);
         //results.appendLine(textValues);
     }
 
-
-
+    private void backButton(GUIScreen guiScreen) {
+        addComponent(new Button("BACK", () -> {
+            LanternaHandler lanternaHandler = new LanternaHandler();
+            guiScreen.getScreen().stopScreen();
+            lanternaHandler.LanternaTerminal(new FlightsClient(null, null, null));
+        }));
+    }
 
 
 }

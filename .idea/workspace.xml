@@ -67,8 +67,8 @@
       <file leaf-file-name="LanternaHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/LanternaHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1134">
-              <caret line="40" column="80" selection-start-line="40" selection-start-column="80" selection-end-line="40" selection-end-column="80" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="366" max-vertical-offset="1134">
+              <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,12 +79,35 @@
       <file leaf-file-name="GUIWindow.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.20645161" vertical-offset="5928" max-vertical-offset="7182">
-              <caret line="340" column="89" selection-start-line="340" selection-start-column="89" selection-end-line="340" selection-end-column="89" />
+            <state vertical-scroll-proportion="0.7947883" vertical-offset="2374" max-vertical-offset="3096">
+              <caret line="392" column="47" selection-start-line="392" selection-start-column="47" selection-end-line="392" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1836#1837#0" expanded="true" />
                 <element signature="e#1882#1883#0" expanded="true" />
+                <element signature="docComment;method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
+                <element signature="method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
+                <element signature="docComment;method#getPricingInfo#0;class#GUIWindow#0" expanded="false" />
+                <element signature="method#getPricingInfo#0;class#GUIWindow#0" expanded="false" />
+                <element signature="docComment;method#printToGui#0;class#GUIWindow#0" expanded="false" />
+                <element signature="method#printToGui#0;class#GUIWindow#0" expanded="false" />
+                <element signature="docComment;method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
+                <element signature="method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
+                <element signature="docComment;method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
+                <element signature="method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
+                <element signature="docComment;method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
+                <element signature="method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
+                <element signature="docComment;method#getOriginName#0;class#GUIWindow#0" expanded="false" />
+                <element signature="method#getOriginName#0;class#GUIWindow#0" expanded="false" />
+                <element signature="docComment;method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
+                <element signature="method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
+                <element signature="docComment;method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
+                <element signature="method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
+                <element signature="docComment;method#getID#0;class#GUIWindow#0" expanded="false" />
+                <element signature="method#getID#0;class#GUIWindow#0" expanded="false" />
+                <element signature="docComment;method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
+                <element signature="method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
+                <element signature="docComment;method#drawPage#0;class#GUIWindow#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -434,7 +457,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2497332" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -528,6 +551,29 @@
             <element signature="imports" expanded="true" />
             <element signature="e#1836#1837#0" expanded="true" />
             <element signature="e#1882#1883#0" expanded="true" />
+            <element signature="docComment;method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#getPricingInfo#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#getPricingInfo#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#printToGui#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#printToGui#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#getOriginName#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#getOriginName#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#getID#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#getID#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#drawPage#0;class#GUIWindow#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -709,7 +755,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/LanternaHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1134">
-          <caret line="40" column="80" selection-start-line="40" selection-start-column="80" selection-end-line="40" selection-end-column="80" />
+          <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -718,12 +764,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20645161" vertical-offset="5928" max-vertical-offset="7182">
-          <caret line="340" column="89" selection-start-line="340" selection-start-column="89" selection-end-line="340" selection-end-column="89" />
+        <state vertical-scroll-proportion="0.7947883" vertical-offset="2374" max-vertical-offset="3096">
+          <caret line="392" column="47" selection-start-line="392" selection-start-column="47" selection-end-line="392" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1836#1837#0" expanded="true" />
             <element signature="e#1882#1883#0" expanded="true" />
+            <element signature="docComment;method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#getPricingInfo#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#getPricingInfo#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#printToGui#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#printToGui#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#getOriginName#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#getOriginName#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#getID#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#getID#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#drawPage#0;class#GUIWindow#0" expanded="false" />
           </folding>
         </state>
       </provider>
