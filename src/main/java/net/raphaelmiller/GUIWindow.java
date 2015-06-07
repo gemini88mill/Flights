@@ -3,7 +3,6 @@ package net.raphaelmiller;
 import com.google.api.services.qpxExpress.model.*;
 import com.googlecode.lanterna.gui.*;
 import com.googlecode.lanterna.gui.component.*;
-import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.TerminalSize;
 
 import java.text.DecimalFormat;
@@ -73,12 +72,13 @@ public class GUIWindow extends Window {
      * @param destinationBox
      * @param departureLocationBox
      * @param dateOfDepartureBox
+     * @param passengerBox
      */
     public void enterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, final TextBox destinationBox,
-                            final TextBox departureLocationBox, final TextBox dateOfDepartureBox){
+                            final TextBox departureLocationBox, final TextBox dateOfDepartureBox, TextBox passengerBox){
 
         final TextArea results = new TextArea(new TerminalSize(400, 300), null);
-        final String[] input = new String[3];
+        final String[] input = new String[4];
         final String[] textValues = {null};
 
         // lambdas :)
@@ -86,10 +86,12 @@ public class GUIWindow extends Window {
             input[0] = destinationBox.getText();
             input[1] = departureLocationBox.getText();
             input[2] = dateOfDepartureBox.getText();
+            input[3] = passengerBox.getText();
 
             flc.setDateOfDeparture(input[2]);
             flc.setDepartureIATA(input[1]);
             flc.setArrivalIATA(input[0]);
+            flc.setPassengers(input[3]);
 
             //sends information to googleCommunicate() in FlightsClient...
             List<TripOption> tripOptions = sendToGoogle(input);
@@ -391,7 +393,7 @@ public class GUIWindow extends Window {
         addComponent(new Button("BACK", () -> {
             LanternaHandler lanternaHandler = new LanternaHandler();
             guiScreen.getScreen().stopScreen();
-            lanternaHandler.LanternaTerminal(new FlightsClient(null, null, null));
+            lanternaHandler.LanternaTerminal(new FlightsClient(null, null, null, null));
         }));
     }
 

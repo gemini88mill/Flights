@@ -29,6 +29,7 @@ public class FlightsClient {
     private String arrivalIATA;
     private String departureIATA;
     private String dateOfDeparture;
+    private String passengers;
 
     //QPX Express API defined lists
     List<CityData> tripData = null;
@@ -37,10 +38,11 @@ public class FlightsClient {
     List<AirportData> airportData = null;
 
     //Main Class Constructor
-    public FlightsClient(String arrivalIATA, String departureIATA, String dateOfDeparture) {
+    public FlightsClient(String arrivalIATA, String departureIATA, String dateOfDeparture, String passengers) {
         this.arrivalIATA = arrivalIATA;
         this.departureIATA = departureIATA;
         this.dateOfDeparture = dateOfDeparture;
+        this.passengers = passengers;
     }
 
     /**
@@ -54,7 +56,7 @@ public class FlightsClient {
      */
     public static void main(String[] args) {
 	// write your code here
-        FlightsClient flc = new FlightsClient(null, null, null);
+        FlightsClient flc = new FlightsClient(null, null, null, null);
         UIInterface ui = new UIInterface();
         LanternaHandler lh = new LanternaHandler();
 
@@ -93,12 +95,14 @@ public class FlightsClient {
             httpTransport = GoogleNetHttpTransport.newTrustedTransport();
             //sends a generic httptransport to QPX API
 
+            int numberOfPassengers = Integer.parseInt(getPassengers());
+
             PassengerCounts passengers = new PassengerCounts();
-            passengers.setAdultCount(1);
+            passengers.setAdultCount(numberOfPassengers);
             //sets passengers for passenger method to 1 adult, change here if you want to change number of travellers
 
             List<SliceInput> slices = new ArrayList<SliceInput>();
-            List<CityData> cities = new ArrayList<CityData>();
+            //List<CityData> cities = new ArrayList<CityData>();
             //array list that sends information requested to google.
 
             //String origin = getArrivalIATA();
@@ -124,6 +128,7 @@ public class FlightsClient {
             request.setSolutions(10);
             request.setPassengers(passengers);
             request.setSlice(slices);
+
             //trip "package" bringing last three blocks together to form a request to QPX
 
             TripsSearchRequest parameters = new TripsSearchRequest();
@@ -173,5 +178,13 @@ public class FlightsClient {
 
     public void setDateOfDeparture(String dateOfDeparture) {
         this.dateOfDeparture = dateOfDeparture;
+    }
+
+    public String getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(String passengers) {
+        this.passengers = passengers;
     }
 }
