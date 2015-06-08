@@ -3,6 +3,8 @@ package net.raphaelmiller;
 import com.google.api.services.qpxExpress.model.*;
 import com.googlecode.lanterna.gui.*;
 import com.googlecode.lanterna.gui.component.*;
+import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.Terminal.SGR;
 import com.googlecode.lanterna.terminal.TerminalSize;
 
 import java.text.DecimalFormat;
@@ -73,16 +75,24 @@ public class GUIWindow extends Window {
      * @param departureLocationBox
      * @param dateOfDepartureBox
      * @param passengerBox
+     * @param progressBar
      */
     public void enterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, final TextBox destinationBox,
-                            final TextBox departureLocationBox, final TextBox dateOfDepartureBox, TextBox passengerBox){
+                            final TextBox departureLocationBox, final TextBox dateOfDepartureBox, TextBox passengerBox,
+                            ProgressBar progressBar){
+
 
         final TextArea results = new TextArea(new TerminalSize(400, 300), null);
         final String[] input = new String[4];
         final String[] textValues = {null};
+        TextGraphics textGraphics = null;
+
+
 
         // lambdas :)
         addComponent(new Button("ENTER", () -> {
+            progressBar.setVisible(true);
+
             input[0] = destinationBox.getText();
             input[1] = departureLocationBox.getText();
             input[2] = dateOfDepartureBox.getText();
@@ -95,6 +105,8 @@ public class GUIWindow extends Window {
 
             //sends information to googleCommunicate() in FlightsClient...
             List<TripOption> tripOptions = sendToGoogle(input);
+
+
             formatToScreen(tripOptions, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData, results);
 
             //results.appendLine(textValues[0] + "\n");
@@ -102,6 +114,8 @@ public class GUIWindow extends Window {
             guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
 
         }));
+
+
 
         drawPage(guiOutput, results, guiScreen);
 

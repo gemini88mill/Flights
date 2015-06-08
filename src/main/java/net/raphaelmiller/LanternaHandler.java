@@ -3,6 +3,7 @@ package net.raphaelmiller;
 import com.googlecode.lanterna.TerminalFacade;
 import com.googlecode.lanterna.gui.GUIScreen;
 import com.googlecode.lanterna.gui.component.Label;
+import com.googlecode.lanterna.gui.component.ProgressBar;
 import com.googlecode.lanterna.gui.component.TextBox;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -21,7 +22,7 @@ public class LanternaHandler  {
      *
      * Creates a terminal, screen and prepares for a GUI Window within the program. Handles all essential functions with
      * Lanterna Gui and places two windows, guiInput and guiOutput and creates arguments for said Gui Windows.
-     * @param flc
+     * @param flc FlightsClient
      */
     public void LanternaTerminal(FlightsClient flc){
 
@@ -30,6 +31,7 @@ public class LanternaHandler  {
         TextBox departureLocationBox = new TextBox(null, 125);
         TextBox dateOfDepartureBox = new TextBox(null, 125);
         TextBox passengerBox = new TextBox(null, 100);
+        ProgressBar progressBar = new ProgressBar(100);
 
         //creates lanterna terminal windows
         GUIWindow guiInput = new GUIWindow("QPX", flc);
@@ -41,7 +43,8 @@ public class LanternaHandler  {
 
         GUIScreen guiScreen = new GUIScreen(screen);
         guiScreen.getScreen().startScreen();
-        //guiScreen.setTitle("QPX");
+
+
 
 
 
@@ -60,8 +63,10 @@ public class LanternaHandler  {
         guiInput.middlePanel.addComponent(departureLocationBox);
         guiInput.rightPanel.addComponent(dateOfDepartureBox);
 
-        guiInput.enterButton(guiScreen, guiOutput, destinationBox, departureLocationBox, dateOfDepartureBox, passengerBox);
+        guiInput.enterButton(guiScreen, guiOutput, destinationBox, departureLocationBox, dateOfDepartureBox, passengerBox, progressBar);
         guiInput.quitButton();
+        
+
 
         guiScreen.showWindow(guiInput, GUIScreen.Position.CENTER);
     }
