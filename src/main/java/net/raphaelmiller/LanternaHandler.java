@@ -2,6 +2,7 @@ package net.raphaelmiller;
 
 import com.googlecode.lanterna.TerminalFacade;
 import com.googlecode.lanterna.gui.GUIScreen;
+import com.googlecode.lanterna.gui.component.EmptySpace;
 import com.googlecode.lanterna.gui.component.Label;
 import com.googlecode.lanterna.gui.component.ProgressBar;
 import com.googlecode.lanterna.gui.component.TextBox;
@@ -27,11 +28,7 @@ public class LanternaHandler  {
     public void LanternaTerminal(FlightsClient flc){
 
         //initializes TextBoxes for first page of GUI
-        TextBox destinationBox = new TextBox(null, 125);
-        TextBox departureLocationBox = new TextBox(null, 125);
-        TextBox dateOfDepartureBox = new TextBox(null, 125);
-        TextBox passengerBox = new TextBox(null, 100);
-        ProgressBar progressBar = new ProgressBar(100);
+
 
         //creates lanterna terminal windows
         GUIWindow guiInput = new GUIWindow("QPX", flc);
@@ -44,15 +41,28 @@ public class LanternaHandler  {
         GUIScreen guiScreen = new GUIScreen(screen);
         guiScreen.getScreen().startScreen();
 
+        drawGuiInput(guiInput, guiOutput, guiScreen);
 
 
+
+
+    }
+
+    private void drawGuiInput(GUIWindow guiInput, GUIWindow guiOutput, GUIScreen guiScreen) {
+        TextBox destinationBox = new TextBox(null, 125);
+        TextBox departureLocationBox = new TextBox(null, 125);
+        TextBox dateOfDepartureBox = new TextBox(null, 125);
+        TextBox passengerBox = new TextBox(null, 100);
+        ProgressBar progressBar = new ProgressBar(100);
 
 
         //adds Labels for TextBoxes
         guiInput.leftPanel.addComponent(new Label("Number of Passengers", Terminal.Color.RED));
         guiInput.leftPanel.addComponent(passengerBox);
 
+        guiInput.rightPanel.addComponent(new EmptySpace(2,2));
         guiInput.rightPanel.addComponent(new Label("Date of Departure(YYYY-MM-DD)\t\t", Terminal.Color.RED));
+        guiInput.middlePanel.addComponent(new EmptySpace(2,2));
         guiInput.middlePanel.addComponent(new Label("Arriving to(IATA code)\t\t", Terminal.Color.RED));
         guiInput.leftPanel.addComponent(new Label("Leaving from(IATA code)\t\t", Terminal.Color.RED));
 
@@ -65,7 +75,7 @@ public class LanternaHandler  {
 
         guiInput.enterButton(guiScreen, guiOutput, destinationBox, departureLocationBox, dateOfDepartureBox, passengerBox, progressBar);
         guiInput.quitButton();
-        
+
 
 
         guiScreen.showWindow(guiInput, GUIScreen.Position.CENTER);
