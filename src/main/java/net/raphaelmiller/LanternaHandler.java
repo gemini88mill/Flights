@@ -55,30 +55,45 @@ public class LanternaHandler  {
         TextBox passengerBox = new TextBox(null, 100);
         ProgressBar progressBar = new ProgressBar(100);
 
+        //methods for panel drawing
+        leftPanel(guiInput, passengerBox, destinationBox);
+        middlePanel(guiInput, departureLocationBox);
+        rightPanel(guiInput, dateOfDepartureBox);
+        buttons(guiInput, guiOutput, guiScreen, destinationBox, departureLocationBox, dateOfDepartureBox, passengerBox,
+                progressBar);
 
-        //adds Labels for TextBoxes
-        guiInput.leftPanel.addComponent(new Label("Number of Passengers", Terminal.Color.RED));
-        guiInput.leftPanel.addComponent(passengerBox);
-
-        guiInput.rightPanel.addComponent(new EmptySpace(2,2));
-        guiInput.rightPanel.addComponent(new Label("Date of Departure(YYYY-MM-DD)\t\t", Terminal.Color.RED));
-        guiInput.middlePanel.addComponent(new EmptySpace(2,2));
-        guiInput.middlePanel.addComponent(new Label("Arriving to(IATA code)\t\t", Terminal.Color.RED));
-        guiInput.leftPanel.addComponent(new Label("Leaving from(IATA code)\t\t", Terminal.Color.RED));
-
-
-        //places TextBoxes
-
-        guiInput.leftPanel.addComponent(destinationBox);
-        guiInput.middlePanel.addComponent(departureLocationBox);
-        guiInput.rightPanel.addComponent(dateOfDepartureBox);
-
-        guiInput.enterButton(guiScreen, guiOutput, destinationBox, departureLocationBox, dateOfDepartureBox, passengerBox, progressBar);
-        guiInput.quitButton();
 
 
 
         guiScreen.showWindow(guiInput, GUIScreen.Position.CENTER);
+    }
+
+    private void buttons(GUIWindow guiInput, GUIWindow guiOutput, GUIScreen guiScreen, TextBox destinationBox,
+                         TextBox departureLocationBox, TextBox dateOfDepartureBox, TextBox passengerBox,
+                         ProgressBar progressBar) {
+        guiInput.enterButton(guiScreen, guiOutput, destinationBox, departureLocationBox, dateOfDepartureBox,
+                passengerBox, progressBar);
+        guiInput.quitButton();
+    }
+
+    private void rightPanel(GUIWindow guiInput, TextBox dateOfDepartureBox) {
+        guiInput.rightPanel.addComponent(new EmptySpace(2,2));
+        guiInput.rightPanel.addComponent(new Label("Date of Departure(YYYY-MM-DD)\t\t", Terminal.Color.RED));
+        guiInput.rightPanel.addComponent(dateOfDepartureBox);
+    }
+
+    private void middlePanel(GUIWindow guiInput, TextBox departureLocationBox) {
+        guiInput.middlePanel.addComponent(new EmptySpace(2,2));
+        guiInput.middlePanel.addComponent(new Label("Arriving to(IATA code)\t\t", Terminal.Color.RED));
+        guiInput.middlePanel.addComponent(departureLocationBox);
+    }
+
+    private void leftPanel(GUIWindow guiInput, TextBox passengerBox, TextBox destinationBox) {
+        guiInput.leftPanel.addComponent(new Label("Number of Passengers", Terminal.Color.RED));
+        guiInput.leftPanel.addComponent(passengerBox);
+        guiInput.leftPanel.addComponent(new Label("Leaving from(IATA code)\t\t", Terminal.Color.RED));
+        guiInput.leftPanel.addComponent(destinationBox);
+
     }
 
 
