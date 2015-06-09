@@ -57,37 +57,30 @@ public class GUIWindow extends Window {
      *
      */
     public void quitButton(){
-        addComponent(new Button("QUIT", new Action() {
-            @Override
-            public void doAction() {
-                System.exit(0);
-            }
-        }));
+        addComponent(new Button("QUIT", () -> System.exit(0)));
     }
 
     /**
      * enterButton() method
      *
      * Gives action to what happens when the enter button is pressed.
-     * @param guiScreen
-     * @param guiOutput
-     * @param destinationBox
-     * @param departureLocationBox
-     * @param dateOfDepartureBox
-     * @param passengerBox
-     * @param progressBar
+     *
+     * @param guiScreen GUIScreen
+     * @param guiOutput GUIWindow
+     * @param destinationBox TextBox
+     * @param departureLocationBox TextBox
+     * @param dateOfDepartureBox TextBox
+     * @param passengerBox TextBox
+     * @param progressBar ProgressBar
      */
     public void enterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, final TextBox destinationBox,
                             final TextBox departureLocationBox, final TextBox dateOfDepartureBox, TextBox passengerBox,
                             ProgressBar progressBar){
 
-
         final TextArea results = new TextArea(new TerminalSize(400, 300), null);
         final String[] input = new String[4];
         final String[] textValues = {null};
         TextGraphics textGraphics = null;
-
-
 
         // lambdas :)
         addComponent(new Button("ENTER", () -> {
@@ -106,22 +99,16 @@ public class GUIWindow extends Window {
             //sends information to googleCommunicate() in FlightsClient...
             List<TripOption> tripOptions = sendToGoogle(input);
 
-
             formatToScreen(tripOptions, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData, results);
 
             //results.appendLine(textValues[0] + "\n");
 
             guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
-
         }));
-
-
 
         drawPage(guiOutput, results, guiScreen);
 
         System.out.println(input[0]);
-
-
         //variable text area, modify to store data from display values
     }
 
@@ -131,12 +118,12 @@ public class GUIWindow extends Window {
      * private functions that mimics the same method as displayValues() to be modified to allow for it to be displayed
      * in the Lanterna GUI. See UIInterface.displayValues() for more information.
      *
-     * @param tripOptions
-     * @param tripData
-     * @param aircraftData
-     * @param carrierData
-     * @param airportData
-     * @param results
+     * @param tripOptions List
+     * @param tripData List
+     * @param aircraftData List
+     * @param carrierData List
+     * @param airportData List
+     * @param results TextArea
      */
     private void formatToScreen(List<TripOption> tripOptions, List<CityData> tripData, List<AircraftData> aircraftData,
                                 List<CarrierData> carrierData, List<AirportData> airportData, TextArea results) {

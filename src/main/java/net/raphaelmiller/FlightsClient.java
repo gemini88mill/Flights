@@ -36,6 +36,7 @@ public class FlightsClient {
     List<AircraftData> aircraftData = null;
     List<CarrierData> carrierData = null;
     List<AirportData> airportData = null;
+    List<TripOption> tripResults = null;
 
     //Main Class Constructor
     public FlightsClient(String arrivalIATA, String departureIATA, String dateOfDeparture, String passengers) {
@@ -67,11 +68,7 @@ public class FlightsClient {
         ui.UImain(flc);
         //System.out.println(main.getArrivalIATA() + "\n" + main.getDateOfDeparture() + "\n" + main.getDepartureIATA());
 
-        //List<TripOption> tripOption = flc.googleCommunicate(input);
 
-
-        //goto UIInterface -> displayValues() method.
-        //UIInterface.displayValues(tripOption, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData);
 
 
     } //end of main
@@ -89,7 +86,7 @@ public class FlightsClient {
      * @param input
      */
     public List<TripOption> googleCommunicate(String[] input) {
-        List<TripOption> tripResults = null;
+
 
         try {
             httpTransport = GoogleNetHttpTransport.newTrustedTransport();
@@ -133,8 +130,11 @@ public class FlightsClient {
 
             TripsSearchRequest parameters = new TripsSearchRequest();
             parameters.setRequest(request);
-            QPXExpress qpxExpress = new QPXExpress.Builder(httpTransport, JSON_FACTORY, null)
-                    .setGoogleClientRequestInitializer(new QPXExpressRequestInitializer(API_KEY)).build();
+            QPXExpress.Builder qpxBuilder = new QPXExpress.Builder(httpTransport, JSON_FACTORY, null);
+            qpxBuilder.setApplicationName(APPLICATION_NAME);
+            QPXExpress qpxExpress = qpxBuilder.setGoogleClientRequestInitializer(new QPXExpressRequestInitializer(API_KEY)).build();
+            System.out.println("sending request to QPX Express");
+
             //builds the parameters for the search request and sends that information to QPX API via QPXExpress class
 
             TripsSearchResponse list = qpxExpress.trips().search(parameters).execute();
