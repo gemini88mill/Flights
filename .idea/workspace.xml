@@ -48,30 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UIInterface.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/UIInterface.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="774">
-              <caret line="16" column="49" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="docComment;method#UImain#0;class#UIInterface#0" expanded="false" />
-                <element signature="method#UImain#0;class#UIInterface#0" expanded="false" />
-                <element signature="docComment;method#userInput#0;class#UIInterface#0" expanded="false" />
-                <element signature="method#userInput#0;class#UIInterface#0" expanded="false" />
-                <element signature="docComment;method#displayValues#0;class#UIInterface#0" expanded="false" />
-                <element signature="method#displayValues#0;class#UIInterface#0" expanded="false" />
-                <element signature="e#6345#6353#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="LanternaHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/LanternaHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.76039934" vertical-offset="659" max-vertical-offset="1908">
-              <caret line="62" column="16" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="16" />
+            <state vertical-scroll-proportion="2.3947656" vertical-offset="0" max-vertical-offset="2592">
+              <caret line="122" column="58" selection-start-line="122" selection-start-column="58" selection-end-line="122" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -82,7 +63,7 @@
       <file leaf-file-name="GUIWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1458" max-vertical-offset="7578">
+            <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="7578">
               <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -437,7 +418,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2497332" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -504,14 +485,14 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="288" max-vertical-offset="774">
           <caret line="16" column="49" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="docComment;method#UImain#0;class#UIInterface#0" expanded="false" />
             <element signature="method#UImain#0;class#UIInterface#0" expanded="false" />
             <element signature="docComment;method#userInput#0;class#UIInterface#0" expanded="false" />
             <element signature="method#userInput#0;class#UIInterface#0" expanded="false" />
             <element signature="docComment;method#displayValues#0;class#UIInterface#0" expanded="false" />
             <element signature="method#displayValues#0;class#UIInterface#0" expanded="false" />
-            <element signature="e#6345#6353#0" expanded="true" />
+            <element signature="e#6345#6353#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -558,14 +539,14 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="558" max-vertical-offset="1656">
           <caret line="41" column="44" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="docComment;method#UImain#0;class#UIInterface#0" expanded="false" />
             <element signature="method#UImain#0;class#UIInterface#0" expanded="false" />
             <element signature="docComment;method#userInput#0;class#UIInterface#0" expanded="false" />
             <element signature="method#userInput#0;class#UIInterface#0" expanded="false" />
             <element signature="docComment;method#displayValues#0;class#UIInterface#0" expanded="false" />
             <element signature="method#displayValues#0;class#UIInterface#0" expanded="false" />
-            <element signature="e#6345#6353#0" expanded="true" />
+            <element signature="e#6345#6353#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -598,14 +579,14 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2196">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="docComment;method#UImain#0;class#UIInterface#0" expanded="false" />
             <element signature="method#UImain#0;class#UIInterface#0" expanded="false" />
             <element signature="docComment;method#userInput#0;class#UIInterface#0" expanded="false" />
             <element signature="method#userInput#0;class#UIInterface#0" expanded="false" />
             <element signature="docComment;method#displayValues#0;class#UIInterface#0" expanded="false" />
             <element signature="method#displayValues#0;class#UIInterface#0" expanded="false" />
-            <element signature="e#6345#6353#0" expanded="true" />
+            <element signature="e#6345#6353#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -690,6 +671,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/UIInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30967742" vertical-offset="0" max-vertical-offset="930">
+          <caret line="16" column="49" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="docComment;method#UImain#0;class#UIInterface#0" expanded="false" />
+            <element signature="method#UImain#0;class#UIInterface#0" expanded="false" />
+            <element signature="docComment;method#userInput#0;class#UIInterface#0" expanded="false" />
+            <element signature="method#userInput#0;class#UIInterface#0" expanded="false" />
+            <element signature="docComment;method#displayValues#0;class#UIInterface#0" expanded="false" />
+            <element signature="method#displayValues#0;class#UIInterface#0" expanded="false" />
+            <element signature="e#6345#6353#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/FlightsClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1314" max-vertical-offset="3132">
@@ -701,23 +699,6 @@
             <element signature="e#6874#6875#0" expanded="true" />
             <element signature="e#6926#6927#0" expanded="true" />
             <element signature="e#6970#6971#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/UIInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="774">
-          <caret line="16" column="49" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#UImain#0;class#UIInterface#0" expanded="false" />
-            <element signature="method#UImain#0;class#UIInterface#0" expanded="false" />
-            <element signature="docComment;method#userInput#0;class#UIInterface#0" expanded="false" />
-            <element signature="method#userInput#0;class#UIInterface#0" expanded="false" />
-            <element signature="docComment;method#displayValues#0;class#UIInterface#0" expanded="false" />
-            <element signature="method#displayValues#0;class#UIInterface#0" expanded="false" />
-            <element signature="e#6345#6353#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -736,8 +717,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/LanternaHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76039934" vertical-offset="659" max-vertical-offset="1908">
-          <caret line="62" column="16" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="16" />
+        <state vertical-scroll-proportion="2.3947656" vertical-offset="0" max-vertical-offset="2592">
+          <caret line="122" column="58" selection-start-line="122" selection-start-column="58" selection-end-line="122" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
