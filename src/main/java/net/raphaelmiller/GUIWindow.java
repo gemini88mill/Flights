@@ -183,9 +183,9 @@ public class GUIWindow extends Window {
      * <p>
      * displays pricing info for total flight, prints results to GUI
      *
-     * @param tripOptions
-     * @param results
-     * @param i
+     * @param tripOptions List
+     * @param results     TextArea
+     * @param i           int
      */
     private void getPricingInfo(List<TripOption> tripOptions, TextArea results, int i) {
         List<PricingInfo> priceInfo = tripOptions.get(i).getPricing();
@@ -201,12 +201,12 @@ public class GUIWindow extends Window {
      * <p>
      * prints results to GUI
      *
-     * @param results
-     * @param df
-     * @param durationLeginHours
-     * @param legInfo
-     * @param origin
-     * @param destination
+     * @param results            TextArea
+     * @param df                 DecimalFormat
+     * @param durationLeginHours double
+     * @param legInfo            List
+     * @param origin             String
+     * @param destination        String
      */
     private void printToGui(TextArea results, DecimalFormat df, double durationLeginHours, List<String> legInfo,
                             String origin, String destination) {
