@@ -102,7 +102,18 @@ projects that offer much better project structure. This will probably be the las
 list for this project. Since its something that doesnt really effect the code in a direct way. 
 
 These posts are less of a readme and more of a journal entry for the development of this tiny 
-project. Either way thanks for reading. 
+project. Either way thanks for reading.
+
+--06.11.2015--
+
+Pretty much have things the way I want them but unfortunately, the poor documentation from 
+Lanterna is starting to affect my progress, The main issue that I am facing is trying to create
+a pop up error message for my program if the user does not input the correct perams. The problem
+is that Lanterna does not show how to use this feature that they have. Since Lanterna is little 
+known, I dont really have a solid knowledge base in order to try and solve the problem. As of 
+right now, The program is throwing exceptions left and right from google's API. Once I figure 
+out how to make the warning symbols work it should be as close to complete as possible. I might 
+also create a similar program but for Android OS to get a feel for what I want to do with it.  
 
 Raphael Miller 
 gemini88mill@gmail.com
