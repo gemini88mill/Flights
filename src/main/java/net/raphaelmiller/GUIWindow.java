@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.googlecode.lanterna.gui.dialog.DialogButtons.*;
+
 
 /**
  * Created by raphael on 5/27/15.
@@ -31,6 +33,7 @@ public class GUIWindow extends Window {
     private String uiPassword;
 
     Panel horizontalPanel, leftPanel, rightPanel, middlePanel;
+    ErrorHandler eh;
 
     FlightsClient flc;
     Button quit;
@@ -38,8 +41,8 @@ public class GUIWindow extends Window {
     /**
      * Constructor for GUIWindow, creates gui framework, and allows for modulation.
      *
-     * @param title
-     * @param flc
+     * @param title String
+     * @param flc FlightsClient
      */
     public GUIWindow(String title, FlightsClient flc) {
         super(title);
@@ -50,6 +53,8 @@ public class GUIWindow extends Window {
         leftPanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
         middlePanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
         rightPanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
+        eh.ImproperDateError();
+
 
         horizontalPanel.addComponent(leftPanel);
         horizontalPanel.addComponent(middlePanel);
@@ -87,7 +92,7 @@ public class GUIWindow extends Window {
         final String[] input = new String[4];
         final String[] textValues = {null};
         TextGraphics textGraphics = null;
-        ErrorHandler eh = new ErrorHandler();
+
 
 
         // lambdas :)
@@ -103,6 +108,7 @@ public class GUIWindow extends Window {
             flc.setDepartureIATA(input[1]);
             flc.setArrivalIATA(input[0]);
             flc.setPassengers(input[3]);
+
 
             //sends information to googleCommunicate() in FlightsClient...
             List<TripOption> tripOptions = sendToGoogle(input);
@@ -248,7 +254,7 @@ public class GUIWindow extends Window {
     }
 
     /**
-     * getAircraftname()
+     * getAircraftName()
      * <p>
      * compares aircraft data codes with aircraft on file in QPX in order to get a more user friendly version of the name
      *
