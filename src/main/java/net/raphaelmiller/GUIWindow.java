@@ -111,10 +111,16 @@ public class GUIWindow extends Window {
             String depart = flc.getDepartureIATA();
             String arrive = flc.getArrivalIATA();
             String passengers = flc.getPassengers();
-            boolean test;
+            boolean test = false;
+            try {
+                 test = dateTester(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
-
-            //guiScreen.showWindow(guiError, CENTER);
+            if (!test) {
+                guiScreen.showWindow(guiError, CENTER);
+            }
             //guiError.horizontalPanel.addComponent(new Panel(new Border.Invisible(), Panel.Orientation.HORISONTAL));
 
 
