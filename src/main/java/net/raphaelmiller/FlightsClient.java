@@ -107,8 +107,8 @@ public class FlightsClient {
             //user input
 
             SliceInput slice = new SliceInput();
-            slice.setOrigin(input[1]);
-            slice.setDestination(input[0]);
+            slice.setOrigin(input[0]);
+            slice.setDestination(input[1]);
             slice.setDate(input[2]);
             slices.add(slice);
 

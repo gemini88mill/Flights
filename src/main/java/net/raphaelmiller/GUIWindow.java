@@ -6,6 +6,9 @@ import com.googlecode.lanterna.gui.GUIScreen;
 import com.googlecode.lanterna.gui.TextGraphics;
 import com.googlecode.lanterna.gui.Window;
 import com.googlecode.lanterna.gui.component.*;
+import com.googlecode.lanterna.gui.dialog.DialogButtons;
+import com.googlecode.lanterna.gui.dialog.DialogResult;
+import com.googlecode.lanterna.gui.dialog.MessageBox;
 import com.googlecode.lanterna.terminal.TerminalSize;
 
 import java.text.DecimalFormat;
@@ -119,7 +122,9 @@ public class GUIWindow extends Window {
             }
 
             if (!test) {
+               MessageBox.showMessageBox(guiError.getOwner(), "Error", "Date of Flight cannot be before today's date", DialogButtons.OK);
                 guiScreen.showWindow(guiError, CENTER);
+                drawGuiError(guiError);
             }
             //guiError.horizontalPanel.addComponent(new Panel(new Border.Invisible(), Panel.Orientation.HORISONTAL));
 
@@ -138,12 +143,14 @@ public class GUIWindow extends Window {
 
         }));
 
-
-
-
-
         System.out.println(input[0]);
         //variable text area, modify to store data from display values
+    }
+
+    private void drawGuiError(GUIWindow guiError) {
+        DialogResult error = MessageBox.showMessageBox(guiError.getOwner(), "Error", "Date of Flight cannot be before today's date", DialogButtons.OK);
+        MessageBox mb = null;
+
     }
 
     private boolean dateTester(String dateofDepart) throws ParseException {
