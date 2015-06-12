@@ -83,8 +83,7 @@ public class FlightsClient {
      *
      * @return List <TripOption> tripResults
      *
-     * @param input
-     */
+     * @param input    */
     public List<TripOption> googleCommunicate(String[] input) {
 
 
@@ -92,7 +91,7 @@ public class FlightsClient {
             httpTransport = GoogleNetHttpTransport.newTrustedTransport();
             //sends a generic httptransport to QPX API
 
-            int numberOfPassengers = Integer.parseInt(getPassengers());
+            int numberOfPassengers = 1;
 
             PassengerCounts passengers = new PassengerCounts();
             passengers.setAdultCount(numberOfPassengers);
@@ -108,8 +107,8 @@ public class FlightsClient {
             //user input
 
             SliceInput slice = new SliceInput();
-            slice.setOrigin(input[0]);
-            slice.setDestination(input[1]);
+            slice.setOrigin(input[1]);
+            slice.setDestination(input[0]);
             slice.setDate(input[2]);
             slices.add(slice);
 

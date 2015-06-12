@@ -1,13 +1,11 @@
 package net.raphaelmiller;
 
 import com.google.api.services.qpxExpress.model.*;
-import com.googlecode.lanterna.gui.*;
+import com.googlecode.lanterna.gui.Border;
+import com.googlecode.lanterna.gui.GUIScreen;
+import com.googlecode.lanterna.gui.TextGraphics;
+import com.googlecode.lanterna.gui.Window;
 import com.googlecode.lanterna.gui.component.*;
-import com.googlecode.lanterna.gui.dialog.DialogButtons;
-import com.googlecode.lanterna.gui.dialog.DialogResult;
-import com.googlecode.lanterna.gui.dialog.MessageBox;
-import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.Terminal.SGR;
 import com.googlecode.lanterna.terminal.TerminalSize;
 
 import java.text.DecimalFormat;
@@ -17,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static com.googlecode.lanterna.gui.dialog.DialogButtons.*;
+import static com.googlecode.lanterna.gui.GUIScreen.Position.CENTER;
 
 
 /**
@@ -53,7 +51,7 @@ public class GUIWindow extends Window {
         leftPanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
         middlePanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
         rightPanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
-        eh.ImproperDateError();
+
 
 
         horizontalPanel.addComponent(leftPanel);
@@ -75,18 +73,18 @@ public class GUIWindow extends Window {
      * enterButton() method
      * <p>
      * Gives action to what happens when the enter button is pressed.
-     *
-     * @param guiScreen            GUIScreen
+     *  @param guiScreen            GUIScreen
      * @param guiOutput            GUIWindow
      * @param destinationBox       TextBox
      * @param departureLocationBox TextBox
      * @param dateOfDepartureBox   TextBox
      * @param passengerBox         TextBox
      * @param progressBar          ProgressBar
+     * @param guiError
      */
     public void enterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, final TextBox destinationBox,
                             final TextBox departureLocationBox, final TextBox dateOfDepartureBox, TextBox passengerBox,
-                            ProgressBar progressBar) {
+                            ProgressBar progressBar, GUIWindow guiError) {
 
         final TextArea results = new TextArea(new TerminalSize(400, 300), null);
         final String[] input = new String[4];
@@ -109,6 +107,18 @@ public class GUIWindow extends Window {
             flc.setArrivalIATA(input[0]);
             flc.setPassengers(input[3]);
 
+            String date = flc.getDateOfDeparture();
+            String depart = flc.getDepartureIATA();
+            String arrive = flc.getArrivalIATA();
+            String passengers = flc.getPassengers();
+            boolean test;
+
+
+            //guiScreen.showWindow(guiError, CENTER);
+            //guiError.horizontalPanel.addComponent(new Panel(new Border.Invisible(), Panel.Orientation.HORISONTAL));
+
+
+
 
             //sends information to googleCommunicate() in FlightsClient...
             List<TripOption> tripOptions = sendToGoogle(input);
@@ -117,10 +127,14 @@ public class GUIWindow extends Window {
 
             //results.appendLine(textValues[0] + "\n");
 
+            drawPage(guiOutput, results, guiScreen);
             guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
+
         }));
 
-        drawPage(guiOutput, results, guiScreen);
+
+
+
 
         System.out.println(input[0]);
         //variable text area, modify to store data from display values
@@ -385,9 +399,12 @@ public class GUIWindow extends Window {
      * <p>
      * sends information to QPX Express from gui.
      *
-     * @param input String[]
-     * @return tripResults
-     */
+     * @param arrive
+     * @param depart
+     * @param date
+     * @param passengers @return tripResults
+     * @param input
+     * */
     private List<TripOption> sendToGoogle(String[] input) {
         //connection established with doAction()
         //System.out.println(input[1]);

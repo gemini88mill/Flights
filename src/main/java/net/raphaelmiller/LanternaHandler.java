@@ -31,26 +31,32 @@ public class LanternaHandler  {
         //creates lanterna terminal windows
         GUIWindow guiInput = new GUIWindow("QPX", flc);
         GUIWindow guiOutput = new GUIWindow("INFO", flc);
+        GUIWindow guiError = new GUIWindow("Error", flc);
 
         Terminal terminal = TerminalFacade.createTerminal();
+
         Screen screen = new Screen(terminal);
+
+
 
         GUIScreen guiScreen = new GUIScreen(screen);
         guiScreen.getScreen().startScreen();
 
-        drawGuiInput(guiInput, guiOutput, guiScreen);
+
+        drawGuiInput(guiInput, guiOutput, guiScreen, guiError);
+
     }
 
     /**
      * drawGuiInput() method
      *
      * method creating the positions and order for the gui
-     *
-     * @param guiInput GUIWindow
+     *  @param guiInput  GUIWindow
      * @param guiOutput GUIWindow
      * @param guiScreen GUIScreen
+     * @param guiError GUIWindow
      */
-    private void drawGuiInput(GUIWindow guiInput, GUIWindow guiOutput, GUIScreen guiScreen) {
+    private void drawGuiInput(GUIWindow guiInput, GUIWindow guiOutput, GUIScreen guiScreen, GUIWindow guiError) {
         //objects used for input capture
         TextBox destinationBox = new TextBox(null, 125);
         TextBox departureLocationBox = new TextBox(null, 125);
@@ -63,7 +69,7 @@ public class LanternaHandler  {
         middlePanel(guiInput, departureLocationBox);
         rightPanel(guiInput, dateOfDepartureBox);
         buttons(guiInput, guiOutput, guiScreen, destinationBox, departureLocationBox, dateOfDepartureBox, passengerBox,
-                progressBar);
+                progressBar, guiError);
 
         guiScreen.showWindow(guiInput, GUIScreen.Position.CENTER);
     }
@@ -72,8 +78,7 @@ public class LanternaHandler  {
      * buttons() - method
      *
      * method creating buttons for the GUI
-     *
-     * @param guiInput GUIWindow
+     *  @param guiInput GUIWindow
      * @param guiOutput GUIWindow
      * @param guiScreen GUIScreen
      * @param destinationBox TextBox
@@ -81,12 +86,13 @@ public class LanternaHandler  {
      * @param dateOfDepartureBox TextBox
      * @param passengerBox TextBox
      * @param progressBar ProgressBar
+     * @param guiError GUIWindow
      */
     private void buttons(GUIWindow guiInput, GUIWindow guiOutput, GUIScreen guiScreen, TextBox destinationBox,
                          TextBox departureLocationBox, TextBox dateOfDepartureBox, TextBox passengerBox,
-                         ProgressBar progressBar) {
+                         ProgressBar progressBar, GUIWindow guiError) {
         guiInput.enterButton(guiScreen, guiOutput, destinationBox, departureLocationBox, dateOfDepartureBox,
-                passengerBox, progressBar);
+                passengerBox, progressBar, guiError);
         guiInput.quitButton();
     }
 
