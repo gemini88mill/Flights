@@ -9,6 +9,7 @@ import com.googlecode.lanterna.gui.component.*;
 import com.googlecode.lanterna.gui.dialog.DialogButtons;
 import com.googlecode.lanterna.gui.dialog.DialogResult;
 import com.googlecode.lanterna.gui.dialog.MessageBox;
+import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.TerminalSize;
 
 import java.text.DecimalFormat;
@@ -122,14 +123,12 @@ public class GUIWindow extends Window {
             }
 
             if (!test) {
-               MessageBox.showMessageBox(guiError.getOwner(), "Error", "Date of Flight cannot be before today's date", DialogButtons.OK);
+               //MessageBox.showMessageBox(guiError.getOwner(), "Error", "Date of Flight cannot be before today's date", DialogButtons.OK);
+                drawGuiError(guiError, guiScreen);
                 guiScreen.showWindow(guiError, CENTER);
-                drawGuiError(guiError);
+
             }
             //guiError.horizontalPanel.addComponent(new Panel(new Border.Invisible(), Panel.Orientation.HORISONTAL));
-
-
-
 
             //sends information to googleCommunicate() in FlightsClient...
             List<TripOption> tripOptions = sendToGoogle(input);
@@ -147,10 +146,14 @@ public class GUIWindow extends Window {
         //variable text area, modify to store data from display values
     }
 
-    private void drawGuiError(GUIWindow guiError) {
-        DialogResult error = MessageBox.showMessageBox(guiError.getOwner(), "Error", "Date of Flight cannot be before today's date", DialogButtons.OK);
-        MessageBox mb = null;
+    private void drawGuiError(GUIWindow guiError, GUIScreen guiScreen) {
+        guiError.addComponent(new Label("Please input a date after today's date.", Terminal.Color.RED));
+        guiError.addComponent(new Button("OK", () ->{
+            LanternaHandler lanternaHandler = new LanternaHandler();
+            guiScreen.getScreen().stopScreen();
+            lanternaHandler.LanternaTerminal(new FlightsClient(null, null, null, null));
 
+        }));
     }
 
     private boolean dateTester(String dateofDepart) throws ParseException {
@@ -412,10 +415,6 @@ public class GUIWindow extends Window {
      * <p>
      * sends information to QPX Express from gui.
      *
-     * @param arrive
-     * @param depart
-     * @param date
-     * @param passengers @return tripResults
      * @param input
      * */
     private List<TripOption> sendToGoogle(String[] input) {
