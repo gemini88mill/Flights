@@ -111,13 +111,21 @@ public class GUIWindow extends Window {
             flc.setArrivalIATA(input[0]);
             flc.setPassengers(input[3]);
 
+
+
             String date = flc.getDateOfDeparture();
             String depart = flc.getDepartureIATA();
             String arrive = flc.getArrivalIATA();
             String passengers = flc.getPassengers();
+
+
+
+
+            //-----------------------------------------------------------
             boolean test = false;
             try {
-                 test = dateTester(date);
+                test = dateTester(date);
+                test = arrivalTest(flc);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -144,6 +152,14 @@ public class GUIWindow extends Window {
 
         System.out.println(input[0]);
         //variable text area, modify to store data from display values
+    }
+
+    private boolean arrivalTest(FlightsClient flc) {
+        //flc.googleCommunicate()
+        for (int x = 0; x < flc.airportData.size(); x++){
+            System.out.println(flc.airportData.get(x).getCode());
+        }
+        return false;
     }
 
     private void drawGuiError(GUIWindow guiError, GUIScreen guiScreen) {
