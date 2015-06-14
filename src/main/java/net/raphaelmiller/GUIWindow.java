@@ -3,12 +3,8 @@ package net.raphaelmiller;
 import com.google.api.services.qpxExpress.model.*;
 import com.googlecode.lanterna.gui.Border;
 import com.googlecode.lanterna.gui.GUIScreen;
-import com.googlecode.lanterna.gui.TextGraphics;
 import com.googlecode.lanterna.gui.Window;
 import com.googlecode.lanterna.gui.component.*;
-import com.googlecode.lanterna.gui.dialog.DialogButtons;
-import com.googlecode.lanterna.gui.dialog.DialogResult;
-import com.googlecode.lanterna.gui.dialog.MessageBox;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.TerminalSize;
 
@@ -56,8 +52,6 @@ public class GUIWindow extends Window {
         middlePanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
         rightPanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
 
-
-
         horizontalPanel.addComponent(leftPanel);
         horizontalPanel.addComponent(middlePanel);
         horizontalPanel.addComponent(rightPanel);
@@ -77,14 +71,14 @@ public class GUIWindow extends Window {
      * enterButton() method
      * <p>
      * Gives action to what happens when the enter button is pressed.
-     *  @param guiScreen            GUIScreen
+     * @param guiScreen            GUIScreen
      * @param guiOutput            GUIWindow
      * @param destinationBox       TextBox
      * @param departureLocationBox TextBox
      * @param dateOfDepartureBox   TextBox
      * @param passengerBox         TextBox
      * @param progressBar          ProgressBar
-     * @param guiError
+     * @param guiError             GuiWindow
      */
     public void enterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, final TextBox destinationBox,
                             final TextBox departureLocationBox, final TextBox dateOfDepartureBox, TextBox passengerBox,
@@ -92,9 +86,6 @@ public class GUIWindow extends Window {
 
         final TextArea results = new TextArea(new TerminalSize(400, 300), null);
         final String[] input = new String[4];
-        final String[] textValues = {null};
-        TextGraphics textGraphics = null;
-
 
 
         // lambdas :)
@@ -111,21 +102,15 @@ public class GUIWindow extends Window {
             flc.setArrivalIATA(input[0]);
             flc.setPassengers(input[3]);
 
-
-
             String date = flc.getDateOfDeparture();
             String depart = flc.getDepartureIATA();
             String arrive = flc.getArrivalIATA();
             String passengers = flc.getPassengers();
 
-
-
-
             //-----------------------------------------------------------
 
             //sends information to googleCommunicate() in FlightsClient...
             List<TripOption> tripOptions = sendToGoogle(input);
-
 
             boolean test = false;
             try {
@@ -139,15 +124,8 @@ public class GUIWindow extends Window {
                //MessageBox.showMessageBox(guiError.getOwner(), "Error", "Date of Flight cannot be before today's date", DialogButtons.OK);
                 drawGuiError(guiError, guiScreen);
                 guiScreen.showWindow(guiError, CENTER);
-
             }
-            //guiError.horizontalPanel.addComponent(new Panel(new Border.Invisible(), Panel.Orientation.HORISONTAL));
-
-
-
             formatToScreen(tripOptions, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData, results);
-
-            //results.appendLine(textValues[0] + "\n");
 
             drawPage(guiOutput, results, guiScreen);
             guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
@@ -159,7 +137,14 @@ public class GUIWindow extends Window {
     }
 
 
-
+    /**
+     * drawGuiError() - method
+     *
+     * draws and creates an error message in case of date of departure exception
+     *
+     * @param guiError GuiWindow
+     * @param guiScreen GUIScreen
+     */
     public void drawGuiError(GUIWindow guiError, GUIScreen guiScreen) {
         guiError.addComponent(new Label("Please input a date after today's date.", Terminal.Color.RED));
         guiError.addComponent(new Button("OK", () ->{
@@ -170,10 +155,19 @@ public class GUIWindow extends Window {
         }));
     }
 
+    /**
+     * dateTester() - method
+     *
+     * returns true if date entered is after today's date.
+     *
+     * @param dateofDepart String
+     * @return boolean
+     * @throws ParseException
+     */
     private boolean dateTester(String dateofDepart) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date currentDate = new Date();
-        String today = sdf.format(currentDate);
+        sdf.format(currentDate);
 
         boolean result = currentDate.before(sdf.parse(dateofDepart));
         System.out.println(result);
@@ -197,15 +191,14 @@ public class GUIWindow extends Window {
                                 List<CarrierData> carrierData, List<AirportData> airportData, TextArea results) {
         DecimalFormat df = new DecimalFormat("#.##");
 
-        String id = null;
         for (int i = 0; i < tripOptions.size(); i++) {
-            List<SliceInfo> sliceInfo = getID(id, i, tripOptions, results);
+            List<SliceInfo> sliceInfo = getID(i, tripOptions, results);
             for (int j = 0; j < sliceInfo.size(); j++) {
                 List<SegmentInfo> segInfo = getSliceInfo(j, sliceInfo, results, df);
                 for (int k = 0; k < segInfo.size(); k++) {
                     List<LegInfo> leg = getFlightInfo(segInfo, k, carrierData, results);
                     for (int l = 0; l < leg.size(); l++) {
-                        List<String> legInfo = getLegInfo(leg, l, airportData, tripData, aircraftData);
+                        List<String> legInfo = getLegInfo(leg, l, aircraftData);
 
                         String origin = leg.get(l).getOrigin();
                         String destination = leg.get(l).getDestination();
@@ -239,8 +232,8 @@ public class GUIWindow extends Window {
      */
     private void getPricingInfo(List<TripOption> tripOptions, TextArea results, int i) {
         List<PricingInfo> priceInfo = tripOptions.get(i).getPricing();
-        for (int p = 0; p < priceInfo.size(); p++) {
-            String price = priceInfo.get(p).getSaleTotal();
+        for (PricingInfo aPriceInfo : priceInfo) {
+            String price = aPriceInfo.getSaleTotal();
             results.appendLine("Price: " + price + "\n\n");
             results.appendLine("");
         }
@@ -273,12 +266,10 @@ public class GUIWindow extends Window {
      *
      * @param leg          List<LegInfo>
      * @param l            int
-     * @param airportData  List<AirportData>
-     * @param tripData     List<tripData>
      * @param aircraftData List<AircraftData>
      * @return result
      */
-    private List<String> getLegInfo(List<LegInfo> leg, int l, List<AirportData> airportData, List<CityData> tripData,
+    private List<String> getLegInfo(List<LegInfo> leg, int l,
                                     List<AircraftData> aircraftData) {
         List<String> result = new ArrayList<>();
 
@@ -307,9 +298,9 @@ public class GUIWindow extends Window {
      * @return aircraft
      */
     private String getAircraftname(List<AircraftData> aircraftData, String aircraft) {
-        for (int r = 0; r < aircraftData.size(); r++) {
-            if (aircraftData.get(r).getCode().equals(aircraft)) {
-                aircraft = aircraftData.get(r).getName();
+        for (AircraftData anAircraftData : aircraftData) {
+            if (anAircraftData.getCode().equals(aircraft)) {
+                aircraft = anAircraftData.getName();
             }
         }
         return aircraft;
@@ -329,9 +320,9 @@ public class GUIWindow extends Window {
     private String getDestinationName(List<AirportData> airportData, String destination, int o, List<CityData> tripData) {
         if (airportData.get(o).getCode().equals(destination)) {
             destination = airportData.get(o).getName();
-            for (int p = 0; p < tripData.size(); p++) {
-                if (tripData.get(p).getCode().equals(airportData.get(o).getCity())) {
-                    destination = destination + ", " + tripData.get(p).getName();
+            for (CityData aTripData : tripData) {
+                if (aTripData.getCode().equals(airportData.get(o).getCity())) {
+                    destination = destination + ", " + aTripData.getName();
                 }
             }
         }
@@ -352,9 +343,9 @@ public class GUIWindow extends Window {
     private String getOriginName(List<AirportData> airportData, int n, String origin, List<CityData> tripData) {
         if (airportData.get(n).getCode().equals(origin)) {
             origin = airportData.get(n).getName();
-            for (int q = 0; q < tripData.size(); q++) {
-                if (tripData.get(q).getCode().equals(airportData.get(n).getCity())) {
-                    origin = origin + ", " + tripData.get(q).getName();
+            for (CityData aTripData : tripData) {
+                if (aTripData.getCode().equals(airportData.get(n).getCity())) {
+                    origin = origin + ", " + aTripData.getName();
                 }
             }
         }
@@ -377,14 +368,13 @@ public class GUIWindow extends Window {
         FlightInfo flightInfo = segInfo.get(k).getFlight();
         String flightCarr = flightInfo.getCarrier();
         String flightNum = flightInfo.getNumber();
-        for (int m = 0; m < carrierData.size(); m++) {
-            if (carrierData.get(m).getCode().equals(flightCarr)) {
-                flightCarr = carrierData.get(m).getName();
+        for (CarrierData aCarrierData : carrierData) {
+            if (aCarrierData.getCode().equals(flightCarr)) {
+                flightCarr = aCarrierData.getName();
             }
         }
         results.appendLine("Carrier: " + flightCarr + "\t Flight No: " + flightNum);
-        List<LegInfo> leg = segInfo.get(k).getLeg();
-        return leg;
+        return segInfo.get(k).getLeg();
     }
 
     /**
@@ -402,8 +392,7 @@ public class GUIWindow extends Window {
         int duration = sliceInfo.get(j).getDuration();
         double durationInHours = duration / 60;
         results.appendLine("Duration: " + df.format(durationInHours) + " hrs");
-        List<SegmentInfo> segInfo = sliceInfo.get(j).getSegment();
-        return segInfo;
+        return sliceInfo.get(j).getSegment();
     }
 
     /**
@@ -411,17 +400,17 @@ public class GUIWindow extends Window {
      * <p>
      * gets ID for flight number and prints to GUI, returns slice info for rest of chain.
      *
-     * @param id          String
      * @param i           int
      * @param tripOptions List<tripOption>
      * @param results     TextArea
      * @return sliceInfo
      */
-    private List<SliceInfo> getID(String id, int i, List<TripOption> tripOptions, TextArea results) {
+    private List<SliceInfo> getID(int i, List<TripOption> tripOptions, TextArea results) {
+        String id;
         id = tripOptions.get(i).getId();
         results.appendLine(id);
-        List<SliceInfo> sliceInfo = tripOptions.get(i).getSlice();
-        return sliceInfo;
+        return tripOptions.get(i).getSlice();
+
     }
 
     /**
@@ -429,14 +418,19 @@ public class GUIWindow extends Window {
      * <p>
      * sends information to QPX Express from gui.
      *
-     * @param input
+     * @param input String[]
      * */
     private List<TripOption> sendToGoogle(String[] input) {
         //connection established with doAction()
         //System.out.println(input[1]);
 
         //sending firstPage Data to googleCommunicate...
-        List<TripOption> tripResults = flc.googleCommunicate(input);
+        List<TripOption> tripResults = null;
+        try {
+            tripResults = flc.googleCommunicate(input);
+        } catch (IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        }
 
         //String textValues = UIInterface.displayValues(tripResults, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData);
         return tripResults;
@@ -459,6 +453,13 @@ public class GUIWindow extends Window {
         //results.appendLine(textValues);
     }
 
+    /**
+     * backButton() - method
+     *
+     * creates a back button (resets the program and brings it to the beginning)
+     *
+     * @param guiScreen GuiScreen
+     */
     private void backButton(GUIScreen guiScreen) {
         addComponent(new Button("BACK", () -> {
             LanternaHandler lanternaHandler = new LanternaHandler();
