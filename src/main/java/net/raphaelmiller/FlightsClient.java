@@ -7,9 +7,6 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.qpxExpress.QPXExpress;
 import com.google.api.services.qpxExpress.QPXExpressRequestInitializer;
 import com.google.api.services.qpxExpress.model.*;
-import com.googlecode.lanterna.gui.GUIScreen;
-import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -56,7 +53,7 @@ public class FlightsClient {
      *      declare necessary class objects (Main class, UIInterface class)
      *      send program to UImain method (see UImain())
      *      send program to displayValues method (see displayValues())
-     * @param args
+     * @param args String[]
      */
     public static void main(String[] args) {
 	// write your code here
@@ -86,7 +83,7 @@ public class FlightsClient {
      *
      * @return List <TripOption> tripResults
      *
-     * @param input    */
+     * @param input String[]   */
     public List<TripOption> googleCommunicate(String[] input) throws IllegalAccessException, InstantiationException {
 
 
@@ -100,7 +97,7 @@ public class FlightsClient {
             passengers.setAdultCount(numberOfPassengers);
             //sets passengers for passenger method to 1 adult, change here if you want to change number of travellers
 
-            List<SliceInput> slices = new ArrayList<SliceInput>();
+            List<SliceInput> slices = new ArrayList<>();
             //List<CityData> cities = new ArrayList<CityData>();
             //array list that sends information requested to google.
 
@@ -151,9 +148,7 @@ public class FlightsClient {
 
 
 
-        } catch (GeneralSecurityException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
         }
         return tripResults;
