@@ -115,5 +115,12 @@ right now, The program is throwing exceptions left and right from google's API. 
 out how to make the warning symbols work it should be as close to complete as possible. I might 
 also create a similar program but for Android OS to get a feel for what I want to do with it.  
 
+--06.14.15--
+
+Updated jar and added some error handling within the gui. The exception still goes through 
+the terminal, but date of departure error will not let you see past the error on the gui, 
+ubuntu and other OS's can hide the terminal if this turns into a true program. Thats all for
+this update
+
 Raphael Miller 
 gemini88mill@gmail.com

@@ -34,9 +34,10 @@
       <file leaf-file-name="FlightsClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/FlightsClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.7882736" vertical-offset="1296" max-vertical-offset="3528">
-              <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.90879476" vertical-offset="1296" max-vertical-offset="3528">
+              <caret line="103" column="47" selection-start-line="103" selection-start-column="47" selection-end-line="103" selection-end-column="47" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#6187#6188#0" expanded="true" />
                 <element signature="e#6221#6222#0" expanded="true" />
                 <element signature="e#6275#6276#0" expanded="true" />
@@ -502,7 +503,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -515,7 +516,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2497332" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -582,6 +583,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="2208" max-vertical-offset="3222">
           <caret line="110" column="40" selection-start-line="110" selection-start-column="40" selection-end-line="110" selection-end-column="40" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#6187#6188#0" expanded="true" />
             <element signature="e#6221#6222#0" expanded="true" />
             <element signature="e#6275#6276#0" expanded="true" />
@@ -607,6 +609,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1020" max-vertical-offset="3132">
           <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#6187#6188#0" expanded="true" />
             <element signature="e#6221#6222#0" expanded="true" />
             <element signature="e#6275#6276#0" expanded="true" />
@@ -655,6 +658,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="654" max-vertical-offset="1800">
           <caret line="88" column="62" selection-start-line="88" selection-start-column="62" selection-end-line="88" selection-end-column="62" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#6187#6188#0" expanded="true" />
             <element signature="e#6221#6222#0" expanded="true" />
             <element signature="e#6275#6276#0" expanded="true" />
@@ -713,6 +717,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2664">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#6187#6188#0" expanded="true" />
             <element signature="e#6221#6222#0" expanded="true" />
             <element signature="e#6275#6276#0" expanded="true" />
@@ -763,6 +768,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="2448">
           <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#6187#6188#0" expanded="true" />
             <element signature="e#6221#6222#0" expanded="true" />
             <element signature="e#6275#6276#0" expanded="true" />
@@ -944,9 +950,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/FlightsClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7882736" vertical-offset="1296" max-vertical-offset="3528">
-          <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.90879476" vertical-offset="1296" max-vertical-offset="3528">
+          <caret line="103" column="47" selection-start-line="103" selection-start-column="47" selection-end-line="103" selection-end-column="47" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#6187#6188#0" expanded="true" />
             <element signature="e#6221#6222#0" expanded="true" />
             <element signature="e#6275#6276#0" expanded="true" />
