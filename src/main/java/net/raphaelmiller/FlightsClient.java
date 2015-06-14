@@ -7,6 +7,9 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.qpxExpress.QPXExpress;
 import com.google.api.services.qpxExpress.QPXExpressRequestInitializer;
 import com.google.api.services.qpxExpress.model.*;
+import com.googlecode.lanterna.gui.GUIScreen;
+import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -84,7 +87,7 @@ public class FlightsClient {
      * @return List <TripOption> tripResults
      *
      * @param input    */
-    public List<TripOption> googleCommunicate(String[] input) {
+    public List<TripOption> googleCommunicate(String[] input) throws IllegalAccessException, InstantiationException {
 
 
         try {
@@ -137,6 +140,7 @@ public class FlightsClient {
             //builds the parameters for the search request and sends that information to QPX API via QPXExpress class
 
             TripsSearchResponse list = qpxExpress.trips().search(parameters).execute();
+
             //gets the response from qpx api
             tripResults = list.getTrips().getTripOption();
             tripData = list.getTrips().getData().getCity();
@@ -144,6 +148,8 @@ public class FlightsClient {
             carrierData = list.getTrips().getData().getCarrier();
             airportData = list.getTrips().getData().getAirport();
             //gets trip options to list.
+
+
 
         } catch (GeneralSecurityException e) {
             e.printStackTrace();

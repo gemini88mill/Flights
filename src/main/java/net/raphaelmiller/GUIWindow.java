@@ -122,10 +122,15 @@ public class GUIWindow extends Window {
 
 
             //-----------------------------------------------------------
+
+            //sends information to googleCommunicate() in FlightsClient...
+            List<TripOption> tripOptions = sendToGoogle(input);
+
+
             boolean test = false;
             try {
                 test = dateTester(date);
-                test = arrivalTest(flc);
+                //test = arrivalTest(flc);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -138,8 +143,7 @@ public class GUIWindow extends Window {
             }
             //guiError.horizontalPanel.addComponent(new Panel(new Border.Invisible(), Panel.Orientation.HORISONTAL));
 
-            //sends information to googleCommunicate() in FlightsClient...
-            List<TripOption> tripOptions = sendToGoogle(input);
+
 
             formatToScreen(tripOptions, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData, results);
 
@@ -154,15 +158,9 @@ public class GUIWindow extends Window {
         //variable text area, modify to store data from display values
     }
 
-    private boolean arrivalTest(FlightsClient flc) {
-        //flc.googleCommunicate()
-        for (int x = 0; x < flc.airportData.size(); x++){
-            System.out.println(flc.airportData.get(x).getCode());
-        }
-        return false;
-    }
 
-    private void drawGuiError(GUIWindow guiError, GUIScreen guiScreen) {
+
+    public void drawGuiError(GUIWindow guiError, GUIScreen guiScreen) {
         guiError.addComponent(new Label("Please input a date after today's date.", Terminal.Color.RED));
         guiError.addComponent(new Button("OK", () ->{
             LanternaHandler lanternaHandler = new LanternaHandler();
