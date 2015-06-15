@@ -7,8 +7,16 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.qpxExpress.QPXExpress;
 import com.google.api.services.qpxExpress.QPXExpressRequestInitializer;
 import com.google.api.services.qpxExpress.model.*;
+import com.google.gson.Gson;
 
+import javax.net.ssl.HttpsURLConnection;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.Buffer;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +26,9 @@ public class FlightsClient {
     //Constants for google developers console
     private static final String APPLICATION_NAME = "Airline";
     private static final String API_KEY = "AIzaSyDBglpQwcHNv7KuZu1CChuzaCdJr0sO-V4";
+    private static final String AREO_API_KEY = "c429fa56ff4b7f3eca49a6fbaec2fcc3";
+
+    private final String USER_AGENT = "Mozilla/5.0";
 
     //Global Instance of HTTP Transport
     private static HttpTransport httpTransport;
@@ -61,17 +72,60 @@ public class FlightsClient {
         UIInterface ui = new UIInterface();
         LanternaHandler lh = new LanternaHandler();
 
-
+        flc.httpGetRequest();
         //sends information to GUI, acts as main class (to add threading later...)
         lh.LanternaTerminal(flc);
         //go to UIInterface -> UImain() method.
         ui.UImain(flc);
         //System.out.println(main.getArrivalIATA() + "\n" + main.getDateOfDeparture() + "\n" + main.getDepartureIATA());
 
-
-
-
     } //end of main
+
+    private void httpGetRequest() {
+        //sends an get request for the aero API
+        String iataCode = "MCO";
+        String apiKey = AREO_API_KEY;
+        String url = "https://airport.api.aero/airport/"+ iataCode + "?user_key=" + AREO_API_KEY;
+
+        URL getRequest;
+
+        try {
+            getRequest = new URL(url);
+
+            HttpsURLConnection connection = (HttpsURLConnection) getRequest.openConnection();
+
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("User-Agent", USER_AGENT);
+
+            int responseCode = connection.getResponseCode();
+
+            System.out.println("Sending get request to URL: " + url);
+            System.out.println("Response Code: " + responseCode);
+            //connection.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null){
+                response.append(inputLine);
+            }
+            in.close();
+            System.out.println(response);
+
+            getResponseHandler(response);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void getResponseHandler(StringBuffer response) {
+        String format = String.valueOf(response);
+        Gson gson = new Gson();
+    }
 
 
     /**
@@ -82,6 +136,7 @@ public class FlightsClient {
      * accepts a String array, and returns a List<TripOption>
      *
      * @return List <TripOption> tripResults
+     *
      *
      * @param input String[]   */
     public List<TripOption> googleCommunicate(String[] input) throws IllegalAccessException, InstantiationException {
