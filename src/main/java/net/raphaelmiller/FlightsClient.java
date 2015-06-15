@@ -8,6 +8,8 @@ import com.google.api.services.qpxExpress.QPXExpress;
 import com.google.api.services.qpxExpress.QPXExpressRequestInitializer;
 import com.google.api.services.qpxExpress.model.*;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
@@ -124,7 +126,9 @@ public class FlightsClient {
 
     private void getResponseHandler(StringBuffer response) {
         String format = String.valueOf(response);
-        Gson gson = new Gson();
+        JsonObject jObj = (JsonObject) new JsonParser().parse(format);
+        jObj.get("airports");
+        System.out.println(jObj.get("airports").getAsJsonObject().toString());
     }
 
 
