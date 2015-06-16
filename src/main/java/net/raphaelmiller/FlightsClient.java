@@ -8,12 +8,14 @@ import com.google.api.services.qpxExpress.QPXExpress;
 import com.google.api.services.qpxExpress.QPXExpressRequestInitializer;
 import com.google.api.services.qpxExpress.model.*;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -96,26 +98,21 @@ public class FlightsClient {
 
             HttpsURLConnection connection = (HttpsURLConnection) getRequest.openConnection();
 
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("User-Agent", USER_AGENT);
+
+            //connection.setRequestMethod("GET");
+            connection.connect();
+            //connection.setRequestProperty("User-Agent", USER_AGENT);
 
             int responseCode = connection.getResponseCode();
 
             System.out.println("Sending get request to URL: " + url);
             System.out.println("Response Code: " + responseCode);
-            //connection.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
 
-            while ((inputLine = in.readLine()) != null){
-                response.append(inputLine);
-            }
-            in.close();
-            System.out.println(response);
+            JsonParser jp = new JsonParser();
+            JsonElement root = jp.parse(new InputStreamReader((InputStream) connection.getContent()));
 
-            getResponseHandler(response);
+            getResponseHandler(root);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -124,11 +121,11 @@ public class FlightsClient {
 
     }
 
-    private void getResponseHandler(StringBuffer response) {
-        String format = String.valueOf(response);
-        JsonObject jObj = (JsonObject) new JsonParser().parse(format);
-        jObj.get("airports");
-        System.out.println(jObj.get("airports").getAsJsonObject().toString());
+    private void getResponseHandler(JsonElement response) {
+        System.out.println(response.toString());
+
+
+
     }
 
 
