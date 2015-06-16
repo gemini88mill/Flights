@@ -11,12 +11,11 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
+import sun.misc.IOUtils;
 
 import javax.net.ssl.HttpsURLConnection;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,6 +23,8 @@ import java.nio.Buffer;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.google.api.client.util.IOUtils.*;
 
 public class FlightsClient {
 
@@ -108,11 +109,15 @@ public class FlightsClient {
             System.out.println("Sending get request to URL: " + url);
             System.out.println("Response Code: " + responseCode);
 
+            ByteArrayOutputStream output = new ByteArrayOutputStream(1024);
+            copy(connection.getInputStream(), output);
 
-            JsonParser jp = new JsonParser();
-            JsonElement root = jp.parse(new InputStreamReader((InputStream) connection.getContent()));
+            output.close();
 
-            getResponseHandler(root);
+            String root = output.toString();
+            JsonObject jObj = (JsonObject) new JsonParser().parse(root);
+
+            getResponseHandler(jObj);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -121,8 +126,8 @@ public class FlightsClient {
 
     }
 
-    private void getResponseHandler(JsonElement response) {
-        System.out.println(response.toString());
+    private void getResponseHandler(JsonObject response) {
+        System.out.println(response);
 
 
 
