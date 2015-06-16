@@ -112,6 +112,8 @@ public class FlightsClient {
             ByteArrayOutputStream output = new ByteArrayOutputStream(1024);
             copy(connection.getInputStream(), output);
 
+            //Json santax exception being thrown here
+
             output.close();
 
             String root = output.toString();
