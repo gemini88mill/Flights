@@ -1,5 +1,6 @@
 package net.raphaelmiller;
 
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.googlecode.lanterna.TerminalFacade;
 import com.googlecode.lanterna.gui.GUIScreen;
 import com.googlecode.lanterna.gui.component.EmptySpace;
@@ -25,7 +26,7 @@ public class LanternaHandler  {
      * Lanterna Gui and places two windows, guiInput and guiOutput and creates arguments for said Gui Windows.
      * @param flc FlightsClient
      */
-    public void LanternaTerminal(FlightsClient flc){
+    public void LanternaTerminal(FlightsClient flc) throws GoogleJsonResponseException {
 
         //creates lanterna terminal windows
         GUIWindow guiInput = new GUIWindow("QPX", flc);
@@ -55,7 +56,7 @@ public class LanternaHandler  {
      * @param guiScreen GUIScreen
      * @param guiError GUIWindow
      */
-    private void drawGuiInput(GUIWindow guiInput, GUIWindow guiOutput, GUIScreen guiScreen, GUIWindow guiError) {
+    private void drawGuiInput(GUIWindow guiInput, GUIWindow guiOutput, GUIScreen guiScreen, GUIWindow guiError) throws GoogleJsonResponseException {
         //objects used for input capture
         TextBox destinationBox = new TextBox(null, 125);
         TextBox departureLocationBox = new TextBox(null, 125);
@@ -89,7 +90,7 @@ public class LanternaHandler  {
      */
     private void buttons(GUIWindow guiInput, GUIWindow guiOutput, GUIScreen guiScreen, TextBox destinationBox,
                          TextBox departureLocationBox, TextBox dateOfDepartureBox, TextBox passengerBox,
-                         ProgressBar progressBar, GUIWindow guiError) {
+                         ProgressBar progressBar, GUIWindow guiError) throws GoogleJsonResponseException {
         guiInput.enterButton(guiScreen, guiOutput, destinationBox, departureLocationBox, dateOfDepartureBox,
                 passengerBox, progressBar, guiError);
         guiInput.quitButton();

@@ -1,5 +1,6 @@
 package net.raphaelmiller;
 
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.services.qpxExpress.model.*;
 import com.googlecode.lanterna.gui.Border;
 import com.googlecode.lanterna.gui.GUIScreen;
@@ -110,14 +111,21 @@ public class GUIWindow extends Window {
             //-----------------------------------------------------------
 
             //sends information to googleCommunicate() in FlightsClient...
-            List<TripOption> tripOptions = sendToGoogle(input);
-
+            List<TripOption> tripOptions = null;
+            try {
+                tripOptions = sendToGoogle(input);
+            } catch (IllegalAccessException | InstantiationException | GoogleJsonResponseException | NullPointerException e) {
+                drawGuiError(guiError, guiScreen);
+                guiScreen.showWindow(guiError, CENTER);
+                e.printStackTrace();
+            }
             boolean test = false;
             try {
                 test = dateTester(date);
                 //test = arrivalTest(flc);
             } catch (ParseException e) {
                 e.printStackTrace();
+
             }
 
             if (!test) {
@@ -150,7 +158,11 @@ public class GUIWindow extends Window {
         guiError.addComponent(new Button("OK", () ->{
             LanternaHandler lanternaHandler = new LanternaHandler();
             guiScreen.getScreen().stopScreen();
-            lanternaHandler.LanternaTerminal(new FlightsClient(null, null, null, null));
+            try {
+                lanternaHandler.LanternaTerminal(new FlightsClient(null, null, null, null));
+            } catch (GoogleJsonResponseException e) {
+                e.printStackTrace();
+            }
 
         }));
     }
@@ -420,18 +432,13 @@ public class GUIWindow extends Window {
      *
      * @param input String[]
      * */
-    private List<TripOption> sendToGoogle(String[] input) {
+    private List<TripOption> sendToGoogle(String[] input) throws IllegalAccessException, InstantiationException, GoogleJsonResponseException {
         //connection established with doAction()
         //System.out.println(input[1]);
 
         //sending firstPage Data to googleCommunicate...
         List<TripOption> tripResults = null;
-        try {
-            tripResults = flc.googleCommunicate(input);
-        } catch (IllegalAccessException | InstantiationException e) {
-            e.printStackTrace();
-        }
-
+        tripResults = flc.googleCommunicate(input);
         //String textValues = UIInterface.displayValues(tripResults, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData);
         return tripResults;
 
@@ -464,7 +471,11 @@ public class GUIWindow extends Window {
         addComponent(new Button("BACK", () -> {
             LanternaHandler lanternaHandler = new LanternaHandler();
             guiScreen.getScreen().stopScreen();
-            lanternaHandler.LanternaTerminal(new FlightsClient(null, null, null, null));
+            try {
+                lanternaHandler.LanternaTerminal(new FlightsClient(null, null, null, null));
+            } catch (GoogleJsonResponseException e) {
+                e.printStackTrace();
+            }
         }));
     }
 

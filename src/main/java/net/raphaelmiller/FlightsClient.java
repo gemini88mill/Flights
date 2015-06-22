@@ -1,6 +1,7 @@
 package net.raphaelmiller;
 
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -77,9 +78,14 @@ public class FlightsClient {
         UIInterface ui = new UIInterface();
         LanternaHandler lh = new LanternaHandler();
 
-        flc.httpGetRequest();
+        //
+        // flc.httpGetRequest();
         //sends information to GUI, acts as main class (to add threading later...)
-        lh.LanternaTerminal(flc);
+        try {
+            lh.LanternaTerminal(flc);
+        } catch (GoogleJsonResponseException e) {
+            e.printStackTrace();
+        }
         //go to UIInterface -> UImain() method.
         ui.UImain(flc);
         //System.out.println(main.getArrivalIATA() + "\n" + main.getDateOfDeparture() + "\n" + main.getDepartureIATA());
@@ -147,7 +153,7 @@ public class FlightsClient {
      *
      *
      * @param input String[]   */
-    public List<TripOption> googleCommunicate(String[] input) throws IllegalAccessException, InstantiationException {
+    public List<TripOption> googleCommunicate(String[] input) throws IllegalAccessException, InstantiationException, GoogleJsonResponseException {
 
 
         try {
