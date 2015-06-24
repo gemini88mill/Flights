@@ -80,10 +80,11 @@ public class GUIWindow extends Window {
      * @param passengerBox         TextBox
      * @param progressBar          ProgressBar
      * @param guiError             GuiWindow
+     * @param guiLoad
      */
     public void enterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, final TextBox destinationBox,
                             final TextBox departureLocationBox, final TextBox dateOfDepartureBox, TextBox passengerBox,
-                            ProgressBar progressBar, GUIWindow guiError) {
+                            ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad) {
 
         final TextArea results = new TextArea(new TerminalSize(400, 300), null);
         final String[] input = new String[4];
@@ -119,6 +120,8 @@ public class GUIWindow extends Window {
                 guiScreen.showWindow(guiError, CENTER);
                 e.printStackTrace();
             }
+            //drawLoadingWindow(guiLoad, guiScreen);
+            //guiScreen.showWindow(guiLoad, CENTER);
             boolean test = false;
             try {
                 test = dateTester(date);
@@ -132,16 +135,21 @@ public class GUIWindow extends Window {
                //MessageBox.showMessageBox(guiError.getOwner(), "Error", "Date of Flight cannot be before today's date", DialogButtons.OK);
                 drawGuiError(guiError, guiScreen);
                 guiScreen.showWindow(guiError, CENTER);
+            } else {
+                
+                formatToScreen(tripOptions, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData, results);
+
+                drawPage(guiOutput, results, guiScreen);
+                guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
             }
-            formatToScreen(tripOptions, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData, results);
-
-            drawPage(guiOutput, results, guiScreen);
-            guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
-
         }));
 
         System.out.println(input[0]);
         //variable text area, modify to store data from display values
+    }
+
+    private void drawLoadingWindow(GUIWindow guiPane, GUIScreen guiScreen) {
+        guiPane.horizontalPanel.addComponent(new Label("LOADING..."));
     }
 
 
