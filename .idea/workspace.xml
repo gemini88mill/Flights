@@ -46,7 +46,7 @@
       <file leaf-file-name="LanternaHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/LanternaHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1600" max-vertical-offset="2808">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2153" max-vertical-offset="2808">
               <caret line="98" column="60" selection-start-line="98" selection-start-column="60" selection-end-line="98" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -58,8 +58,8 @@
       <file leaf-file-name="GUIWindow.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6840391" vertical-offset="2028" max-vertical-offset="4806">
-              <caret line="138" column="16" selection-start-line="138" selection-start-column="16" selection-end-line="138" selection-end-column="16" />
+            <state vertical-scroll-proportion="1.5906821" vertical-offset="1330" max-vertical-offset="4896">
+              <caret line="129" column="59" selection-start-line="129" selection-start-column="59" selection-end-line="129" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#dateTester#0;class#GUIWindow#0" expanded="false" />
@@ -1030,8 +1030,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6840391" vertical-offset="2028" max-vertical-offset="4806">
-          <caret line="138" column="16" selection-start-line="138" selection-start-column="16" selection-end-line="138" selection-end-column="16" />
+        <state vertical-scroll-proportion="1.5906821" vertical-offset="1330" max-vertical-offset="4896">
+          <caret line="129" column="59" selection-start-line="129" selection-start-column="59" selection-end-line="129" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#dateTester#0;class#GUIWindow#0" expanded="false" />

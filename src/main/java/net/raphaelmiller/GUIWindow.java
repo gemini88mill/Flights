@@ -88,55 +88,34 @@ public class GUIWindow extends Window {
 
         final TextArea results = new TextArea(new TerminalSize(400, 300), null);
         final String[] input = new String[4];
-
+        final boolean[] test = {false};
 
         // lambdas :)
         addComponent(new Button("ENTER", () -> {
             progressBar.setVisible(true);
 
-            input[0] = destinationBox.getText();
-            input[1] = departureLocationBox.getText();
-            input[2] = dateOfDepartureBox.getText();
-            input[3] = passengerBox.getText();
-
-            flc.setDateOfDeparture(input[2]);
-            flc.setDepartureIATA(input[1]);
-            flc.setArrivalIATA(input[0]);
-            flc.setPassengers(input[3]);
-
-            String date = flc.getDateOfDeparture();
-            String depart = flc.getDepartureIATA();
-            String arrive = flc.getArrivalIATA();
-            String passengers = flc.getPassengers();
-
-            //-----------------------------------------------------------
-
-            //sends information to googleCommunicate() in FlightsClient...
+            String date = setFlightsClient(input, destinationBox, departureLocationBox, dateOfDepartureBox, passengerBox);
             List<TripOption> tripOptions = null;
             try {
-                tripOptions = sendToGoogle(input);
-            } catch (IllegalAccessException | InstantiationException | GoogleJsonResponseException | NullPointerException e) {
-                drawGuiError(guiError, guiScreen);
-                guiScreen.showWindow(guiError, CENTER);
+                tripOptions = attemptTransfer(input);
+                if (dateTester(date)) test[0] = true;
+                else test[0] = false;
+            } catch (IllegalAccessException | InstantiationException | GoogleJsonResponseException | ParseException e) {
                 e.printStackTrace();
             }
+
+            //sends information to googleCommunicate() in FlightsClient...
+
             //drawLoadingWindow(guiLoad, guiScreen);
             //guiScreen.showWindow(guiLoad, CENTER);
-            boolean test = false;
-            try {
-                test = dateTester(date);
-                //test = arrivalTest(flc);
-            } catch (ParseException e) {
-                e.printStackTrace();
 
-            }
 
-            if (!test) {
-               //MessageBox.showMessageBox(guiError.getOwner(), "Error", "Date of Flight cannot be before today's date", DialogButtons.OK);
+
+            if (!test[0]) {
                 drawGuiError(guiError, guiScreen);
                 guiScreen.showWindow(guiError, CENTER);
             } else {
-                
+
                 formatToScreen(tripOptions, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData, results);
 
                 drawPage(guiOutput, results, guiScreen);
@@ -146,6 +125,31 @@ public class GUIWindow extends Window {
 
         System.out.println(input[0]);
         //variable text area, modify to store data from display values
+    }
+
+    private List<TripOption> attemptTransfer(String[] input)
+            throws IllegalAccessException, InstantiationException, GoogleJsonResponseException, NullPointerException {
+        return sendToGoogle(input);
+    }
+
+    private String setFlightsClient(String[] input, TextBox destinationBox, TextBox departureLocationBox,
+                                    TextBox dateOfDepartureBox, TextBox passengerBox) {
+        input[0] = destinationBox.getText();
+        input[1] = departureLocationBox.getText();
+        input[2] = dateOfDepartureBox.getText();
+        input[3] = passengerBox.getText();
+
+        flc.setDateOfDeparture(input[2]);
+        flc.setDepartureIATA(input[1]);
+        flc.setArrivalIATA(input[0]);
+        flc.setPassengers(input[3]);
+
+        String date = flc.getDateOfDeparture();
+        String depart = flc.getDepartureIATA();
+        String arrive = flc.getArrivalIATA();
+        String passengers = flc.getPassengers();
+
+        return date;
     }
 
     private void drawLoadingWindow(GUIWindow guiPane, GUIScreen guiScreen) {
@@ -162,6 +166,7 @@ public class GUIWindow extends Window {
      * @param guiScreen GUIScreen
      */
     public void drawGuiError(GUIWindow guiError, GUIScreen guiScreen) {
+        guiScreen.showWindow(guiError, CENTER);
         guiError.addComponent(new Label("Please input a date after today's date.", Terminal.Color.RED));
         guiError.addComponent(new Button("OK", () ->{
             LanternaHandler lanternaHandler = new LanternaHandler();
