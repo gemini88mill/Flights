@@ -36,6 +36,7 @@ public class GUIWindow extends Window {
 
     GUIScreen guiScreen;
     FlightsClient flc;
+    DataLoader dl = null;
     Button quit;
 
     /**
@@ -95,8 +96,10 @@ public class GUIWindow extends Window {
         // lambdas :)
         addComponent(new Button("ENTER", () -> {
             progressBar.setVisible(true);
-            drawLoadingWindow(guiLoad, guiScreen);
-            guiScreen.showWindow(guiLoad, CENTER);
+            //drawLoadingWindow(guiLoad, guiScreen);
+            //guiScreen.showWindow(guiLoad, CENTER);
+
+            //must introduce threading here -------
 
             String date = setFlightsClient(input, destinationBox, departureLocationBox, dateOfDepartureBox, passengerBox);
             List<TripOption> tripOptions = null;
@@ -111,7 +114,7 @@ public class GUIWindow extends Window {
             //sends information to googleCommunicate() in FlightsClient...
 
 
-            guiLoad.guiScreen.getScreen().stopScreen();
+            //guiLoad.guiScreen.getScreen().stopScreen();
 
 
 
@@ -149,9 +152,6 @@ public class GUIWindow extends Window {
         flc.setPassengers(input[3]);
 
         String date = flc.getDateOfDeparture();
-        String depart = flc.getDepartureIATA();
-        String arrive = flc.getArrivalIATA();
-        String passengers = flc.getPassengers();
 
         return date;
     }
@@ -219,6 +219,7 @@ public class GUIWindow extends Window {
     private void formatToScreen(List<TripOption> tripOptions, List<CityData> tripData, List<AircraftData> aircraftData,
                                 List<CarrierData> carrierData, List<AirportData> airportData, TextArea results) {
         DecimalFormat df = new DecimalFormat("#.##");
+        dl = new DataLoader();
 
         for (int i = 0; i < tripOptions.size(); i++) {
             List<SliceInfo> sliceInfo = getID(i, tripOptions, results);
@@ -242,50 +243,12 @@ public class GUIWindow extends Window {
                         int durationLeg = leg.get(l).getDuration();
                         double durationLeginHours = durationLeg / 60;
 
-                        printToGui(results, df, durationLeginHours, legInfo, origin, destination);
+                        dl.printToGui(results, df, durationLeginHours, legInfo, origin, destination);
                     }
                 }
             }
-            getPricingInfo(tripOptions, results, i);
+            dl.getPricingInfo(tripOptions, results, i);
         }
-    }
-
-    /**
-     * getPricingInfo
-     * <p>
-     * displays pricing info for total flight, prints results to GUI
-     *
-     * @param tripOptions List
-     * @param results     TextArea
-     * @param i           int
-     */
-    private void getPricingInfo(List<TripOption> tripOptions, TextArea results, int i) {
-        List<PricingInfo> priceInfo = tripOptions.get(i).getPricing();
-        for (PricingInfo aPriceInfo : priceInfo) {
-            String price = aPriceInfo.getSaleTotal();
-            results.appendLine("Price: " + price + "\n\n");
-            results.appendLine("");
-        }
-    }
-
-    /**
-     * printToGui()
-     * <p>
-     * prints results to GUI
-     *
-     * @param results            TextArea
-     * @param df                 DecimalFormat
-     * @param durationLeginHours double
-     * @param legInfo            List
-     * @param origin             String
-     * @param destination        String
-     */
-    private void printToGui(TextArea results, DecimalFormat df, double durationLeginHours, List<String> legInfo,
-                            String origin, String destination) {
-        results.appendLine("Leg Duration: " + df.format(durationLeginHours) + " hrs\n");
-        results.appendLine("Aircraft \t\t\t Arrival \t\t\t\t\t Departure \t\t\t\t\t Meal?\n");
-        results.appendLine(legInfo.get(0) + "\t\t\t" + legInfo.get(1) + "\t\t" + legInfo.get(2) + "\t\t" + legInfo.get(3) + "\n");
-        results.appendLine("Leg: " + origin + " to\n " + destination + "\n");
     }
 
     /**
