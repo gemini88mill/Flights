@@ -34,6 +34,7 @@ public class GUIWindow extends Window {
     Panel horizontalPanel, leftPanel, rightPanel, middlePanel;
     ErrorHandler eh;
 
+    GUIScreen guiScreen;
     FlightsClient flc;
     Button quit;
 
@@ -43,10 +44,11 @@ public class GUIWindow extends Window {
      * @param title String
      * @param flc FlightsClient
      */
-    public GUIWindow(String title, FlightsClient flc) {
+    public GUIWindow(String title, FlightsClient flc, GUIScreen guiScreen) {
         super(title);
 
         this.flc = flc;
+        this.guiScreen = guiScreen;
 
         horizontalPanel = new Panel(new Border.Invisible(), Panel.Orientation.HORISONTAL);
         leftPanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
@@ -80,7 +82,7 @@ public class GUIWindow extends Window {
      * @param passengerBox         TextBox
      * @param progressBar          ProgressBar
      * @param guiError             GuiWindow
-     * @param guiLoad
+     * @param guiLoad              GUIWindow
      */
     public void enterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, final TextBox destinationBox,
                             final TextBox departureLocationBox, final TextBox dateOfDepartureBox, TextBox passengerBox,
@@ -93,6 +95,8 @@ public class GUIWindow extends Window {
         // lambdas :)
         addComponent(new Button("ENTER", () -> {
             progressBar.setVisible(true);
+            drawLoadingWindow(guiLoad, guiScreen);
+            guiScreen.showWindow(guiLoad, CENTER);
 
             String date = setFlightsClient(input, destinationBox, departureLocationBox, dateOfDepartureBox, passengerBox);
             List<TripOption> tripOptions = null;
@@ -106,8 +110,8 @@ public class GUIWindow extends Window {
 
             //sends information to googleCommunicate() in FlightsClient...
 
-            //drawLoadingWindow(guiLoad, guiScreen);
-            //guiScreen.showWindow(guiLoad, CENTER);
+
+            guiLoad.guiScreen.getScreen().stopScreen();
 
 
 

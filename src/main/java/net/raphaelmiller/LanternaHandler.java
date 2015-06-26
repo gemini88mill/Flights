@@ -28,19 +28,16 @@ public class LanternaHandler  {
      */
     public void LanternaTerminal(FlightsClient flc) throws GoogleJsonResponseException {
 
-        //creates lanterna terminal windows
-        GUIWindow guiInput = new GUIWindow("QPX", flc);
-        GUIWindow guiOutput = new GUIWindow("INFO", flc);
-        GUIWindow guiError = new GUIWindow("Error", flc);
-        GUIWindow guiLoad = new GUIWindow("Loading", flc);
-
         Terminal terminal = TerminalFacade.createTerminal();
-
         Screen screen = new Screen(terminal);
-
-
-
         GUIScreen guiScreen = new GUIScreen(screen);
+
+        //creates lanterna terminal windows
+        GUIWindow guiInput = new GUIWindow("QPX", flc, guiScreen);
+        GUIWindow guiOutput = new GUIWindow("INFO", flc, guiScreen);
+        GUIWindow guiError = new GUIWindow("Error", flc, guiScreen);
+        GUIWindow guiLoad = new GUIWindow("Loading", flc, guiScreen);
+
         guiScreen.getScreen().startScreen();
 
 
