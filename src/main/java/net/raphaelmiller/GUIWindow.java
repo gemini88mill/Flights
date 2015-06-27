@@ -97,7 +97,6 @@ public class GUIWindow extends Window {
      * @param guiScreen GUIScreen
      */
     public void drawGuiError(GUIWindow guiError, GUIScreen guiScreen) {
-        guiScreen.showWindow(guiError, CENTER);
         guiError.addComponent(new Label("Please input a date after today's date.", Terminal.Color.RED));
         guiError.addComponent(new Button("OK", () ->{
             LanternaHandler lanternaHandler = new LanternaHandler();
@@ -109,6 +108,7 @@ public class GUIWindow extends Window {
             }
 
         }));
+        guiScreen.showWindow(guiError, CENTER);
     }
 
     /**
