@@ -92,9 +92,9 @@ public class LanternaHandler  {
     private void buttons(GUIWindow guiInput, GUIWindow guiOutput, GUIScreen guiScreen, TextBox destinationBox,
                          TextBox departureLocationBox, TextBox dateOfDepartureBox, TextBox passengerBox,
                          ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad) throws GoogleJsonResponseException {
-        guiInput.enterButton(guiScreen, guiOutput, destinationBox, departureLocationBox, dateOfDepartureBox,
-                passengerBox, progressBar, guiError, guiLoad);
-        guiInput.quitButton();
+        guiInput.buttons.enterButton(guiScreen, guiOutput, destinationBox, departureLocationBox, dateOfDepartureBox,
+                passengerBox, progressBar, guiError, guiLoad, guiInput);
+        guiInput.buttons.quitButton(guiInput);
     }
 
     /**

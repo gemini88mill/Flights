@@ -43,46 +43,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GUIWindow.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GUIWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.09484193" vertical-offset="4173" max-vertical-offset="5112">
-              <caret line="253" column="4" selection-start-line="253" selection-start-column="4" selection-end-line="253" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1459" max-vertical-offset="2736">
+              <caret line="98" column="16" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#dateTester#0;class#GUIWindow#0" expanded="false" />
                 <element signature="method#dateTester#0;class#GUIWindow#0" expanded="false" />
-                <element signature="docComment;method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
-                <element signature="method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
-                <element signature="docComment;method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
-                <element signature="method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
-                <element signature="docComment;method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
-                <element signature="method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
-                <element signature="docComment;method#getOriginName#0;class#GUIWindow#0" expanded="false" />
-                <element signature="method#getOriginName#0;class#GUIWindow#0" expanded="false" />
-                <element signature="docComment;method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
-                <element signature="method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
-                <element signature="docComment;method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
-                <element signature="method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
-                <element signature="docComment;method#getID#0;class#GUIWindow#0" expanded="false" />
-                <element signature="method#getID#0;class#GUIWindow#0" expanded="false" />
+                <element signature="docComment;method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
+                <element signature="method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
                 <element signature="docComment;method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
                 <element signature="docComment;method#drawPage#0;class#GUIWindow#0" expanded="false" />
-                <element signature="method#drawPage#0;class#GUIWindow#0" expanded="false" />
-                <element signature="docComment;method#backButton#0;class#GUIWindow#0" expanded="false" />
-                <element signature="method#backButton#0;class#GUIWindow#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataLoader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/DataLoader.java">
+      <file leaf-file-name="Buttons.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/Buttons.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="214" max-vertical-offset="990">
-              <caret line="24" column="74" selection-start-line="24" selection-start-column="74" selection-end-line="24" selection-end-column="74" />
+            <state vertical-scroll-proportion="1.0898503" vertical-offset="1523" max-vertical-offset="2394">
+              <caret line="121" column="33" selection-start-line="121" selection-start-column="33" selection-end-line="121" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#4524#4525#0" expanded="true" />
+                <element signature="e#4604#4605#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -91,7 +78,7 @@
       <file leaf-file-name="LanternaHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/LanternaHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1110" max-vertical-offset="2754">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1176" max-vertical-offset="2754">
               <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -114,6 +101,7 @@
         <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/LanternaHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/DataLoader.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/raphaelmiller/Buttons.java" />
       </list>
     </option>
   </component>
@@ -612,25 +600,10 @@
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#dateTester#0;class#GUIWindow#0" expanded="false" />
             <element signature="method#dateTester#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getOriginName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getOriginName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getID#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getID#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
             <element signature="docComment;method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
             <element signature="docComment;method#drawPage#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#drawPage#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#backButton#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#backButton#0;class#GUIWindow#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -663,25 +636,10 @@
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#dateTester#0;class#GUIWindow#0" expanded="false" />
             <element signature="method#dateTester#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getOriginName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getOriginName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getID#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getID#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
             <element signature="docComment;method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
             <element signature="docComment;method#drawPage#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#drawPage#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#backButton#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#backButton#0;class#GUIWindow#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -704,25 +662,10 @@
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#dateTester#0;class#GUIWindow#0" expanded="false" />
             <element signature="method#dateTester#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getOriginName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getOriginName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getID#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getID#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
             <element signature="docComment;method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
             <element signature="docComment;method#drawPage#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#drawPage#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#backButton#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#backButton#0;class#GUIWindow#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -772,25 +715,10 @@
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#dateTester#0;class#GUIWindow#0" expanded="false" />
             <element signature="method#dateTester#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getOriginName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getOriginName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getID#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getID#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
             <element signature="docComment;method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
             <element signature="docComment;method#drawPage#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#drawPage#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#backButton#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#backButton#0;class#GUIWindow#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -830,25 +758,10 @@
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#dateTester#0;class#GUIWindow#0" expanded="false" />
             <element signature="method#dateTester#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getOriginName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getOriginName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getID#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getID#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
             <element signature="docComment;method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
             <element signature="docComment;method#drawPage#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#drawPage#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#backButton#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#backButton#0;class#GUIWindow#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -938,13 +851,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/googlecode/lanterna/lanterna/2.1.7/lanterna-2.1.7.jar!/com/googlecode/lanterna/gui/Action.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12224109" vertical-offset="0" max-vertical-offset="589">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/artifacts/Flights_jar.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="917">
@@ -1019,6 +925,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/googlecode/lanterna/lanterna/2.1.7/lanterna-2.1.7.jar!/com/googlecode/lanterna/gui/Action.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15280136" vertical-offset="0" max-vertical-offset="589">
+          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/googlecode/lanterna/lanterna/2.1.7/lanterna-2.1.7.jar!/com/googlecode/lanterna/gui/component/Button.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8559028" vertical-offset="1253" max-vertical-offset="1854">
+          <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/DataLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.9055375" vertical-offset="0" max-vertical-offset="3780">
+          <caret line="65" column="34" selection-start-line="65" selection-start-column="34" selection-end-line="65" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/LanternaHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1110" max-vertical-offset="2754">
@@ -1029,43 +961,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/DataLoader.java">
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/lang/Thread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="160" max-vertical-offset="990">
-          <caret line="24" column="74" selection-start-line="24" selection-start-column="74" selection-end-line="24" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="11174" max-vertical-offset="35352">
+          <caret line="695" column="29" selection-start-line="695" selection-start-column="29" selection-end-line="695" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09484193" vertical-offset="4173" max-vertical-offset="5112">
-          <caret line="253" column="4" selection-start-line="253" selection-start-column="4" selection-end-line="253" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1459" max-vertical-offset="2736">
+          <caret line="98" column="16" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#dateTester#0;class#GUIWindow#0" expanded="false" />
             <element signature="method#dateTester#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getLegInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getAircraftname#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getDestinationName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getOriginName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getOriginName#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getFlightInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getSliceInfo#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#getID#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#getID#0;class#GUIWindow#0" expanded="false" />
+            <element signature="docComment;method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
+            <element signature="method#formatToScreen#0;class#GUIWindow#0" expanded="false" />
             <element signature="docComment;method#sendToGoogle#0;class#GUIWindow#0" expanded="false" />
             <element signature="docComment;method#drawPage#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#drawPage#0;class#GUIWindow#0" expanded="false" />
-            <element signature="docComment;method#backButton#0;class#GUIWindow#0" expanded="false" />
-            <element signature="method#backButton#0;class#GUIWindow#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/Buttons.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0898503" vertical-offset="1523" max-vertical-offset="2394">
+          <caret line="121" column="33" selection-start-line="121" selection-start-column="33" selection-end-line="121" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4524#4525#0" expanded="true" />
+            <element signature="e#4604#4605#0" expanded="true" />
           </folding>
         </state>
       </provider>

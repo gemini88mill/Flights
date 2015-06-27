@@ -7,12 +7,10 @@ import com.googlecode.lanterna.gui.GUIScreen;
 import com.googlecode.lanterna.gui.Window;
 import com.googlecode.lanterna.gui.component.*;
 import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.TerminalSize;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,6 +35,7 @@ public class GUIWindow extends Window {
     GUIScreen guiScreen;
     FlightsClient flc;
     DataLoader dl = null;
+    Buttons buttons = new Buttons();
     Button quit;
 
     /**
@@ -62,85 +61,13 @@ public class GUIWindow extends Window {
         addComponent(horizontalPanel);
     }
 
-    /**
-     * quitButton() method
-     * <p>
-     * generic quit button that leaves the GUI and shuts down the program whenever pressed
-     */
-    public void quitButton() {
-        addComponent(new Button("QUIT", () -> System.exit(0)));
-    }
-
-    /**
-     * enterButton() method
-     * <p>
-     * Gives action to what happens when the enter button is pressed.
-     * @param guiScreen            GUIScreen
-     * @param guiOutput            GUIWindow
-     * @param destinationBox       TextBox
-     * @param departureLocationBox TextBox
-     * @param dateOfDepartureBox   TextBox
-     * @param passengerBox         TextBox
-     * @param progressBar          ProgressBar
-     * @param guiError             GuiWindow
-     * @param guiLoad              GUIWindow
-     */
-    public void enterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, final TextBox destinationBox,
-                            final TextBox departureLocationBox, final TextBox dateOfDepartureBox, TextBox passengerBox,
-                            ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad) {
-
-        final TextArea results = new TextArea(new TerminalSize(400, 300), null);
-        final String[] input = new String[4];
-        final boolean[] test = {false};
-
-        // lambdas :)
-        addComponent(new Button("ENTER", () -> {
-            progressBar.setVisible(true);
-            //drawLoadingWindow(guiLoad, guiScreen);
-            //guiScreen.showWindow(guiLoad, CENTER);
-
-            //must introduce threading here -------
-
-            String date = setFlightsClient(input, destinationBox, departureLocationBox, dateOfDepartureBox, passengerBox);
-            List<TripOption> tripOptions = null;
-            try {
-                tripOptions = attemptTransfer(input);
-                if (dateTester(date)) test[0] = true;
-                else test[0] = false;
-            } catch (IllegalAccessException | InstantiationException | GoogleJsonResponseException | ParseException e) {
-                e.printStackTrace();
-            }
-
-            //sends information to googleCommunicate() in FlightsClient...
-
-
-            //guiLoad.guiScreen.getScreen().stopScreen();
-
-
-
-            if (!test[0]) {
-                drawGuiError(guiError, guiScreen);
-                guiScreen.showWindow(guiError, CENTER);
-            } else {
-
-                formatToScreen(tripOptions, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData, results);
-
-                drawPage(guiOutput, results, guiScreen);
-                guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
-            }
-        }));
-
-        System.out.println(input[0]);
-        //variable text area, modify to store data from display values
-    }
-
-    private List<TripOption> attemptTransfer(String[] input)
+    public List<TripOption> attemptTransfer(String[] input)
             throws IllegalAccessException, InstantiationException, GoogleJsonResponseException, NullPointerException {
         return sendToGoogle(input);
     }
 
-    private String setFlightsClient(String[] input, TextBox destinationBox, TextBox departureLocationBox,
-                                    TextBox dateOfDepartureBox, TextBox passengerBox) {
+    public String setFlightsClient(String[] input, TextBox destinationBox, TextBox departureLocationBox,
+                                   TextBox dateOfDepartureBox, TextBox passengerBox) {
         input[0] = destinationBox.getText();
         input[1] = departureLocationBox.getText();
         input[2] = dateOfDepartureBox.getText();
@@ -193,7 +120,7 @@ public class GUIWindow extends Window {
      * @return boolean
      * @throws ParseException
      */
-    private boolean dateTester(String dateofDepart) throws ParseException {
+    public boolean dateTester(String dateofDepart) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date currentDate = new Date();
         sdf.format(currentDate);
@@ -216,28 +143,28 @@ public class GUIWindow extends Window {
      * @param airportData  List
      * @param results      TextArea
      */
-    private void formatToScreen(List<TripOption> tripOptions, List<CityData> tripData, List<AircraftData> aircraftData,
-                                List<CarrierData> carrierData, List<AirportData> airportData, TextArea results) {
+    public void formatToScreen(List<TripOption> tripOptions, List<CityData> tripData, List<AircraftData> aircraftData,
+                               List<CarrierData> carrierData, List<AirportData> airportData, TextArea results) {
         DecimalFormat df = new DecimalFormat("#.##");
         dl = new DataLoader();
 
         for (int i = 0; i < tripOptions.size(); i++) {
-            List<SliceInfo> sliceInfo = getID(i, tripOptions, results);
+            List<SliceInfo> sliceInfo = dl.getID(i, tripOptions, results);
             for (int j = 0; j < sliceInfo.size(); j++) {
-                List<SegmentInfo> segInfo = getSliceInfo(j, sliceInfo, results, df);
+                List<SegmentInfo> segInfo = dl.getSliceInfo(j, sliceInfo, results, df);
                 for (int k = 0; k < segInfo.size(); k++) {
-                    List<LegInfo> leg = getFlightInfo(segInfo, k, carrierData, results);
+                    List<LegInfo> leg = dl.getFlightInfo(segInfo, k, carrierData, results);
                     for (int l = 0; l < leg.size(); l++) {
-                        List<String> legInfo = getLegInfo(leg, l, aircraftData);
+                        List<String> legInfo = dl.getLegInfo(leg, l, aircraftData, this);
 
                         String origin = leg.get(l).getOrigin();
                         String destination = leg.get(l).getDestination();
 
                         for (int n = 0; n < airportData.size(); n++) {
-                            origin = getOriginName(airportData, n, origin, tripData);
+                            origin = dl.getOriginName(airportData, n, origin, tripData);
                         }
                         for (int o = 0; o < airportData.size(); o++) {
-                            destination = getDestinationName(airportData, destination, o, tripData);
+                            destination = dl.getDestinationName(airportData, destination, o, tripData);
                         }
 
                         int durationLeg = leg.get(l).getDuration();
@@ -249,160 +176,6 @@ public class GUIWindow extends Window {
             }
             dl.getPricingInfo(tripOptions, results, i);
         }
-    }
-
-    /**
-     * getLegInfo()
-     * <p>
-     * gets list from leg and converts to string list, ready to be displayed to GUI
-     *
-     * @param leg          List<LegInfo>
-     * @param l            int
-     * @param aircraftData List<AircraftData>
-     * @return result
-     */
-    private List<String> getLegInfo(List<LegInfo> leg, int l,
-                                    List<AircraftData> aircraftData) {
-        List<String> result = new ArrayList<>();
-
-        String aircraft = leg.get(l).getAircraft();
-        aircraft = getAircraftname(aircraftData, aircraft);
-
-        String arrivalTime = leg.get(l).getArrivalTime();
-        String departureTime = leg.get(l).getDepartureTime();
-        String meal = leg.get(l).getMeal();
-
-        result.add(aircraft);
-        result.add(arrivalTime);
-        result.add(departureTime);
-        result.add(meal);
-
-        return result;
-    }
-
-    /**
-     * getAircraftName()
-     * <p>
-     * compares aircraft data codes with aircraft on file in QPX in order to get a more user friendly version of the name
-     *
-     * @param aircraftData List<AircraftData>
-     * @param aircraft     String
-     * @return aircraft
-     */
-    private String getAircraftname(List<AircraftData> aircraftData, String aircraft) {
-        for (AircraftData anAircraftData : aircraftData) {
-            if (anAircraftData.getCode().equals(aircraft)) {
-                aircraft = anAircraftData.getName();
-            }
-        }
-        return aircraft;
-    }
-
-    /**
-     * getDestinationNames()
-     * <p>
-     * gets IATA code for city destination and converts to full city name
-     *
-     * @param airportData List<AirportData>
-     * @param destination String
-     * @param o           int
-     * @param tripData    List<CityData>
-     * @return destination String
-     */
-    private String getDestinationName(List<AirportData> airportData, String destination, int o, List<CityData> tripData) {
-        if (airportData.get(o).getCode().equals(destination)) {
-            destination = airportData.get(o).getName();
-            for (CityData aTripData : tripData) {
-                if (aTripData.getCode().equals(airportData.get(o).getCity())) {
-                    destination = destination + ", " + aTripData.getName();
-                }
-            }
-        }
-        return destination;
-    }
-
-    /**
-     * getOriginName()
-     * <p>
-     * gets IATA code for origin city and converts it to full name for city.
-     *
-     * @param airportData List<AirportData>
-     * @param n           int
-     * @param origin      String
-     * @param tripData    List<CityData>
-     * @return origin
-     */
-    private String getOriginName(List<AirportData> airportData, int n, String origin, List<CityData> tripData) {
-        if (airportData.get(n).getCode().equals(origin)) {
-            origin = airportData.get(n).getName();
-            for (CityData aTripData : tripData) {
-                if (aTripData.getCode().equals(airportData.get(n).getCity())) {
-                    origin = origin + ", " + aTripData.getName();
-                }
-            }
-        }
-        return origin;
-    }
-
-    /**
-     * getFlightInfo()
-     * <p>
-     * gets flight info, checks flight IATA code and compares to Carrier name from QPX, converts to user friendly name
-     * returns rest of leg information.
-     *
-     * @param segInfo     List<SegmentInfo>
-     * @param k           int
-     * @param carrierData List<CarrierData>
-     * @param results     TextArea
-     * @return leg
-     */
-    private List<LegInfo> getFlightInfo(List<SegmentInfo> segInfo, int k, List<CarrierData> carrierData, TextArea results) {
-        FlightInfo flightInfo = segInfo.get(k).getFlight();
-        String flightCarr = flightInfo.getCarrier();
-        String flightNum = flightInfo.getNumber();
-        for (CarrierData aCarrierData : carrierData) {
-            if (aCarrierData.getCode().equals(flightCarr)) {
-                flightCarr = aCarrierData.getName();
-            }
-        }
-        results.appendLine("Carrier: " + flightCarr + "\t Flight No: " + flightNum);
-        return segInfo.get(k).getLeg();
-    }
-
-    /**
-     * getSliceInfo
-     * <p>
-     * sets up slice info for parse, gets total duration of flight, returns seg info for rest of chain
-     *
-     * @param j         int
-     * @param sliceInfo List<SliceInfo>
-     * @param results   TextArea
-     * @param df        DecimalFormat
-     * @return segInfo
-     */
-    private List<SegmentInfo> getSliceInfo(int j, List<SliceInfo> sliceInfo, TextArea results, DecimalFormat df) {
-        int duration = sliceInfo.get(j).getDuration();
-        double durationInHours = duration / 60;
-        results.appendLine("Duration: " + df.format(durationInHours) + " hrs");
-        return sliceInfo.get(j).getSegment();
-    }
-
-    /**
-     * getID()
-     * <p>
-     * gets ID for flight number and prints to GUI, returns slice info for rest of chain.
-     *
-     * @param i           int
-     * @param tripOptions List<tripOption>
-     * @param results     TextArea
-     * @return sliceInfo
-     */
-    private List<SliceInfo> getID(int i, List<TripOption> tripOptions, TextArea results) {
-        String id;
-        id = tripOptions.get(i).getId();
-        results.appendLine(id);
-        return tripOptions.get(i).getSlice();
-
     }
 
     /**
@@ -432,31 +205,14 @@ public class GUIWindow extends Window {
      * @param guiOutput GUIWindow
      * @param results   TextArea
      */
-    private void drawPage(GUIWindow guiOutput, TextArea results, GUIScreen guiScreen) {
+    public void drawPage(GUIWindow guiOutput, TextArea results, GUIScreen guiScreen) {
+        buttons = new Buttons();
 
-        guiOutput.backButton(guiScreen);
-        guiOutput.quitButton();
+
+        guiOutput.buttons.backButton(guiScreen, guiOutput);
+        guiOutput.buttons.quitButton(guiOutput);
         guiOutput.horizontalPanel.addComponent(results);
         //results.appendLine(textValues);
-    }
-
-    /**
-     * backButton() - method
-     *
-     * creates a back button (resets the program and brings it to the beginning)
-     *
-     * @param guiScreen GuiScreen
-     */
-    private void backButton(GUIScreen guiScreen) {
-        addComponent(new Button("BACK", () -> {
-            LanternaHandler lanternaHandler = new LanternaHandler();
-            guiScreen.getScreen().stopScreen();
-            try {
-                lanternaHandler.LanternaTerminal(new FlightsClient(null, null, null, null));
-            } catch (GoogleJsonResponseException e) {
-                e.printStackTrace();
-            }
-        }));
     }
 
 
