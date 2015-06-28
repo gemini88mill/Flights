@@ -122,5 +122,27 @@ the terminal, but date of departure error will not let you see past the error on
 ubuntu and other OS's can hide the terminal if this turns into a true program. Thats all for
 this update
 
+--06.27.15--
+
+Completed error/exception handling for inputs, created loading window and have a pretty well
+functioning application. After a little over a month of part time work. Last steps will be to 
+have other people test it before I have it migrate it so some kind of full blown web
+application or mobile app. JavaDocs still pretty incomplete and source is still pretty messy. 
+At least its pretty much done with UI and allowed to handle errors and exceptions. 
+
+The exceptions arent handled gracefully and in order to launch this in any format I would 
+like it be more usable, I would add return flights and make it a comparable to a kayak or 
+expedia. This only requires much of the same functions just different perams and more GUI
+interfaces. Also A readme that isnt a journal of my progress in the system. Also I would 
+like to figure out how to add numbers to my jar files. Basically, introduce editions, 
+(Alpha, Beta, 0.1 and so on). That way people who see my code can see my progress over 
+the generations. 
+
+Next Steps: Code cleanup/refactoring, code organization, new functionality (ex. return date
+number of passengers, entering in of cities instead of IATA codes. having a (client version)
+and a (employee version). no real practical use for this program in the real world, I'm 
+certain that there are more advanced programs in use with teams of devs updating these 
+systems constantly. 
+
 Raphael Miller 
 gemini88mill@gmail.com
