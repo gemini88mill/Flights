@@ -78,16 +78,16 @@ public class LanternaHandler  {
      * buttons() - method
      *
      * method creating buttons for the GUI
-     * @param guiInput GUIWindow
-     * @param guiOutput GUIWindow
-     * @param guiScreen GUIScreen
-     * @param destinationBox TextBox
-     * @param departureLocationBox TextBox
-     * @param dateOfDepartureBox TextBox
-     * @param passengerBox TextBox
-     * @param progressBar ProgressBar
-     * @param guiError GUIWindow
-     * @param guiLoad
+     * @param guiInput              GUIWindow
+     * @param guiOutput             GUIWindow
+     * @param guiScreen             GUIScreen
+     * @param destinationBox        TextBox
+     * @param departureLocationBox  TextBox
+     * @param dateOfDepartureBox    TextBox
+     * @param passengerBox          TextBox
+     * @param progressBar           ProgressBar
+     * @param guiError              GUIWindow
+     * @param guiLoad               GUIWindow
      */
     private void buttons(GUIWindow guiInput, GUIWindow guiOutput, GUIScreen guiScreen, TextBox destinationBox,
                          TextBox departureLocationBox, TextBox dateOfDepartureBox, TextBox passengerBox,

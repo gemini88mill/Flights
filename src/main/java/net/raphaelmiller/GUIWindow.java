@@ -55,6 +55,8 @@ public class GUIWindow extends Window {
         middlePanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
         rightPanel = new Panel(new Border.Invisible(), Panel.Orientation.VERTICAL);
 
+
+
         horizontalPanel.addComponent(leftPanel);
         horizontalPanel.addComponent(middlePanel);
         horizontalPanel.addComponent(rightPanel);
@@ -97,7 +99,7 @@ public class GUIWindow extends Window {
      * @param guiScreen GUIScreen
      */
     public void drawGuiError(GUIWindow guiError, GUIScreen guiScreen) {
-        guiError.addComponent(new Label("Please input a date after today's date.", Terminal.Color.RED));
+        guiError.addComponent(new Label("An Error has Occurred. Please check inputs and try again", Terminal.Color.RED));
         guiError.addComponent(new Button("OK", () ->{
             LanternaHandler lanternaHandler = new LanternaHandler();
             guiScreen.getScreen().stopScreen();
@@ -116,16 +118,16 @@ public class GUIWindow extends Window {
      *
      * returns true if date entered is after today's date.
      *
-     * @param dateofDepart String
+     * @param dateOfDepart String
      * @return boolean
      * @throws ParseException
      */
-    public boolean dateTester(String dateofDepart) throws ParseException {
+    public boolean dateTester(String dateOfDepart) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date currentDate = new Date();
         sdf.format(currentDate);
 
-        boolean result = currentDate.before(sdf.parse(dateofDepart));
+        boolean result = currentDate.before(sdf.parse(dateOfDepart));
         System.out.println(result);
         return result;
     }
@@ -207,7 +209,6 @@ public class GUIWindow extends Window {
      */
     public void drawPage(GUIWindow guiOutput, TextArea results, GUIScreen guiScreen) {
         buttons = new Buttons();
-
 
         guiOutput.buttons.backButton(guiScreen, guiOutput);
         guiOutput.buttons.quitButton(guiOutput);
