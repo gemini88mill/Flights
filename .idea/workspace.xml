@@ -67,11 +67,11 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/Buttons.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.478735" vertical-offset="1145" max-vertical-offset="2232">
-              <caret line="88" column="83" selection-start-line="88" selection-start-column="83" selection-end-line="88" selection-end-column="83" />
+              <caret line="88" column="80" selection-start-line="88" selection-start-column="80" selection-end-line="88" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4717#4718#0" expanded="true" />
-                <element signature="e#4797#4798#0" expanded="true" />
+                <element signature="e#4709#4710#0" expanded="true" />
+                <element signature="e#4789#4790#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1002,11 +1002,11 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/Buttons.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.478735" vertical-offset="1145" max-vertical-offset="2232">
-          <caret line="88" column="83" selection-start-line="88" selection-start-column="83" selection-end-line="88" selection-end-column="83" />
+          <caret line="88" column="80" selection-start-line="88" selection-start-column="80" selection-end-line="88" selection-end-column="80" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4717#4718#0" expanded="true" />
-            <element signature="e#4797#4798#0" expanded="true" />
+            <element signature="e#4709#4710#0" expanded="true" />
+            <element signature="e#4789#4790#0" expanded="true" />
           </folding>
         </state>
       </provider>
