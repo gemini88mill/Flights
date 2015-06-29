@@ -197,7 +197,7 @@ public class DataLoader {
     List<SliceInfo> getID(int i, List<TripOption> tripOptions, TextArea results) {
         String id;
         id = tripOptions.get(i).getId();
-        results.appendLine(id);
+        results.appendLine((i + 1) + ": " +id);
         return tripOptions.get(i).getSlice();
 
     }

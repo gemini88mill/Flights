@@ -95,8 +95,6 @@ public class Buttons extends Thread {
                 quitButton(guiError);
                 guiError.guiScreen.showWindow(guiError, GUIScreen.Position.CENTER);
                 e.printStackTrace();
-                //this is where my problems are
-
             }
 
 

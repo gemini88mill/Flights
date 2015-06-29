@@ -213,6 +213,8 @@ public class GUIWindow extends Window {
         guiOutput.buttons.backButton(guiScreen, guiOutput);
         guiOutput.buttons.quitButton(guiOutput);
         guiOutput.horizontalPanel.addComponent(results);
+        guiOutput.leftPanel.addComponent(new Label("Choose Flight No."));
+        guiOutput.leftPanel.addComponent(new TextBox(null, 10));
         //results.appendLine(textValues);
     }
 
