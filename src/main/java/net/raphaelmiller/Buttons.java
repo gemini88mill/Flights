@@ -16,6 +16,7 @@ import java.util.List;
 public class Buttons extends Thread {
 
     ErrorHandler eh = new ErrorHandler();
+    DepartureFlight df = new DepartureFlight();
 
     /**
      * backButton() - method
@@ -81,14 +82,11 @@ public class Buttons extends Thread {
 
             //try/catch statement for values entered.
             try {
+
                 tripOptions = guiWindow.attemptTransfer(input);
                 test[0] = guiWindow.dateTester(date);
 
-                guiWindow.formatToScreen(tripOptions, guiWindow.flc.tripData, guiWindow.flc.aircraftData,
-                        guiWindow.flc.carrierData, guiWindow.flc.airportData, results);
-
-                guiWindow.drawPage(guiOutput, results, guiScreen);
-                guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
+                df.departureFlightWindow(guiWindow, tripOptions, results, guiScreen, guiOutput);
 
             } catch (IllegalAccessException | InstantiationException | GoogleJsonResponseException | ParseException |
                     NullPointerException e) {
