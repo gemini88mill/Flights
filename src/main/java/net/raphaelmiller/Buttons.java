@@ -63,7 +63,7 @@ public class Buttons extends Thread {
 
         // enter button start, creates enter button and creates eventhandlers for said enter button.
         guiWindow.addComponent(new Button("ENTER", () -> {
-            progressBar.setVisible(true);
+            //progressBar.setVisible(true);
 
             //loading window thread. starts loading bar window while, QPX is working in the background
             Thread thread = new Thread(){

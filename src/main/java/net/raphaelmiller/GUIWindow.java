@@ -2,6 +2,7 @@ package net.raphaelmiller;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.services.qpxExpress.model.*;
+import com.googlecode.lanterna.gui.Action;
 import com.googlecode.lanterna.gui.Border;
 import com.googlecode.lanterna.gui.GUIScreen;
 import com.googlecode.lanterna.gui.Window;
@@ -208,13 +209,44 @@ public class GUIWindow extends Window {
      * @param results   TextArea
      */
     public void drawPage(GUIWindow guiOutput, TextArea results, GUIScreen guiScreen) {
+        final int[] flightSelection = new int[]{0};
+        final String[] input = new String[3];
+
         buttons = new Buttons();
+        TextBox flightNo = new TextBox(null, 10);
+
 
         guiOutput.buttons.backButton(guiScreen, guiOutput);
         guiOutput.buttons.quitButton(guiOutput);
         guiOutput.horizontalPanel.addComponent(results);
         guiOutput.leftPanel.addComponent(new Label("Choose Flight No."));
-        guiOutput.leftPanel.addComponent(new TextBox(null, 10));
+        guiOutput.leftPanel.addComponent(flightNo);
+        guiOutput.leftPanel.addComponent(new Button("Enter", new Action() {
+            @Override
+            public void doAction() {
+                //collect text from textbox to select flight requested.
+                flightSelection[0] = Integer.parseInt(flightNo.getText());
+                input[2] = flc.getDateOfDeparture();
+                input[0] = flc.getDepartureIATA();
+                input[1] = flc.getArrivalIATA();
+
+                List<TripOption> options;
+
+                try {
+                    options = flc.googleCommunicate(input);
+                    for (int x = 0; x < options.size(); x++){
+                        if (options.get(x).equals(flightSelection[0])){
+                            TripOption choice = options.get(x);
+                        }
+                    }
+                    //System.out.println(choice);
+
+                } catch (IllegalAccessException | InstantiationException | GoogleJsonResponseException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }));
         //results.appendLine(textValues);
     }
 
