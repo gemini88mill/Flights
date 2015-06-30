@@ -15,6 +15,8 @@ import java.util.List;
  */
 public class Buttons extends Thread {
 
+    ErrorHandler eh = new ErrorHandler();
+
     /**
      * backButton() - method
      *
@@ -90,10 +92,8 @@ public class Buttons extends Thread {
 
             } catch (IllegalAccessException | InstantiationException | GoogleJsonResponseException | ParseException |
                     NullPointerException e) {
-                guiError.horizontalPanel.addComponent(new Label("Error", Terminal.Color.RED));
-                backButton(guiScreen, guiError);
-                quitButton(guiError);
-                guiError.guiScreen.showWindow(guiError, GUIScreen.Position.CENTER);
+
+                eh.errorWindow(guiError, guiScreen, this);
                 e.printStackTrace();
             }
 
