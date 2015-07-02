@@ -37,7 +37,7 @@ public class GUIWindow extends Window {
     FlightsClient flc;
     DataLoader dl = null;
     Buttons buttons = new Buttons();
-    Button quit;
+
 
     /**
      * Constructor for GUIWindow, creates gui framework, and allows for modulation.
