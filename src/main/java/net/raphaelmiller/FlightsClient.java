@@ -49,11 +49,14 @@ public class FlightsClient {
     private String passengers;
 
     //QPX Express API defined lists
-    List<CityData> tripData = null;
-    List<AircraftData> aircraftData = null;
-    List<CarrierData> carrierData = null;
-    List<AirportData> airportData = null;
-    List<TripOption> tripResults = null;
+    public List<CityData> tripData = null;
+    public List<AircraftData> aircraftData = null;
+    public List<CarrierData> carrierData = null;
+    public List<AirportData> airportData = null;
+    public List<TripOption> tripResults = null;
+
+    public TripOption outboundFlightChoice = null;
+    public TripOption returnFlightChoice = null;
 
     //Main Class Constructor
     public FlightsClient(String arrivalIATA, String departureIATA, String dateOfDeparture, String passengers) {
@@ -255,5 +258,65 @@ public class FlightsClient {
 
     public void setPassengers(String passengers) {
         this.passengers = passengers;
+    }
+
+    public static String getApplicationName() {
+        return APPLICATION_NAME;
+    }
+
+    public List<CityData> getTripData() {
+        return tripData;
+    }
+
+    public void setTripData(List<CityData> tripData) {
+        this.tripData = tripData;
+    }
+
+    public List<AircraftData> getAircraftData() {
+        return aircraftData;
+    }
+
+    public void setAircraftData(List<AircraftData> aircraftData) {
+        this.aircraftData = aircraftData;
+    }
+
+    public List<CarrierData> getCarrierData() {
+        return carrierData;
+    }
+
+    public void setCarrierData(List<CarrierData> carrierData) {
+        this.carrierData = carrierData;
+    }
+
+    public List<AirportData> getAirportData() {
+        return airportData;
+    }
+
+    public void setAirportData(List<AirportData> airportData) {
+        this.airportData = airportData;
+    }
+
+    public List<TripOption> getTripResults() {
+        return tripResults;
+    }
+
+    public void setTripResults(List<TripOption> tripResults) {
+        this.tripResults = tripResults;
+    }
+
+    public TripOption getOutboundFlightChoice() {
+        return outboundFlightChoice;
+    }
+
+    public void setOutboundFlightChoice(TripOption outboundFlightChoice) {
+        this.outboundFlightChoice = outboundFlightChoice;
+    }
+
+    public TripOption getReturnFlightChoice() {
+        return returnFlightChoice;
+    }
+
+    public void setReturnFlightChoice(TripOption returnFlightChoice) {
+        this.returnFlightChoice = returnFlightChoice;
     }
 }

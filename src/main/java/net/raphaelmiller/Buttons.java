@@ -86,7 +86,7 @@ public class Buttons extends Thread {
                 tripOptions = guiWindow.attemptTransfer(input);
                 test[0] = guiWindow.dateTester(date);
 
-                df.departureFlightWindow(guiWindow, tripOptions, results, guiScreen, guiOutput);
+                df.departureFlightWindow(guiWindow, tripOptions, results, guiScreen, guiOutput, guiLoad);
 
             } catch (IllegalAccessException | InstantiationException | GoogleJsonResponseException | ParseException |
                     NullPointerException e) {

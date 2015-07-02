@@ -204,16 +204,19 @@ public class GUIWindow extends Window {
      * drawPage() method
      * <p>
      * opens up new window for data stream from QPX
-     *
-     * @param guiOutput GUIWindow
+     *  @param guiOutput GUIWindow
      * @param results   TextArea
+     * @param guiLoad
      */
-    public void drawPage(GUIWindow guiOutput, TextArea results, GUIScreen guiScreen) {
+    public void drawPage(GUIWindow guiOutput, TextArea results, GUIScreen guiScreen, GUIWindow guiLoad) {
         final int[] flightSelection = new int[]{0};
         final String[] input = new String[3];
 
         buttons = new Buttons();
         TextBox flightNo = new TextBox(null, 10);
+        UIInterface ui = new UIInterface();
+        GUIWindow returningFlight = new GUIWindow("Return Flight", flc, guiScreen);
+        TextArea returnFlightResults = new TextArea();
 
 
         guiOutput.buttons.backButton(guiScreen, guiOutput);
@@ -228,22 +231,46 @@ public class GUIWindow extends Window {
                 flightSelection[0] = Integer.parseInt(flightNo.getText());
                 input[2] = flc.getDateOfDeparture();
                 input[0] = flc.getDepartureIATA();
-                input[1] = flc.getArrivalIATA();
+                input[1 ] = flc.getArrivalIATA();
 
                 List<TripOption> options;
+                TripOption choice;
+
+                options = flc.getTripResults();
+
+                choice = options.get(flightSelection[0] - 1);
+                flc.setOutboundFlightChoice(choice);
+
+                /*Thread thread = new Thread(){
+                    public void run(){
+                        System.out.println("thread running");
+                        guiLoad.horizontalPanel.addComponent(new Label("Loading...", Terminal.Color.BLACK, true));
+                        guiLoad.guiScreen.showWindow(guiLoad, GUIScreen.Position.CENTER);
+                    }
+                };   thread.start();
+                */
 
                 try {
-                    options = flc.googleCommunicate(input);
-                    for (int x = 0; x < options.size(); x++){
-                        if (options.get(x).equals(flightSelection[0])){
-                            TripOption choice = options.get(x);
-                        }
-                    }
-                    //System.out.println(choice);
+                    flc.googleCommunicate(input);
 
-                } catch (IllegalAccessException | InstantiationException | GoogleJsonResponseException e) {
+                    returningFlight.leftPanel.addComponent(new Button("Enter", new Action() {
+                        @Override
+                        public void doAction() {
+
+                        }
+                    }));
+                    returnFlightResults.appendLine(ui.displayValues(options, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData));
+
+                    returningFlight.leftPanel.addComponent(flightNo);
+                    returningFlight.buttons.backButton(guiScreen, guiOutput);
+                    returningFlight.buttons.quitButton(guiOutput);
+                    returningFlight.horizontalPanel.addComponent(returnFlightResults);
+
+                } catch (IllegalAccessException | GoogleJsonResponseException | InstantiationException e) {
                     e.printStackTrace();
                 }
+
+
 
             }
         }));

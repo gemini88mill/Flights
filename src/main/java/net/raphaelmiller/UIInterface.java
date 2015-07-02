@@ -65,7 +65,7 @@ public class UIInterface {
      * @param carrierData
      * @param airportData
      */
-    public static String displayValues(List<TripOption> tripResults, List<CityData> tripData, List<AircraftData>
+    public String displayValues(List<TripOption> tripResults, List<CityData> tripData, List<AircraftData>
             aircraftData, List<CarrierData> carrierData, List<AirportData> airportData) {
         String id;
         String result = null;
