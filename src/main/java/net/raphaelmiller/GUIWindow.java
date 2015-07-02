@@ -231,7 +231,7 @@ public class GUIWindow extends Window {
                 flightSelection[0] = Integer.parseInt(flightNo.getText());
                 input[2] = flc.getDateOfDeparture();
                 input[0] = flc.getDepartureIATA();
-                input[1 ] = flc.getArrivalIATA();
+                input[1] = flc.getArrivalIATA();
 
                 List<TripOption> options;
                 TripOption choice;
