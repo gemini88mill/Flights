@@ -76,12 +76,17 @@ public class LanternaHandler  {
         //guiError = new GUIWindow("Error", flc, guiScreen);
         //guiLoad = new GUIWindow("Loading", flc, guiScreen);
 
+        GUIWindow guiInput = getGuiInput();
+        GUIWindow guiOutput = getGuiOutput();
+        GUIWindow guiError = getGuiError();
+        GUIWindow guiLoad = getGuiLoad();
+
         //guiScreen.getScreen().startScreen();
 
         screenInitializer.getScreen().startScreen();
 
 
-        drawGuiInput(guiInput, guiOutput, guiScreen, guiError, guiLoad);
+        drawGuiInput(guiInput, guiOutput, screenInitializer, guiError, guiLoad);
 
     }
 
