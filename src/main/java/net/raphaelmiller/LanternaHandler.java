@@ -29,6 +29,12 @@ public class LanternaHandler  {
 
     private GUIScreen guiScreen;
 
+    private TextBox destinationBox;
+    private TextBox departureLocationBox;
+    private TextBox dateOfDepartureBox;
+    private TextBox passengerBox;
+    private TextBox dateOfReturnBox;
+
     public LanternaHandler(){
 
     }
@@ -42,6 +48,15 @@ public class LanternaHandler  {
         this.guiError = guiError;
         this.guiLoad = guiLoad;
         this.guiScreen = guiScreen;
+    }
+
+    public LanternaHandler(TextBox destinationBox, TextBox departureLocationBox, TextBox dateOfDepartureBox,
+                           TextBox passengerBox, TextBox dateOfReturnBox) {
+        this.destinationBox = destinationBox;
+        this.departureLocationBox = departureLocationBox;
+        this.dateOfDepartureBox = dateOfDepartureBox;
+        this.passengerBox = passengerBox;
+        this.dateOfReturnBox = dateOfReturnBox;
     }
 
     /**
@@ -97,23 +112,35 @@ public class LanternaHandler  {
      * @param guiInput  GUIWindow
      * @param guiOutput GUIWindow
      * @param guiScreen GUIScreen
-     * @param guiError GUIWindow
-     * @param guiLoad
+     * @param guiError  GUIWindow
+     * @param guiLoad   GuiWindow
      */
     private void drawGuiInput(GUIWindow guiInput, GUIWindow guiOutput, GUIScreen guiScreen, GUIWindow guiError,
                               GUIWindow guiLoad) throws GoogleJsonResponseException {
         //objects used for input capture
-        TextBox destinationBox = new TextBox(null, 125);
-        TextBox departureLocationBox = new TextBox(null, 125);
-        TextBox dateOfDepartureBox = new TextBox(null, 125);
-        TextBox passengerBox = new TextBox(null, 100);
+
+        setDateOfDepartureBox(new TextBox(null, 125));
+        setDepartureLocationBox(new TextBox(null, 125));
+        setDestinationBox(new TextBox(null, 125));
+        setPassengerBox(new TextBox(null, 100));
+
+        TextBox passengers = getPassengerBox();
+        TextBox departure = getDepartureLocationBox();
+        TextBox destination = getDestinationBox();
+        TextBox departureDestination = getDateOfDepartureBox();
+
+        //TextBox destinationBox = new TextBox(null, 125);
+        //TextBox departureLocationBox = new TextBox(null, 125);
+        //TextBox dateOfDepartureBox = new TextBox(null, 125);
+        //TextBox passengerBox = new TextBox(null, 100);
         ProgressBar progressBar = new ProgressBar(100);
 
+
         //methods for panel drawing
-        leftPanel(guiInput, passengerBox, destinationBox);
-        middlePanel(guiInput, departureLocationBox);
-        rightPanel(guiInput, dateOfDepartureBox);
-        buttons(guiInput, guiOutput, guiScreen, destinationBox, departureLocationBox, dateOfDepartureBox, passengerBox,
+        leftPanel(guiInput, passengers, destination);
+        middlePanel(guiInput, departure);
+        rightPanel(guiInput, departureDestination);
+        buttons(guiInput, guiOutput, guiScreen, destination, departure, departureDestination, passengers,
                 progressBar, guiError, guiLoad);
 
         guiScreen.showWindow(guiInput, GUIScreen.Position.CENTER);
@@ -245,5 +272,45 @@ public class LanternaHandler  {
 
     public void setScreen(Screen screen) {
         this.screen = screen;
+    }
+
+    public TextBox getDestinationBox() {
+        return destinationBox;
+    }
+
+    public void setDestinationBox(TextBox destinationBox) {
+        this.destinationBox = destinationBox;
+    }
+
+    public TextBox getDepartureLocationBox() {
+        return departureLocationBox;
+    }
+
+    public void setDepartureLocationBox(TextBox departureLocationBox) {
+        this.departureLocationBox = departureLocationBox;
+    }
+
+    public TextBox getDateOfDepartureBox() {
+        return dateOfDepartureBox;
+    }
+
+    public void setDateOfDepartureBox(TextBox dateOfDepartureBox) {
+        this.dateOfDepartureBox = dateOfDepartureBox;
+    }
+
+    public TextBox getPassengerBox() {
+        return passengerBox;
+    }
+
+    public void setPassengerBox(TextBox passengerBox) {
+        this.passengerBox = passengerBox;
+    }
+
+    public TextBox getDateOfReturnBox() {
+        return dateOfReturnBox;
+    }
+
+    public void setDateOfReturnBox(TextBox dateOfReturnBox) {
+        this.dateOfReturnBox = dateOfReturnBox;
     }
 }
