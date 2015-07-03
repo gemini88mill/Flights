@@ -101,50 +101,11 @@ public class LanternaHandler  {
         screenInitializer.getScreen().startScreen();
 
 
-        drawGuiInput(guiInput, guiOutput, screenInitializer, guiError, guiLoad);
+        guiInput.drawGuiInput(guiOutput, screenInitializer, guiError, guiLoad, this);
 
     }
 
-    /**
-     * drawGuiInput() method
-     *
-     * method creating the positions and order for the gui
-     * @param guiInput  GUIWindow
-     * @param guiOutput GUIWindow
-     * @param guiScreen GUIScreen
-     * @param guiError  GUIWindow
-     * @param guiLoad   GuiWindow
-     */
-    private void drawGuiInput(GUIWindow guiInput, GUIWindow guiOutput, GUIScreen guiScreen, GUIWindow guiError,
-                              GUIWindow guiLoad) throws GoogleJsonResponseException {
-        //objects used for input capture
-
-        setDateOfDepartureBox(new TextBox(null, 125));
-        setDepartureLocationBox(new TextBox(null, 125));
-        setDestinationBox(new TextBox(null, 125));
-        setPassengerBox(new TextBox(null, 100));
-
-        TextBox passengers = getPassengerBox();
-        TextBox departure = getDepartureLocationBox();
-        TextBox destination = getDestinationBox();
-        TextBox departureDestination = getDateOfDepartureBox();
-
-        //TextBox destinationBox = new TextBox(null, 125);
-        //TextBox departureLocationBox = new TextBox(null, 125);
-        //TextBox dateOfDepartureBox = new TextBox(null, 125);
-        //TextBox passengerBox = new TextBox(null, 100);
-        ProgressBar progressBar = new ProgressBar(100);
-
-
-        //methods for panel drawing
-        leftPanel(guiInput, passengers, destination);
-        middlePanel(guiInput, departure);
-        rightPanel(guiInput, departureDestination);
-        buttons(guiInput, guiOutput, guiScreen, destination, departure, departureDestination, passengers,
-                progressBar, guiError, guiLoad);
-
-        guiScreen.showWindow(guiInput, GUIScreen.Position.CENTER);
-    }
+    
 
     /**
      * buttons() - method
@@ -161,9 +122,9 @@ public class LanternaHandler  {
      * @param guiError              GUIWindow
      * @param guiLoad               GUIWindow
      */
-    private void buttons(GUIWindow guiInput, GUIWindow guiOutput, GUIScreen guiScreen, TextBox destinationBox,
-                         TextBox departureLocationBox, TextBox dateOfDepartureBox, TextBox passengerBox,
-                         ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad) throws GoogleJsonResponseException {
+    public void buttons(GUIWindow guiInput, GUIWindow guiOutput, GUIScreen guiScreen, TextBox destinationBox,
+                        TextBox departureLocationBox, TextBox dateOfDepartureBox, TextBox passengerBox,
+                        ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad) throws GoogleJsonResponseException {
         guiInput.buttons.enterButton(guiScreen, guiOutput, destinationBox, departureLocationBox, dateOfDepartureBox,
                 passengerBox, progressBar, guiError, guiLoad, guiInput);
         guiInput.buttons.quitButton(guiInput);
@@ -177,7 +138,7 @@ public class LanternaHandler  {
      * @param guiInput GUIWindow
      * @param dateOfDepartureBox TextBox
      */
-    private void rightPanel(GUIWindow guiInput, TextBox dateOfDepartureBox) {
+    public void rightPanel(GUIWindow guiInput, TextBox dateOfDepartureBox) {
         guiInput.rightPanel.addComponent(new EmptySpace(2,2));
         guiInput.rightPanel.addComponent(new Label("Date of Departure(YYYY-MM-DD)\t\t", Terminal.Color.RED));
         guiInput.rightPanel.addComponent(dateOfDepartureBox);
@@ -191,7 +152,7 @@ public class LanternaHandler  {
      * @param guiInput GUIWindow
      * @param departureLocationBox TextBox
      */
-    private void middlePanel(GUIWindow guiInput, TextBox departureLocationBox) {
+    public void middlePanel(GUIWindow guiInput, TextBox departureLocationBox) {
         guiInput.middlePanel.addComponent(new EmptySpace(2,2));
         guiInput.middlePanel.addComponent(new Label("Arriving to(IATA code)\t\t", Terminal.Color.RED));
         guiInput.middlePanel.addComponent(departureLocationBox);
@@ -206,7 +167,7 @@ public class LanternaHandler  {
      * @param passengerBox TextBox
      * @param destinationBox TextBox
      */
-    private void leftPanel(GUIWindow guiInput, TextBox passengerBox, TextBox destinationBox) {
+    public void leftPanel(GUIWindow guiInput, TextBox passengerBox, TextBox destinationBox) {
         guiInput.leftPanel.addComponent(new Label("Number of Passengers", Terminal.Color.RED));
         guiInput.leftPanel.addComponent(passengerBox);
         guiInput.leftPanel.addComponent(new Label("Leaving from(IATA code)\t\t", Terminal.Color.RED));

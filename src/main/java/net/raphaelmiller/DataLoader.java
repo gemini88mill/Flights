@@ -11,6 +11,9 @@ import java.util.List;
  * Created by raphael on 6/26/15.
  */
 public class DataLoader {
+
+    private TextArea results;
+
     /**
      * printToGui()
      * <p>

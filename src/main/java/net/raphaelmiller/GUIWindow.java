@@ -278,4 +278,43 @@ public class GUIWindow extends Window {
     }
 
 
+    /**
+     * drawGuiInput() method
+     *
+     * method creating the positions and order for the gui
+     * @param guiOutput         GUIWindow
+     * @param guiScreen         GUIScreen
+     * @param guiError          GUIWindow
+     * @param guiLoad           GuiWindow
+     * @param lanternaHandler   LanternaHandler
+     */
+    public void drawGuiInput(GUIWindow guiOutput, GUIScreen guiScreen, GUIWindow guiError,
+                      GUIWindow guiLoad, LanternaHandler lanternaHandler) throws GoogleJsonResponseException {
+        //objects used for input capture
+
+        lanternaHandler.setDateOfDepartureBox(new TextBox(null, 125));
+        lanternaHandler.setDepartureLocationBox(new TextBox(null, 125));
+        lanternaHandler.setDestinationBox(new TextBox(null, 125));
+        lanternaHandler.setPassengerBox(new TextBox(null, 100));
+
+        TextBox passengers = lanternaHandler.getPassengerBox();
+        TextBox departure = lanternaHandler.getDepartureLocationBox();
+        TextBox destination = lanternaHandler.getDestinationBox();
+        TextBox departureDestination = lanternaHandler.getDateOfDepartureBox();
+
+        //TextBox destinationBox = new TextBox(null, 125);
+        //TextBox departureLocationBox = new TextBox(null, 125);
+        //TextBox dateOfDepartureBox = new TextBox(null, 125);
+        //TextBox passengerBox = new TextBox(null, 100);
+        ProgressBar progressBar = new ProgressBar(100);
+
+        //methods for panel drawing
+        lanternaHandler.leftPanel(this, passengers, destination);
+        lanternaHandler.middlePanel(this, departure);
+        lanternaHandler.rightPanel(this, departureDestination);
+        lanternaHandler.buttons(this, guiOutput, guiScreen, destination, departure, departureDestination, passengers,
+                progressBar, guiError, guiLoad);
+
+        guiScreen.showWindow(this, CENTER);
+    }
 }
