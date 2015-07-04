@@ -105,7 +105,7 @@ public class LanternaHandler  {
 
     }
 
-    
+
 
     /**
      * buttons() - method
@@ -125,7 +125,7 @@ public class LanternaHandler  {
     public void buttons(GUIWindow guiInput, GUIWindow guiOutput, GUIScreen guiScreen, TextBox destinationBox,
                         TextBox departureLocationBox, TextBox dateOfDepartureBox, TextBox passengerBox,
                         ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad) throws GoogleJsonResponseException {
-        guiInput.buttons.enterButton(guiScreen, guiOutput, destinationBox, departureLocationBox, dateOfDepartureBox,
+        guiInput.buttons.guiInputEnterButton(guiScreen, guiOutput, destinationBox, departureLocationBox, dateOfDepartureBox,
                 passengerBox, progressBar, guiError, guiLoad, guiInput);
         guiInput.buttons.quitButton(guiInput);
     }

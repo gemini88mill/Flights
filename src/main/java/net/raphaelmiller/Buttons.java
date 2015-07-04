@@ -2,6 +2,7 @@ package net.raphaelmiller;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.services.qpxExpress.model.TripOption;
+import com.googlecode.lanterna.gui.Action;
 import com.googlecode.lanterna.gui.GUIScreen;
 import com.googlecode.lanterna.gui.component.*;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -39,7 +40,7 @@ public class Buttons extends Thread {
     }
 
     /**
-     * enterButton() method
+     * guiInputEnterButton() method
      * <p>
      * Gives action to what happens when the enter button is pressed.
      * @param guiScreen            GUIScreen
@@ -53,9 +54,9 @@ public class Buttons extends Thread {
      * @param guiLoad              GUIWindow
      * @param guiWindow            GUIWindow
      */
-    public void enterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, final TextBox destinationBox,
-                            final TextBox departureLocationBox, final TextBox dateOfDepartureBox, TextBox passengerBox,
-                            ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad, GUIWindow guiWindow)  {
+    public void guiInputEnterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, final TextBox destinationBox,
+                                    final TextBox departureLocationBox, final TextBox dateOfDepartureBox, TextBox passengerBox,
+                                    ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad, GUIWindow guiWindow)  {
 
         final TextArea results = new TextArea(new TerminalSize(400, 300), null);
         final String[] input = new String[4];
@@ -100,6 +101,48 @@ public class Buttons extends Thread {
 
         System.out.println(input[0]);
         //variable text area, modify to store data from display values
+    }
+
+    public void guiOutputEnterButton(GUIWindow guiOutput, TextBox flightNo, String outbound, String inbound, String date){
+        guiOutput.addComponent(new Button("ENTER", new Action() {
+            @Override
+            public void doAction() {
+                enterLogic(flightNo, outbound, inbound, guiOutput, date);
+            }
+        }));
+
+    }
+
+    private void enterLogic(TextBox flightNo, String outbound, String inbound, GUIWindow guiOutput, String date) {
+
+        TextArea results = new TextArea(new TerminalSize(400, 300), null);
+
+        String flightNoText = flightNo.getText();
+        System.out.println(flightNoText);
+        System.out.println(outbound);
+        System.out.println(inbound);
+
+        List<TripOption> tripOption = null;
+
+        String input[] = new String[3];
+
+        input[0] = outbound;
+        input[1] = inbound;
+        input[2] = date;
+
+        try {
+            tripOption = guiOutput.attemptTransfer(input);
+
+            guiOutput.guiScreen.getScreen().stopScreen();
+            guiOutput.formatToScreen(tripOption, guiOutput.flc.getTripData(), guiOutput.flc.getAircraftData(),
+                    guiOutput.flc.getCarrierData(), guiOutput.flc.airportData, results);
+            guiOutput.horizontalPanel.addComponent(results);
+            guiOutput.guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
+
+        } catch (IllegalAccessException | GoogleJsonResponseException | InstantiationException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**

@@ -319,4 +319,6 @@ public class FlightsClient {
     public void setReturnFlightChoice(TripOption returnFlightChoice) {
         this.returnFlightChoice = returnFlightChoice;
     }
+
+
 }
