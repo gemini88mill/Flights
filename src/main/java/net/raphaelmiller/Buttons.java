@@ -45,6 +45,7 @@ public class Buttons extends Thread {
      * Gives action to what happens when the enter button is pressed.
      * @param guiScreen            GUIScreen
      * @param guiOutput            GUIWindow
+     * @param guiInboundFlight
      * @param destinationBox       TextBox
      * @param departureLocationBox TextBox
      * @param dateOfDepartureBox   TextBox
@@ -54,7 +55,7 @@ public class Buttons extends Thread {
      * @param guiLoad              GUIWindow
      * @param guiWindow            GUIWindow
      */
-    public void guiInputEnterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, final TextBox destinationBox,
+    public void guiInputEnterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, GUIWindow guiInboundFlight, final TextBox destinationBox,
                                     final TextBox departureLocationBox, final TextBox dateOfDepartureBox, TextBox passengerBox,
                                     ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad, GUIWindow guiWindow)  {
 
@@ -87,7 +88,12 @@ public class Buttons extends Thread {
                 tripOptions = guiWindow.attemptTransfer(input);
                 test[0] = guiWindow.dateTester(date);
 
-                df.departureFlightWindow(guiWindow, tripOptions, results, guiScreen, guiOutput, guiLoad);
+                //df.departureFlightWindow(guiWindow, tripOptions, results, guiScreen, guiOutput, guiLoad);
+                guiWindow.formatToScreen(tripOptions, guiWindow.flc.tripData, guiWindow.flc.aircraftData,
+                        guiWindow.flc.carrierData, guiWindow.flc.airportData, results);
+
+                guiWindow.drawPage(guiOutput, results, guiScreen, guiInboundFlight);
+                guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
 
             } catch (IllegalAccessException | InstantiationException | GoogleJsonResponseException | ParseException |
                     NullPointerException e) {
@@ -103,17 +109,18 @@ public class Buttons extends Thread {
         //variable text area, modify to store data from display values
     }
 
-    public void guiOutputEnterButton(GUIWindow guiOutput, TextBox flightNo, String outbound, String inbound, String date){
+    public void guiOutputEnterButton(GUIWindow guiOutput, TextBox flightNo, String outbound, String inbound,
+                                     String date, GUIWindow guiInboundFlight){
         guiOutput.addComponent(new Button("ENTER", new Action() {
             @Override
             public void doAction() {
-                enterLogic(flightNo, outbound, inbound, guiOutput, date);
+                enterLogic(flightNo, outbound, inbound, guiOutput, date, guiInboundFlight);
             }
         }));
 
     }
 
-    private void enterLogic(TextBox flightNo, String outbound, String inbound, GUIWindow guiOutput, String date) {
+    private void enterLogic(TextBox flightNo, String outbound, String inbound, GUIWindow guiOutput, String date, GUIWindow guiInboundFlight) {
 
         TextArea results = new TextArea(new TerminalSize(400, 300), null);
 
@@ -122,7 +129,7 @@ public class Buttons extends Thread {
         System.out.println(outbound);
         System.out.println(inbound);
 
-        List<TripOption> tripOption = null;
+        List<TripOption> tripOption;
 
         String input[] = new String[3];
 
@@ -131,13 +138,12 @@ public class Buttons extends Thread {
         input[2] = date;
 
         try {
-            tripOption = guiOutput.attemptTransfer(input);
+            tripOption = guiInboundFlight.attemptTransfer(input);
 
-            guiOutput.guiScreen.getScreen().stopScreen();
-            guiOutput.formatToScreen(tripOption, guiOutput.flc.getTripData(), guiOutput.flc.getAircraftData(),
+            guiInboundFlight.formatToScreen(tripOption, guiOutput.flc.getTripData(), guiOutput.flc.getAircraftData(),
                     guiOutput.flc.getCarrierData(), guiOutput.flc.airportData, results);
-            guiOutput.horizontalPanel.addComponent(results);
-            guiOutput.guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
+            guiInboundFlight.horizontalPanel.addComponent(results);
+            guiInboundFlight.guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
 
         } catch (IllegalAccessException | GoogleJsonResponseException | InstantiationException e) {
             e.printStackTrace();

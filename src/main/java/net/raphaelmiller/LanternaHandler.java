@@ -23,9 +23,10 @@ public class LanternaHandler  {
     private Screen screen;
 
     private GUIWindow guiInput;
-    private GUIWindow guiOutput;
+    private GUIWindow guiOutboundFlight;
     private GUIWindow guiError;
     private GUIWindow guiLoad;
+    private GUIWindow guiInboundFlight;
 
     private GUIScreen guiScreen;
 
@@ -39,15 +40,16 @@ public class LanternaHandler  {
 
     }
 
-    public LanternaHandler(Terminal terminal, Screen screen, GUIWindow guiInput, GUIWindow guiOutput, GUIWindow guiError,
-                           GUIWindow guiLoad, GUIScreen guiScreen) {
+    public LanternaHandler(Terminal terminal, Screen screen, GUIWindow guiInput, GUIWindow guiOutboundFlight, GUIWindow guiError,
+                           GUIWindow guiLoad, GUIScreen guiScreen, GUIWindow guiInboundFlight) {
         this.terminal = terminal;
         this.screen = screen;
         this.guiInput = guiInput;
-        this.guiOutput = guiOutput;
+        this.guiOutboundFlight = guiOutboundFlight;
         this.guiError = guiError;
         this.guiLoad = guiLoad;
         this.guiScreen = guiScreen;
+        this.guiInboundFlight = guiInboundFlight;
     }
 
     public LanternaHandler(TextBox destinationBox, TextBox departureLocationBox, TextBox dateOfDepartureBox,
@@ -63,7 +65,7 @@ public class LanternaHandler  {
      * LanternaTerminal() -
      *
      * Creates a terminal, screen and prepares for a GUI Window within the program. Handles all essential functions with
-     * Lanterna Gui and places two windows, guiInput and guiOutput and creates arguments for said Gui Windows.
+     * Lanterna Gui and places two windows, guiInput and guiOutboundFlight and creates arguments for said Gui Windows.
      * @param flc FlightsClient
      */
     public void LanternaTerminal(FlightsClient flc) throws GoogleJsonResponseException {
@@ -78,30 +80,34 @@ public class LanternaHandler  {
         setScreen(new Screen(getTerminal()));
         setGuiScreen(new GUIScreen(getScreen()));
 
+
         GUIScreen screenInitializer = getGuiScreen();
 
         //creates lanterna terminal windows
         setGuiInput(new GUIWindow("Flights", flc, screenInitializer));
-        setGuiOutput(new GUIWindow("Results", flc, screenInitializer));
+        setGuiOutboundFlight(new GUIWindow("Results", flc, screenInitializer));
         setGuiError(new GUIWindow("Error", flc, screenInitializer));
         setGuiLoad(new GUIWindow("Loading", flc, screenInitializer));
+        setGuiInboundFlight(new GUIWindow("Inbound", flc, screenInitializer));
 
         //guiInput = new GUIWindow("QPX", flc, guiScreen);
-        //guiOutput = new GUIWindow("INFO", flc, guiScreen);
+        //guiOutboundFlight = new GUIWindow("INFO", flc, guiScreen);
         //guiError = new GUIWindow("Error", flc, guiScreen);
         //guiLoad = new GUIWindow("Loading", flc, guiScreen);
 
         GUIWindow guiInput = getGuiInput();
-        GUIWindow guiOutput = getGuiOutput();
+        GUIWindow guiOutput = getGuiOutboundFlight();
         GUIWindow guiError = getGuiError();
         GUIWindow guiLoad = getGuiLoad();
+        GUIWindow guiInboundFlight = getGuiInboundFlight();
+
 
         //guiScreen.getScreen().startScreen();
 
         screenInitializer.getScreen().startScreen();
 
 
-        guiInput.drawGuiInput(guiOutput, screenInitializer, guiError, guiLoad, this);
+        guiInput.drawGuiInput(guiOutput, guiInboundFlight, screenInitializer, guiError, guiLoad, this);
 
     }
 
@@ -113,6 +119,7 @@ public class LanternaHandler  {
      * method creating buttons for the GUI
      * @param guiInput              GUIWindow
      * @param guiOutput             GUIWindow
+     * @param guiInboundFlight
      * @param guiScreen             GUIScreen
      * @param destinationBox        TextBox
      * @param departureLocationBox  TextBox
@@ -122,10 +129,10 @@ public class LanternaHandler  {
      * @param guiError              GUIWindow
      * @param guiLoad               GUIWindow
      */
-    public void buttons(GUIWindow guiInput, GUIWindow guiOutput, GUIScreen guiScreen, TextBox destinationBox,
+    public void buttons(GUIWindow guiInput, GUIWindow guiOutput, GUIWindow guiInboundFlight, GUIScreen guiScreen, TextBox destinationBox,
                         TextBox departureLocationBox, TextBox dateOfDepartureBox, TextBox passengerBox,
                         ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad) throws GoogleJsonResponseException {
-        guiInput.buttons.guiInputEnterButton(guiScreen, guiOutput, destinationBox, departureLocationBox, dateOfDepartureBox,
+        guiInput.buttons.guiInputEnterButton(guiScreen, guiOutput, guiInboundFlight, destinationBox, departureLocationBox, dateOfDepartureBox,
                 passengerBox, progressBar, guiError, guiLoad, guiInput);
         guiInput.buttons.quitButton(guiInput);
     }
@@ -187,12 +194,12 @@ public class LanternaHandler  {
         this.guiInput = guiInput;
     }
 
-    public GUIWindow getGuiOutput() {
-        return guiOutput;
+    public GUIWindow getGuiOutboundFlight() {
+        return guiOutboundFlight;
     }
 
-    public void setGuiOutput(GUIWindow guiOutput) {
-        this.guiOutput = guiOutput;
+    public void setGuiOutboundFlight(GUIWindow guiOutboundFlight) {
+        this.guiOutboundFlight = guiOutboundFlight;
     }
 
     public GUIWindow getGuiError() {
@@ -273,5 +280,13 @@ public class LanternaHandler  {
 
     public void setDateOfReturnBox(TextBox dateOfReturnBox) {
         this.dateOfReturnBox = dateOfReturnBox;
+    }
+
+    public GUIWindow getGuiInboundFlight() {
+        return guiInboundFlight;
+    }
+
+    public void setGuiInboundFlight(GUIWindow guiInboundFlight) {
+        this.guiInboundFlight = guiInboundFlight;
     }
 }
