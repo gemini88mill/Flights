@@ -120,9 +120,12 @@ public class Buttons extends Thread {
 
     }
 
-    private void enterLogic(TextBox flightNo, String outbound, String inbound, GUIWindow guiOutput, String date, GUIWindow guiInboundFlight) {
+    private void enterLogic(TextBox flightNo, String outbound, String inbound, GUIWindow guiOutput, String date,
+                            GUIWindow guiInboundFlight) {
 
         TextArea results = new TextArea(new TerminalSize(400, 300), null);
+
+
 
         String flightNoText = flightNo.getText();
         System.out.println(flightNoText);
@@ -133,8 +136,8 @@ public class Buttons extends Thread {
 
         String input[] = new String[3];
 
-        input[0] = outbound;
-        input[1] = inbound;
+        input[1] = outbound;
+        input[0] = inbound;
         input[2] = date;
 
         try {
@@ -142,8 +145,10 @@ public class Buttons extends Thread {
 
             guiInboundFlight.formatToScreen(tripOption, guiOutput.flc.getTripData(), guiOutput.flc.getAircraftData(),
                     guiOutput.flc.getCarrierData(), guiOutput.flc.airportData, results);
+            guiInboundFlight.buttons.backButton(guiInboundFlight.guiScreen, guiOutput);
+            guiInboundFlight.buttons.quitButton(guiInboundFlight);
             guiInboundFlight.horizontalPanel.addComponent(results);
-            guiInboundFlight.guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
+            guiInboundFlight.guiScreen.showWindow(guiInboundFlight, GUIScreen.Position.FULL_SCREEN);
 
         } catch (IllegalAccessException | GoogleJsonResponseException | InstantiationException e) {
             e.printStackTrace();
