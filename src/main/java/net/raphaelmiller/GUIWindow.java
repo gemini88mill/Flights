@@ -235,6 +235,18 @@ public class GUIWindow extends Window {
         guiOutput.leftPanel.addComponent(flightNo);
     }
 
+    public void drawGuiInbound(GUIWindow guiInboundFlight, List<TripOption> tripOption, GUIWindow guiOutput,
+                               TextBox flightNo, TextArea results){
+        guiInboundFlight.formatToScreen(tripOption, guiOutput.flc.getTripData(), guiOutput.flc.getAircraftData(),
+                guiOutput.flc.getCarrierData(), guiOutput.flc.airportData, results);
+        guiInboundFlight.buttons.backButton(guiInboundFlight.guiScreen, guiOutput);
+        guiInboundFlight.buttons.quitButton(guiInboundFlight);
+        guiInboundFlight.horizontalPanel.addComponent(results);
+        guiInboundFlight.guiScreen.showWindow(guiInboundFlight, GUIScreen.Position.FULL_SCREEN);
+        guiInboundFlight.leftPanel.addComponent(new Label("Choose Flight No."));
+        guiInboundFlight.leftPanel.addComponent(flightNo);
+    }
+
 
     /**
      * drawGuiInput() method
