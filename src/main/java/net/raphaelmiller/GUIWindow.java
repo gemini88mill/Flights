@@ -208,7 +208,7 @@ public class GUIWindow extends Window {
      * @param results   TextArea
      * @param guiLoad
      */
-    public void drawPage(GUIWindow guiOutput, TextArea results, GUIScreen guiScreen, GUIWindow guiInboundFlight) {
+    public void drawPage(GUIWindow guiOutput, TextArea results, GUIScreen guiScreen, GUIWindow guiInboundFlight, GUIWindow guiLoad) {
 
         buttons = new Buttons();
         TextBox flightNo = new TextBox(null, 10);
@@ -216,18 +216,18 @@ public class GUIWindow extends Window {
         GUIWindow returningFlight = new GUIWindow("Return Flight", flc, guiScreen);
         TextArea returnFlightResults = new TextArea();
 
-        drawGuiOutput(guiOutput, results, flightNo, guiInboundFlight);
+        drawGuiOutput(guiOutput, results, flightNo, guiInboundFlight, guiLoad);
 
     }
 
 
 
-    private void drawGuiOutput(GUIWindow guiOutput, TextArea results, TextBox flightNo, GUIWindow guiInboundFlight) {
+    private void drawGuiOutput(GUIWindow guiOutput, TextArea results, TextBox flightNo, GUIWindow guiInboundFlight, GUIWindow guiLoad) {
         String outbound = flc.getArrivalIATA();
         String inbound = flc.getDepartureIATA();
         String date = flc.getDateOfDeparture();
 
-        guiOutput.buttons.guiOutputEnterButton(guiOutput, flightNo, outbound, inbound, date, guiInboundFlight);
+        guiOutput.buttons.guiOutputEnterButton(guiOutput, flightNo, outbound, inbound, date, guiInboundFlight, guiLoad);
         guiOutput.buttons.backButton(guiScreen, guiOutput);
         guiOutput.buttons.quitButton(guiOutput);
         guiOutput.horizontalPanel.addComponent(results);

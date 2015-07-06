@@ -92,7 +92,7 @@ public class Buttons extends Thread {
                 guiWindow.formatToScreen(tripOptions, guiWindow.flc.tripData, guiWindow.flc.aircraftData,
                         guiWindow.flc.carrierData, guiWindow.flc.airportData, results);
 
-                guiWindow.drawPage(guiOutput, results, guiScreen, guiInboundFlight);
+                guiWindow.drawPage(guiOutput, results, guiScreen, guiInboundFlight, guiLoad);
                 guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
 
             } catch (IllegalAccessException | InstantiationException | GoogleJsonResponseException | ParseException |
@@ -110,10 +110,18 @@ public class Buttons extends Thread {
     }
 
     public void guiOutputEnterButton(GUIWindow guiOutput, TextBox flightNo, String outbound, String inbound,
-                                     String date, GUIWindow guiInboundFlight){
+                                     String date, GUIWindow guiInboundFlight, GUIWindow guiLoad){
         guiOutput.addComponent(new Button("ENTER", new Action() {
             @Override
             public void doAction() {
+
+                Thread thread = new Thread(){
+                    public void run(){
+                        System.out.println("thread running");
+                        guiLoad.guiScreen.showWindow(guiLoad, GUIScreen.Position.CENTER);
+                    }
+                };   thread.start();
+
                 enterLogic(flightNo, outbound, inbound, guiOutput, date, guiInboundFlight);
             }
         }));
@@ -125,7 +133,8 @@ public class Buttons extends Thread {
 
         TextArea results = new TextArea(new TerminalSize(400, 300), null);
 
-
+        TripOption flightChoice;
+        String selection = flightNo.getText();
 
         String flightNoText = flightNo.getText();
         System.out.println(flightNoText);
@@ -142,6 +151,9 @@ public class Buttons extends Thread {
 
         try {
             tripOption = guiInboundFlight.attemptTransfer(input);
+
+            flightChoice = tripOption.get(Integer.parseInt(selection));
+            System.out.println(flightChoice);
 
             guiInboundFlight.drawGuiInbound(guiInboundFlight, tripOption, guiOutput, flightNo, results);
 
