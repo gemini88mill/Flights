@@ -207,8 +207,10 @@ public class GUIWindow extends Window {
      * @param guiOutput GUIWindow
      * @param results   TextArea
      * @param guiLoad
+     * @param tripOptions
      */
-    public void drawPage(GUIWindow guiOutput, TextArea results, GUIScreen guiScreen, GUIWindow guiInboundFlight, GUIWindow guiLoad) {
+    public void drawPage(GUIWindow guiOutput, TextArea results, GUIScreen guiScreen, GUIWindow guiInboundFlight,
+                         GUIWindow guiLoad, List<TripOption> tripOptions) {
 
         buttons = new Buttons();
         TextBox flightNo = new TextBox(null, 10);
@@ -216,18 +218,20 @@ public class GUIWindow extends Window {
         GUIWindow returningFlight = new GUIWindow("Return Flight", flc, guiScreen);
         TextArea returnFlightResults = new TextArea();
 
-        drawGuiOutput(guiOutput, results, flightNo, guiInboundFlight, guiLoad);
+        drawGuiOutput(guiOutput, results, flightNo, guiInboundFlight, guiLoad, tripOptions);
 
     }
 
 
 
-    private void drawGuiOutput(GUIWindow guiOutput, TextArea results, TextBox flightNo, GUIWindow guiInboundFlight, GUIWindow guiLoad) {
+    private void drawGuiOutput(GUIWindow guiOutput, TextArea results, TextBox flightNo, GUIWindow guiInboundFlight,
+                               GUIWindow guiLoad, List<TripOption> tripOptions) {
         String outbound = flc.getArrivalIATA();
         String inbound = flc.getDepartureIATA();
         String date = flc.getDateOfDeparture();
 
-        guiOutput.buttons.guiOutputEnterButton(guiOutput, flightNo, outbound, inbound, date, guiInboundFlight, guiLoad);
+        guiOutput.buttons.guiOutputEnterButton(guiOutput, flightNo, outbound, inbound, date, guiInboundFlight, guiLoad,
+                tripOptions);
         guiOutput.buttons.backButton(guiScreen, guiOutput);
         guiOutput.buttons.quitButton(guiOutput);
         guiOutput.horizontalPanel.addComponent(results);
@@ -236,15 +240,18 @@ public class GUIWindow extends Window {
     }
 
     public void drawGuiInbound(GUIWindow guiInboundFlight, List<TripOption> tripOption, GUIWindow guiOutput,
-                               TextBox flightNo, TextArea results){
+                               TextBox flightNo, TextArea results, TripOption flightChoiceOutbound, GUIWindow guiLoad){
+
         guiInboundFlight.formatToScreen(tripOption, guiOutput.flc.getTripData(), guiOutput.flc.getAircraftData(),
                 guiOutput.flc.getCarrierData(), guiOutput.flc.airportData, results);
-        guiInboundFlight.buttons.backButton(guiInboundFlight.guiScreen, guiOutput);
+        guiInboundFlight.buttons.guiInboundEnterButton(guiInboundFlight, flightChoiceOutbound, flightNo, tripOption, guiLoad );
+        guiInboundFlight.buttons.backButton(guiInboundFlight.guiScreen, guiInboundFlight);
         guiInboundFlight.buttons.quitButton(guiInboundFlight);
         guiInboundFlight.horizontalPanel.addComponent(results);
-        guiInboundFlight.guiScreen.showWindow(guiInboundFlight, GUIScreen.Position.FULL_SCREEN);
         guiInboundFlight.leftPanel.addComponent(new Label("Choose Flight No."));
         guiInboundFlight.leftPanel.addComponent(flightNo);
+        guiInboundFlight.guiScreen.showWindow(guiInboundFlight, GUIScreen.Position.FULL_SCREEN);
+
     }
 
 

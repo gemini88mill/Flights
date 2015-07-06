@@ -27,6 +27,7 @@ public class LanternaHandler  {
     private GUIWindow guiError;
     private GUIWindow guiLoad;
     private GUIWindow guiInboundFlight;
+    private GUIWindow guiItenerary;
 
     private GUIScreen guiScreen;
 
@@ -41,7 +42,7 @@ public class LanternaHandler  {
     }
 
     public LanternaHandler(Terminal terminal, Screen screen, GUIWindow guiInput, GUIWindow guiOutboundFlight, GUIWindow guiError,
-                           GUIWindow guiLoad, GUIScreen guiScreen, GUIWindow guiInboundFlight) {
+                           GUIWindow guiLoad, GUIScreen guiScreen, GUIWindow guiInboundFlight, GUIWindow guiItenerary) {
         this.terminal = terminal;
         this.screen = screen;
         this.guiInput = guiInput;
@@ -50,6 +51,7 @@ public class LanternaHandler  {
         this.guiLoad = guiLoad;
         this.guiScreen = guiScreen;
         this.guiInboundFlight = guiInboundFlight;
+        this.guiItenerary = guiItenerary;
     }
 
     public LanternaHandler(TextBox destinationBox, TextBox departureLocationBox, TextBox dateOfDepartureBox,
@@ -89,6 +91,7 @@ public class LanternaHandler  {
         setGuiError(new GUIWindow("Error", flc, screenInitializer));
         setGuiLoad(new GUIWindow("Loading", flc, screenInitializer));
         setGuiInboundFlight(new GUIWindow("Inbound", flc, screenInitializer));
+        setGuiItenerary(new GUIWindow("Itenerary", flc, screenInitializer));
 
         //guiInput = new GUIWindow("QPX", flc, guiScreen);
         //guiOutboundFlight = new GUIWindow("INFO", flc, guiScreen);
@@ -100,6 +103,7 @@ public class LanternaHandler  {
         GUIWindow guiError = getGuiError();
         GUIWindow guiLoad = getGuiLoad();
         GUIWindow guiInboundFlight = getGuiInboundFlight();
+        GUIWindow guiItenerary = getGuiItenerary();
 
 
         //guiScreen.getScreen().startScreen();
@@ -288,5 +292,13 @@ public class LanternaHandler  {
 
     public void setGuiInboundFlight(GUIWindow guiInboundFlight) {
         this.guiInboundFlight = guiInboundFlight;
+    }
+
+    public GUIWindow getGuiItenerary() {
+        return guiItenerary;
+    }
+
+    public void setGuiItenerary(GUIWindow guiItenerary) {
+        this.guiItenerary = guiItenerary;
     }
 }

@@ -63,6 +63,7 @@ public class Buttons extends Thread {
         final String[] input = new String[4];
         final boolean[] test = {false};
 
+
         // enter button start, creates enter button and creates eventhandlers for said enter button.
         guiWindow.addComponent(new Button("ENTER", () -> {
             //progressBar.setVisible(true);
@@ -92,7 +93,7 @@ public class Buttons extends Thread {
                 guiWindow.formatToScreen(tripOptions, guiWindow.flc.tripData, guiWindow.flc.aircraftData,
                         guiWindow.flc.carrierData, guiWindow.flc.airportData, results);
 
-                guiWindow.drawPage(guiOutput, results, guiScreen, guiInboundFlight, guiLoad);
+                guiWindow.drawPage(guiOutput, results, guiScreen, guiInboundFlight, guiLoad, tripOptions);
                 guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
 
             } catch (IllegalAccessException | InstantiationException | GoogleJsonResponseException | ParseException |
@@ -110,26 +111,23 @@ public class Buttons extends Thread {
     }
 
     public void guiOutputEnterButton(GUIWindow guiOutput, TextBox flightNo, String outbound, String inbound,
-                                     String date, GUIWindow guiInboundFlight, GUIWindow guiLoad){
-        guiOutput.addComponent(new Button("ENTER", new Action() {
-            @Override
-            public void doAction() {
+                                     String date, GUIWindow guiInboundFlight, GUIWindow guiLoad, List<TripOption> tripOptions){
+        guiOutput.addComponent(new Button("ENTER", () -> {
 
-                Thread thread = new Thread(){
-                    public void run(){
-                        System.out.println("thread running");
-                        guiLoad.guiScreen.showWindow(guiLoad, GUIScreen.Position.CENTER);
-                    }
-                };   thread.start();
+            Thread thread = new Thread(){
+                public void run(){
+                    System.out.println("thread running");
+                    guiLoad.guiScreen.showWindow(guiLoad, GUIScreen.Position.CENTER);
+                }
+            };   thread.start();
 
-                enterLogic(flightNo, outbound, inbound, guiOutput, date, guiInboundFlight);
-            }
+            guiOutputEnterLogic(flightNo, outbound, inbound, guiOutput, date, guiInboundFlight, tripOptions, guiLoad);
         }));
 
     }
 
-    private void enterLogic(TextBox flightNo, String outbound, String inbound, GUIWindow guiOutput, String date,
-                            GUIWindow guiInboundFlight) {
+    private void guiOutputEnterLogic(TextBox flightNo, String outbound, String inbound, GUIWindow guiOutput, String date,
+                                     GUIWindow guiInboundFlight, List<TripOption> tripOptions, GUIWindow guiLoad) {
 
         TextArea results = new TextArea(new TerminalSize(400, 300), null);
 
@@ -152,15 +150,39 @@ public class Buttons extends Thread {
         try {
             tripOption = guiInboundFlight.attemptTransfer(input);
 
-            flightChoice = tripOption.get(Integer.parseInt(selection));
+            flightChoice = tripOptions.get(Integer.parseInt(selection));
             System.out.println(flightChoice);
 
-            guiInboundFlight.drawGuiInbound(guiInboundFlight, tripOption, guiOutput, flightNo, results);
+            guiInboundFlight.drawGuiInbound(guiInboundFlight, tripOption, guiOutput, flightNo, results, flightChoice, guiLoad);
 
         } catch (IllegalAccessException | GoogleJsonResponseException | InstantiationException e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void guiInboundEnterButton(GUIWindow guiInboundFlight, TripOption flightChoiceOutbound, TextBox flightNo,
+                                      List<TripOption> tripOption, GUIWindow guiLoad) {
+        guiInboundFlight.addComponent(new Button("ENTER", () -> {
+
+            Thread thread = new Thread(){
+                public void run(){
+                    System.out.println("thread running");
+                    guiLoad.guiScreen.showWindow(guiLoad, GUIScreen.Position.CENTER);
+                }
+            };   thread.start();
+
+            guiInboundEnterLogic(flightNo, flightChoiceOutbound, tripOption);
+        }));
+    }
+
+    private void guiInboundEnterLogic(TextBox flightNo, TripOption flightChoiceOutbound, List<TripOption> tripOption) {
+
+        TextArea results = new TextArea(new TerminalSize(400, 300), null);
+
+        String selection = flightNo.getText();
+
+        flightChoiceOutbound = tripOption.get(Integer.parseInt(selection));
     }
 
     /**
@@ -172,4 +194,6 @@ public class Buttons extends Thread {
     public void quitButton(GUIWindow guiWindow) {
         guiWindow.addComponent(new Button("QUIT", () -> System.exit(0)));
     }
+
+
 }
