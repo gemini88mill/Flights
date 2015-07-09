@@ -54,10 +54,11 @@ public class Buttons extends Thread {
      * @param guiError             GuiWindow
      * @param guiLoad              GUIWindow
      * @param guiWindow            GUIWindow
+     * @param guiItenerary
      */
     public void guiInputEnterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, GUIWindow guiInboundFlight, final TextBox destinationBox,
                                     final TextBox departureLocationBox, final TextBox dateOfDepartureBox, TextBox passengerBox,
-                                    ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad, GUIWindow guiWindow)  {
+                                    ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad, GUIWindow guiWindow, GUIWindow guiItenerary)  {
 
         final TextArea results = new TextArea(new TerminalSize(400, 300), null);
         final String[] input = new String[4];
@@ -93,7 +94,7 @@ public class Buttons extends Thread {
                 guiWindow.formatToScreen(tripOptions, guiWindow.flc.tripData, guiWindow.flc.aircraftData,
                         guiWindow.flc.carrierData, guiWindow.flc.airportData, results);
 
-                guiWindow.drawPage(guiOutput, results, guiScreen, guiInboundFlight, guiLoad, tripOptions);
+                guiWindow.drawPage(guiOutput, results, guiScreen, guiInboundFlight, guiLoad, tripOptions, guiItenerary);
                 guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
 
             } catch (IllegalAccessException | InstantiationException | GoogleJsonResponseException | ParseException |
@@ -112,8 +113,7 @@ public class Buttons extends Thread {
 
     /**
      *  Gui Output Enter Button, function that handles the gui output enter event.
-     *
-     * @param guiOutput GuiWindow
+     *  @param guiOutput GuiWindow
      * @param flightNo TextBox
      * @param outbound String
      * @param inbound String
@@ -121,9 +121,10 @@ public class Buttons extends Thread {
      * @param guiInboundFlight GuiWindow
      * @param guiLoad GuiWindow
      * @param tripOptions List<TripOption>
+     * @param guiItenerary
      */
     public void guiOutputEnterButton(GUIWindow guiOutput, TextBox flightNo, String outbound, String inbound,
-                                     String date, GUIWindow guiInboundFlight, GUIWindow guiLoad, List<TripOption> tripOptions){
+                                     String date, GUIWindow guiInboundFlight, GUIWindow guiLoad, List<TripOption> tripOptions, GUIWindow guiItenerary){
         guiOutput.addComponent(new Button("ENTER", () -> {
 
             Thread thread = new Thread(){
@@ -133,7 +134,7 @@ public class Buttons extends Thread {
                 }
             };   thread.start();
 
-            guiOutputEnterLogic(flightNo, outbound, inbound, guiOutput, date, guiInboundFlight, tripOptions, guiLoad);
+            guiOutputEnterLogic(flightNo, outbound, inbound, guiOutput, date, guiInboundFlight, tripOptions, guiLoad, guiItenerary);
         }));
 
     }
@@ -143,8 +144,7 @@ public class Buttons extends Thread {
      * Gui Output Enter Button Logic. handles extra logic, different method because new Action Interface is making me
      * declare everything final and although I dont receive any errors, I feel that there is something wrong with the
      * way I would be writing it, therefore, new method.
-     *
-     * @param flightNo TextBox
+     *  @param flightNo TextBox
      * @param outbound String
      * @param inbound String
      * @param guiOutput GuiWindow
@@ -152,9 +152,10 @@ public class Buttons extends Thread {
      * @param guiInboundFlight String
      * @param tripOptions List<TripOption>
      * @param guiLoad GuiWindow
+     * @param guiItenerary
      */
     private void guiOutputEnterLogic(TextBox flightNo, String outbound, String inbound, GUIWindow guiOutput, String date,
-                                     GUIWindow guiInboundFlight, List<TripOption> tripOptions, GUIWindow guiLoad) {
+                                     GUIWindow guiInboundFlight, List<TripOption> tripOptions, GUIWindow guiLoad, GUIWindow guiItenerary) {
 
         TextArea results = new TextArea(new TerminalSize(400, 300), null);
 
@@ -180,7 +181,7 @@ public class Buttons extends Thread {
             flightChoice = tripOptions.get(Integer.parseInt(selection));
             System.out.println(flightChoice);
 
-            guiInboundFlight.drawGuiInbound(guiInboundFlight, tripOption, guiOutput, flightNo, results, flightChoice, guiLoad);
+            guiInboundFlight.drawGuiInbound(guiInboundFlight, tripOption, guiOutput, flightNo, results, flightChoice, guiLoad, guiItenerary);
 
         } catch (IllegalAccessException | GoogleJsonResponseException | InstantiationException e) {
             e.printStackTrace();
@@ -191,25 +192,26 @@ public class Buttons extends Thread {
 
     /**
      * Gui Inbound enter Button - event listener for enter button selected and pressed.
-     *
      * @param guiInboundFlight
      * @param flightChoiceOutbound
      * @param flightNo
      * @param tripOption
      * @param guiLoad
+     * @param guiItenerary
+     * @param guiOutput
      */
     public void guiInboundEnterButton(GUIWindow guiInboundFlight, TripOption flightChoiceOutbound, TextBox flightNo,
-                                      List<TripOption> tripOption, GUIWindow guiLoad) {
+                                      List<TripOption> tripOption, GUIWindow guiLoad, GUIWindow guiItenerary, GUIWindow guiOutput) {
         guiInboundFlight.addComponent(new Button("ENTER", () -> {
 
-            Thread thread = new Thread(){
+            /*Thread thread = new Thread(){
                 public void run(){
                     System.out.println("thread running");
                     guiLoad.guiScreen.showWindow(guiLoad, GUIScreen.Position.CENTER);
                 }
-            };   thread.start();
+            };   thread.start();*/
 
-            guiInboundEnterLogic(flightNo, flightChoiceOutbound, tripOption);
+            guiInboundEnterLogic(flightNo, flightChoiceOutbound, tripOption, guiItenerary, guiOutput);
         }));
     }
 
@@ -218,18 +220,24 @@ public class Buttons extends Thread {
      * Gui Inbound Enter Button Logic. handles extra logic, different method because new Action Interface is making me
      * declare everything final and although I dont receive any errors, I feel that there is something wrong with the
      * way I would be writing it, therefore, new method.
-     *
      * @param flightNo
      * @param flightChoiceOutbound
      * @param tripOption
+     * @param guiItenerary
+     * @param guiOutput
      */
-    private void guiInboundEnterLogic(TextBox flightNo, TripOption flightChoiceOutbound, List<TripOption> tripOption) {
+    private void guiInboundEnterLogic(TextBox flightNo, TripOption flightChoiceOutbound, List<TripOption> tripOption, GUIWindow guiItenerary, GUIWindow guiOutput) {
 
+        //loading new text area for next page
         TextArea results = new TextArea(new TerminalSize(400, 300), null);
 
+        //collects flightNo textBox input and stores it use future use.
         String selection = flightNo.getText();
 
+        //stores flight choice from previous screen
         flightChoiceOutbound = tripOption.get(Integer.parseInt(selection));
+
+        guiItenerary.drawGuiItinerary(selection, results, flightChoiceOutbound, guiItenerary, guiOutput);
     }
 
     /**

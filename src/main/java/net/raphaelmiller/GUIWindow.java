@@ -208,9 +208,10 @@ public class GUIWindow extends Window {
      * @param results   TextArea
      * @param guiLoad
      * @param tripOptions
+     * @param guiItenerary
      */
     public void drawPage(GUIWindow guiOutput, TextArea results, GUIScreen guiScreen, GUIWindow guiInboundFlight,
-                         GUIWindow guiLoad, List<TripOption> tripOptions) {
+                         GUIWindow guiLoad, List<TripOption> tripOptions, GUIWindow guiItenerary) {
 
         buttons = new Buttons();
         TextBox flightNo = new TextBox(null, 10);
@@ -218,20 +219,20 @@ public class GUIWindow extends Window {
         GUIWindow returningFlight = new GUIWindow("Return Flight", flc, guiScreen);
         TextArea returnFlightResults = new TextArea();
 
-        drawGuiOutput(guiOutput, results, flightNo, guiInboundFlight, guiLoad, tripOptions);
+        drawGuiOutput(guiOutput, results, flightNo, guiInboundFlight, guiLoad, tripOptions, guiItenerary);
 
     }
 
 
 
     private void drawGuiOutput(GUIWindow guiOutput, TextArea results, TextBox flightNo, GUIWindow guiInboundFlight,
-                               GUIWindow guiLoad, List<TripOption> tripOptions) {
+                               GUIWindow guiLoad, List<TripOption> tripOptions, GUIWindow guiItenerary) {
         String outbound = flc.getArrivalIATA();
         String inbound = flc.getDepartureIATA();
         String date = flc.getDateOfDeparture();
 
         guiOutput.buttons.guiOutputEnterButton(guiOutput, flightNo, outbound, inbound, date, guiInboundFlight, guiLoad,
-                tripOptions);
+                tripOptions, guiItenerary);
         guiOutput.buttons.backButton(guiScreen, guiOutput);
         guiOutput.buttons.quitButton(guiOutput);
         guiOutput.horizontalPanel.addComponent(results);
@@ -240,17 +241,34 @@ public class GUIWindow extends Window {
     }
 
     public void drawGuiInbound(GUIWindow guiInboundFlight, List<TripOption> tripOption, GUIWindow guiOutput,
-                               TextBox flightNo, TextArea results, TripOption flightChoiceOutbound, GUIWindow guiLoad){
+                               TextBox flightNo, TextArea results, TripOption flightChoiceOutbound, GUIWindow guiLoad,
+                               GUIWindow guiItenerary){
 
         guiInboundFlight.formatToScreen(tripOption, guiOutput.flc.getTripData(), guiOutput.flc.getAircraftData(),
                 guiOutput.flc.getCarrierData(), guiOutput.flc.airportData, results);
-        guiInboundFlight.buttons.guiInboundEnterButton(guiInboundFlight, flightChoiceOutbound, flightNo, tripOption, guiLoad );
+        guiInboundFlight.buttons.guiInboundEnterButton(guiInboundFlight, flightChoiceOutbound, flightNo, tripOption,
+                guiLoad, guiItenerary, guiOutput );
         guiInboundFlight.buttons.backButton(guiInboundFlight.guiScreen, guiInboundFlight);
         guiInboundFlight.buttons.quitButton(guiInboundFlight);
         guiInboundFlight.horizontalPanel.addComponent(results);
         guiInboundFlight.leftPanel.addComponent(new Label("Choose Flight No."));
         guiInboundFlight.leftPanel.addComponent(flightNo);
         guiInboundFlight.guiScreen.showWindow(guiInboundFlight, GUIScreen.Position.FULL_SCREEN);
+
+    }
+
+    public void drawGuiItinerary(String selection, TextArea results, TripOption flightChoiceOutbound,
+                                 GUIWindow guiItinerary, GUIWindow guiOutput){
+
+        List<TripOption> outBound = null;
+
+        outBound.add(flightChoiceOutbound);
+    
+        guiItinerary.formatToScreen(outBound, guiOutput.flc.getTripData(), guiOutput.flc.getAircraftData(),
+                guiOutput.flc.getCarrierData(), guiOutput.flc.getAirportData(), results);
+        guiItinerary.buttons.quitButton(guiItinerary);
+        guiItinerary.horizontalPanel.addComponent(results);
+        guiItinerary.guiScreen.showWindow(guiItinerary, GUIScreen.Position.FULL_SCREEN);
 
     }
 
@@ -264,10 +282,11 @@ public class GUIWindow extends Window {
      * @param guiScreen         GUIScreen
      * @param guiError          GUIWindow
      * @param guiLoad           GuiWindow
+     * @param guiItenerary
      * @param lanternaHandler   LanternaHandler
      */
     public void drawGuiInput(GUIWindow guiOutput, GUIWindow guiInboundFlight, GUIScreen guiScreen, GUIWindow guiError,
-                             GUIWindow guiLoad, LanternaHandler lanternaHandler) throws GoogleJsonResponseException {
+                             GUIWindow guiLoad, GUIWindow guiItenerary, LanternaHandler lanternaHandler) throws GoogleJsonResponseException {
         //objects used for input capture
 
         lanternaHandler.setDateOfDepartureBox(new TextBox(null, 125));
@@ -291,7 +310,7 @@ public class GUIWindow extends Window {
         lanternaHandler.middlePanel(this, departure);
         lanternaHandler.rightPanel(this, departureDestination);
         lanternaHandler.buttons(this, guiOutput, guiInboundFlight, guiScreen, destination, departure, departureDestination, passengers,
-                progressBar, guiError, guiLoad);
+                progressBar, guiError, guiLoad, guiItenerary);
 
         guiScreen.showWindow(this, CENTER);
     }
