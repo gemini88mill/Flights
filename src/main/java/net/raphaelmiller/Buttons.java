@@ -110,6 +110,18 @@ public class Buttons extends Thread {
         //variable text area, modify to store data from display values
     }
 
+    /**
+     *  Gui Output Enter Button, function that handles the gui output enter event.
+     *
+     * @param guiOutput GuiWindow
+     * @param flightNo TextBox
+     * @param outbound String
+     * @param inbound String
+     * @param date String
+     * @param guiInboundFlight GuiWindow
+     * @param guiLoad GuiWindow
+     * @param tripOptions List<TripOption>
+     */
     public void guiOutputEnterButton(GUIWindow guiOutput, TextBox flightNo, String outbound, String inbound,
                                      String date, GUIWindow guiInboundFlight, GUIWindow guiLoad, List<TripOption> tripOptions){
         guiOutput.addComponent(new Button("ENTER", () -> {
@@ -126,6 +138,21 @@ public class Buttons extends Thread {
 
     }
 
+
+    /**
+     * Gui Output Enter Button Logic. handles extra logic, different method because new Action Interface is making me
+     * declare everything final and although I dont receive any errors, I feel that there is something wrong with the
+     * way I would be writing it, therefore, new method.
+     *
+     * @param flightNo TextBox
+     * @param outbound String
+     * @param inbound String
+     * @param guiOutput GuiWindow
+     * @param date String
+     * @param guiInboundFlight String
+     * @param tripOptions List<TripOption>
+     * @param guiLoad GuiWindow
+     */
     private void guiOutputEnterLogic(TextBox flightNo, String outbound, String inbound, GUIWindow guiOutput, String date,
                                      GUIWindow guiInboundFlight, List<TripOption> tripOptions, GUIWindow guiLoad) {
 
@@ -161,6 +188,16 @@ public class Buttons extends Thread {
 
     }
 
+
+    /**
+     * Gui Inbound enter Button - event listener for enter button selected and pressed.
+     *
+     * @param guiInboundFlight
+     * @param flightChoiceOutbound
+     * @param flightNo
+     * @param tripOption
+     * @param guiLoad
+     */
     public void guiInboundEnterButton(GUIWindow guiInboundFlight, TripOption flightChoiceOutbound, TextBox flightNo,
                                       List<TripOption> tripOption, GUIWindow guiLoad) {
         guiInboundFlight.addComponent(new Button("ENTER", () -> {
@@ -176,6 +213,16 @@ public class Buttons extends Thread {
         }));
     }
 
+
+    /**
+     * Gui Inbound Enter Button Logic. handles extra logic, different method because new Action Interface is making me
+     * declare everything final and although I dont receive any errors, I feel that there is something wrong with the
+     * way I would be writing it, therefore, new method.
+     *
+     * @param flightNo
+     * @param flightChoiceOutbound
+     * @param tripOption
+     */
     private void guiInboundEnterLogic(TextBox flightNo, TripOption flightChoiceOutbound, List<TripOption> tripOption) {
 
         TextArea results = new TextArea(new TerminalSize(400, 300), null);
