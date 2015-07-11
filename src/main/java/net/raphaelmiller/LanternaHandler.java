@@ -72,16 +72,9 @@ public class LanternaHandler  {
      */
     public void LanternaTerminal(FlightsClient flc) throws GoogleJsonResponseException {
 
-
-
-        //terminal = TerminalFacade.createTerminal();
-        //screen = new Screen(terminal);
-        //guiScreen = new GUIScreen(screen);
-
         setTerminal(TerminalFacade.createTerminal());
         setScreen(new Screen(getTerminal()));
         setGuiScreen(new GUIScreen(getScreen()));
-
 
         GUIScreen screenInitializer = getGuiScreen();
 
@@ -93,11 +86,6 @@ public class LanternaHandler  {
         setGuiInboundFlight(new GUIWindow("Inbound", flc, screenInitializer));
         setGuiItenerary(new GUIWindow("Itenerary", flc, screenInitializer));
 
-        //guiInput = new GUIWindow("QPX", flc, guiScreen);
-        //guiOutboundFlight = new GUIWindow("INFO", flc, guiScreen);
-        //guiError = new GUIWindow("Error", flc, guiScreen);
-        //guiLoad = new GUIWindow("Loading", flc, guiScreen);
-
         GUIWindow guiInput = getGuiInput();
         GUIWindow guiOutput = getGuiOutboundFlight();
         GUIWindow guiError = getGuiError();
@@ -105,11 +93,7 @@ public class LanternaHandler  {
         GUIWindow guiInboundFlight = getGuiInboundFlight();
         GUIWindow guiItenerary = getGuiItenerary();
 
-
-        //guiScreen.getScreen().startScreen();
-
         screenInitializer.getScreen().startScreen();
-
 
         guiInput.drawGuiInput(guiOutput, guiInboundFlight, screenInitializer, guiError, guiLoad, guiItenerary, this);
 
@@ -134,11 +118,15 @@ public class LanternaHandler  {
      * @param guiLoad               GUIWindow
      * @param guiItenerary          GuiWindow
      */
-    public void buttons(GUIWindow guiInput, GUIWindow guiOutput, GUIWindow guiInboundFlight, GUIScreen guiScreen, TextBox destinationBox,
-                        TextBox departureLocationBox, TextBox dateOfDepartureBox, TextBox passengerBox,
-                        ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad, GUIWindow guiItenerary) throws GoogleJsonResponseException {
-        guiInput.buttons.guiInputEnterButton(guiScreen, guiOutput, guiInboundFlight, destinationBox, departureLocationBox, dateOfDepartureBox,
-                passengerBox, progressBar, guiError, guiLoad, guiInput, guiItenerary);
+    public void buttons(GUIWindow guiInput, GUIWindow guiOutput, GUIWindow guiInboundFlight, GUIScreen guiScreen,
+                        TextBox destinationBox, TextBox departureLocationBox, TextBox dateOfDepartureBox,
+                        TextBox passengerBox, ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad,
+                        GUIWindow guiItenerary, TextBox dateOfReturnBox) throws GoogleJsonResponseException {
+
+        guiInput.buttons.guiInputEnterButton(guiScreen, guiOutput, guiInboundFlight, destinationBox,
+                departureLocationBox, dateOfDepartureBox, passengerBox, progressBar, guiError, guiLoad, guiInput,
+                guiItenerary, dateOfReturnBox);
+
         guiInput.buttons.quitButton(guiInput);
     }
 

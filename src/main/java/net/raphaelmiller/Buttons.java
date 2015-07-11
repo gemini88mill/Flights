@@ -54,10 +54,12 @@ public class Buttons extends Thread {
      * @param guiLoad              GUIWindow
      * @param guiWindow            GUIWindow
      * @param guiItenerary
+     * @param dateOfReturnBox
      */
-    public void guiInputEnterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, GUIWindow guiInboundFlight, final TextBox destinationBox,
-                                    final TextBox departureLocationBox, final TextBox dateOfDepartureBox, TextBox passengerBox,
-                                    ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad, GUIWindow guiWindow, GUIWindow guiItenerary)  {
+    public void guiInputEnterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, GUIWindow guiInboundFlight,
+                                    final TextBox destinationBox, final TextBox departureLocationBox,
+                                    final TextBox dateOfDepartureBox, TextBox passengerBox, ProgressBar progressBar,
+                                    GUIWindow guiError, GUIWindow guiLoad, GUIWindow guiWindow, GUIWindow guiItenerary, TextBox dateOfReturnBox)  {
 
         final TextArea results = new TextArea(new TerminalSize(400, 300), null);
         final String[] input = new String[4];
@@ -78,8 +80,20 @@ public class Buttons extends Thread {
             };   thread.start();
 
             //sets date to test for date entered to be a acceptable value
+
+            /*--Debug issue--
+            *
+            * String date accepts one value for string to verify the value of the departure Date, but it does not
+            * check the return date, therefore one of two things need to be implemented, 1. use an array to send
+            * two different types of values and check them both independently, or 2. run two methods of
+            * flightClient() method and use the values to check for the correct dates.. 07.11.2015
+            *
+            * Additionally, one could also not use this method at all and allow for the exceptions to catch themselves
+            * and allow the Json to report the error by itself.
+            * */
             String date = guiWindow.setFlightsClient(input, destinationBox, departureLocationBox, dateOfDepartureBox,
                     passengerBox);
+            
             //List<TripOption> initializer
             List<TripOption> tripOptions = null;
 
@@ -151,7 +165,7 @@ public class Buttons extends Thread {
      * @param guiInboundFlight      String
      * @param tripOptions           List<TripOption>
      * @param guiLoad               GuiWindow
-     * @param guiItenerary
+     * @param guiItenerary          GuiWindow
      */
     private void guiOutboundEnterLogic(TextBox flightNo, String outbound, String inbound, GUIWindow guiOutput,
                                        String date, GUIWindow guiInboundFlight, List<TripOption> tripOptions,

@@ -2,7 +2,6 @@ package net.raphaelmiller;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.services.qpxExpress.model.*;
-import com.googlecode.lanterna.gui.Action;
 import com.googlecode.lanterna.gui.Border;
 import com.googlecode.lanterna.gui.GUIScreen;
 import com.googlecode.lanterna.gui.Window;
@@ -220,14 +219,23 @@ public class GUIWindow extends Window {
         GUIWindow returningFlight = new GUIWindow("Return Flight", flc, guiScreen);
         TextArea returnFlightResults = new TextArea();
 
-        drawGuiOutput(guiOutput, results, flightNo, guiInboundFlight, guiLoad, tripOptions, guiItenerary);
+        drawGuiOutbound(guiOutput, results, flightNo, guiInboundFlight, guiLoad, tripOptions, guiItenerary);
 
     }
 
 
-
-    private void drawGuiOutput(GUIWindow guiOutput, TextArea results, TextBox flightNo, GUIWindow guiInboundFlight,
-                               GUIWindow guiLoad, List<TripOption> tripOptions, GUIWindow guiItenerary) {
+    /**
+     *
+     * @param guiOutput
+     * @param results
+     * @param flightNo
+     * @param guiInboundFlight
+     * @param guiLoad
+     * @param tripOptions
+     * @param guiItenerary
+     */
+    private void drawGuiOutbound(GUIWindow guiOutput, TextArea results, TextBox flightNo, GUIWindow guiInboundFlight,
+                                 GUIWindow guiLoad, List<TripOption> tripOptions, GUIWindow guiItenerary) {
         String outbound = flc.getArrivalIATA();
         String inbound = flc.getDepartureIATA();
         String date = flc.getDateOfDeparture();
@@ -241,6 +249,17 @@ public class GUIWindow extends Window {
         guiOutput.leftPanel.addComponent(flightNo);
     }
 
+    /**
+     *
+     * @param guiInboundFlight
+     * @param tripOption
+     * @param guiOutput
+     * @param flightNo
+     * @param results
+     * @param flightChoiceInbound
+     * @param guiLoad
+     * @param guiItenerary
+     */
     public void drawGuiInbound(GUIWindow guiInboundFlight, List<TripOption> tripOption, GUIWindow guiOutput,
                                TextBox flightNo, TextArea results, TripOption flightChoiceInbound, GUIWindow guiLoad,
                                GUIWindow guiItenerary){
@@ -258,6 +277,14 @@ public class GUIWindow extends Window {
 
     }
 
+    /**
+     *
+     * @param results
+     * @param flightChoiceInbound
+     * @param guiItinerary
+     * @param guiOutput
+     * @param flightChoiceOutBound
+     */
     public void drawGuiItinerary(TextArea results, TripOption flightChoiceInbound, GUIWindow guiItinerary,
                                  GUIWindow guiOutput, TripOption flightChoiceOutBound){
 
@@ -314,7 +341,7 @@ public class GUIWindow extends Window {
         lanternaHandler.middlePanel(this, departure);
         lanternaHandler.rightPanel(this, departureDestination, returnDateBox);
         lanternaHandler.buttons(this, guiOutput, guiInboundFlight, guiScreen, destination, departure, departureDestination, passengers,
-                progressBar, guiError, guiLoad, guiItenerary);
+                progressBar, guiError, guiLoad, guiItenerary, returnDateBox);
 
         guiScreen.showWindow(this, CENTER);
     }
