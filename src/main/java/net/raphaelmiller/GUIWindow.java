@@ -242,12 +242,12 @@ public class GUIWindow extends Window {
     }
 
     public void drawGuiInbound(GUIWindow guiInboundFlight, List<TripOption> tripOption, GUIWindow guiOutput,
-                               TextBox flightNo, TextArea results, TripOption flightChoiceOutbound, GUIWindow guiLoad,
+                               TextBox flightNo, TextArea results, TripOption flightChoiceInbound, GUIWindow guiLoad,
                                GUIWindow guiItenerary){
 
         guiInboundFlight.formatToScreen(tripOption, guiOutput.flc.getTripData(), guiOutput.flc.getAircraftData(),
                 guiOutput.flc.getCarrierData(), guiOutput.flc.airportData, results);
-        guiInboundFlight.buttons.guiInboundEnterButton(guiInboundFlight, flightChoiceOutbound, flightNo, tripOption,
+        guiInboundFlight.buttons.guiInboundEnterButton(guiInboundFlight, flightChoiceInbound, flightNo, tripOption,
                 guiLoad, guiItenerary, guiOutput );
         guiInboundFlight.buttons.backButton(guiInboundFlight.guiScreen, guiInboundFlight);
         guiInboundFlight.buttons.quitButton(guiInboundFlight);
@@ -258,12 +258,13 @@ public class GUIWindow extends Window {
 
     }
 
-    public void drawGuiItinerary(String selection, TextArea results, TripOption flightChoiceOutbound,
-                                 GUIWindow guiItinerary, GUIWindow guiOutput){
+    public void drawGuiItinerary(TextArea results, TripOption flightChoiceInbound, GUIWindow guiItinerary,
+                                 GUIWindow guiOutput, TripOption flightChoiceOutBound){
 
-        List<TripOption> outbound = new ArrayList<TripOption>();
+        List<TripOption> outbound = new ArrayList<>();
 
-        outbound.add(0, flightChoiceOutbound);
+        outbound.add(0, flightChoiceInbound);
+        outbound.add(1, flightChoiceOutBound);
     
         guiItinerary.formatToScreen(outbound, guiOutput.flc.getTripData(), guiOutput.flc.getAircraftData(),
                 guiOutput.flc.getCarrierData(), guiOutput.flc.getAirportData(), results);

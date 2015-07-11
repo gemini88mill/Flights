@@ -159,7 +159,8 @@ public class Buttons extends Thread {
 
         TextArea results = new TextArea(new TerminalSize(400, 300), null);
 
-        TripOption flightChoice;
+        TripOption flightChoiceInbound;
+
         String selection = flightNo.getText();
 
         String flightNoText = flightNo.getText();
@@ -178,11 +179,11 @@ public class Buttons extends Thread {
         try {
             tripOption = guiInboundFlight.attemptTransfer(input);
 
-            flightChoice = tripOptions.get(Integer.parseInt(selection));
-            System.out.println(flightChoice);
+            flightChoiceInbound = tripOptions.get(Integer.parseInt(selection));
+            System.out.println(flightChoiceInbound);
 
             guiInboundFlight.drawGuiInbound(guiInboundFlight, tripOption, guiOutput, flightNo, results,
-                    flightChoice, guiLoad, guiItenerary);
+                    flightChoiceInbound, guiLoad, guiItenerary);
 
         } catch (IllegalAccessException | GoogleJsonResponseException | InstantiationException e) {
             e.printStackTrace();
@@ -194,14 +195,14 @@ public class Buttons extends Thread {
     /**
      * Gui Inbound enter Button - event listener for enter button selected and pressed.
      * @param guiInboundFlight      GuiWindow
-     * @param flightChoiceOutbound  TripOption
+     * @param flightChoiceInbound  TripOption
      * @param flightNo              String
      * @param tripOption            List
      * @param guiLoad               GuiWindow
      * @param guiItenerary          GuiWindow
      * @param guiOutput             GuiWindow
      */
-    public void guiInboundEnterButton(GUIWindow guiInboundFlight, TripOption flightChoiceOutbound, TextBox flightNo,
+    public void guiInboundEnterButton(GUIWindow guiInboundFlight, TripOption flightChoiceInbound, TextBox flightNo,
                                       List<TripOption> tripOption, GUIWindow guiLoad, GUIWindow guiItenerary,
                                       GUIWindow guiOutput) {
         guiInboundFlight.addComponent(new Button("ENTER", () -> {
@@ -213,7 +214,7 @@ public class Buttons extends Thread {
                 }
             };   thread.start();
 
-            guiInboundEnterLogic(flightNo, flightChoiceOutbound, tripOption, guiItenerary, guiOutput);
+            guiInboundEnterLogic(flightNo, flightChoiceInbound, tripOption, guiItenerary, guiOutput);
         }));
     }
 
@@ -223,12 +224,14 @@ public class Buttons extends Thread {
      * declare everything final and although I dont receive any errors, I feel that there is something wrong with the
      * way I would be writing it, therefore, new method.
      * @param flightNo
-     * @param flightChoiceOutbound
+     * @param flightChoiceInbound
      * @param tripOption
      * @param guiItenerary
      * @param guiOutput
      */
-    private void guiInboundEnterLogic(TextBox flightNo, TripOption flightChoiceOutbound, List<TripOption> tripOption, GUIWindow guiItenerary, GUIWindow guiOutput) {
+    private void guiInboundEnterLogic(TextBox flightNo, TripOption flightChoiceInbound, List<TripOption> tripOption, GUIWindow guiItenerary, GUIWindow guiOutput) {
+
+        TripOption flightChoiceOutBound;
 
         //loading new text area for next page
         TextArea results = new TextArea(new TerminalSize(400, 300), null);
@@ -237,9 +240,9 @@ public class Buttons extends Thread {
         String selection = flightNo.getText();
 
         //stores flight choice from previous screen
-        flightChoiceOutbound = tripOption.get(Integer.parseInt(selection));
+        flightChoiceOutBound = tripOption.get(Integer.parseInt(selection));
 
-        guiItenerary.drawGuiItinerary(selection, results, flightChoiceOutbound, guiItenerary, guiOutput);
+        guiItenerary.drawGuiItinerary(results, flightChoiceInbound, guiItenerary, guiOutput, flightChoiceOutBound);
     }
 
     /**
