@@ -295,11 +295,13 @@ public class GUIWindow extends Window {
         lanternaHandler.setDepartureLocationBox(new TextBox(null, 125));
         lanternaHandler.setDestinationBox(new TextBox(null, 125));
         lanternaHandler.setPassengerBox(new TextBox(null, 100));
+        lanternaHandler.setDateOfReturnBox(new TextBox(null, 125));
 
         TextBox passengers = lanternaHandler.getPassengerBox();
         TextBox departure = lanternaHandler.getDepartureLocationBox();
         TextBox destination = lanternaHandler.getDestinationBox();
         TextBox departureDestination = lanternaHandler.getDateOfDepartureBox();
+        TextBox returnDateBox = lanternaHandler.getDateOfReturnBox();
 
         //TextBox destinationBox = new TextBox(null, 125);
         //TextBox departureLocationBox = new TextBox(null, 125);
@@ -310,7 +312,7 @@ public class GUIWindow extends Window {
         //methods for panel drawing
         lanternaHandler.leftPanel(this, passengers, destination);
         lanternaHandler.middlePanel(this, departure);
-        lanternaHandler.rightPanel(this, departureDestination);
+        lanternaHandler.rightPanel(this, departureDestination, returnDateBox);
         lanternaHandler.buttons(this, guiOutput, guiInboundFlight, guiScreen, destination, departure, departureDestination, passengers,
                 progressBar, guiError, guiLoad, guiItenerary);
 

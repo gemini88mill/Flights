@@ -123,7 +123,7 @@ public class LanternaHandler  {
      * method creating buttons for the GUI
      * @param guiInput              GUIWindow
      * @param guiOutput             GUIWindow
-     * @param guiInboundFlight
+     * @param guiInboundFlight      GuiWindow
      * @param guiScreen             GUIScreen
      * @param destinationBox        TextBox
      * @param departureLocationBox  TextBox
@@ -132,7 +132,7 @@ public class LanternaHandler  {
      * @param progressBar           ProgressBar
      * @param guiError              GUIWindow
      * @param guiLoad               GUIWindow
-     * @param guiItenerary
+     * @param guiItenerary          GuiWindow
      */
     public void buttons(GUIWindow guiInput, GUIWindow guiOutput, GUIWindow guiInboundFlight, GUIScreen guiScreen, TextBox destinationBox,
                         TextBox departureLocationBox, TextBox dateOfDepartureBox, TextBox passengerBox,
@@ -150,10 +150,12 @@ public class LanternaHandler  {
      * @param guiInput GUIWindow
      * @param dateOfDepartureBox TextBox
      */
-    public void rightPanel(GUIWindow guiInput, TextBox dateOfDepartureBox) {
+    public void rightPanel(GUIWindow guiInput, TextBox dateOfDepartureBox, TextBox dateOfReturnBox) {
         guiInput.rightPanel.addComponent(new EmptySpace(2,2));
         guiInput.rightPanel.addComponent(new Label("Date of Departure(YYYY-MM-DD)\t\t", Terminal.Color.RED));
         guiInput.rightPanel.addComponent(dateOfDepartureBox);
+        guiInput.rightPanel.addComponent(new Label("Date of Return(YYYY-MM-DD)", Terminal.Color.RED));
+        guiInput.rightPanel.addComponent(dateOfReturnBox);
     }
 
     /**
