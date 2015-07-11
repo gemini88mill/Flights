@@ -278,11 +278,11 @@ public class GUIWindow extends Window {
      *
      * method creating the positions and order for the gui
      * @param guiOutput         GUIWindow
-     * @param guiInboundFlight
+     * @param guiInboundFlight  GuiWindow
      * @param guiScreen         GUIScreen
      * @param guiError          GUIWindow
      * @param guiLoad           GuiWindow
-     * @param guiItenerary
+     * @param guiItenerary      GuiWindow
      * @param lanternaHandler   LanternaHandler
      */
     public void drawGuiInput(GUIWindow guiOutput, GUIWindow guiInboundFlight, GUIScreen guiScreen, GUIWindow guiError,
