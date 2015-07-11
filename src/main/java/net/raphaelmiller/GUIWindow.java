@@ -12,6 +12,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -260,11 +261,11 @@ public class GUIWindow extends Window {
     public void drawGuiItinerary(String selection, TextArea results, TripOption flightChoiceOutbound,
                                  GUIWindow guiItinerary, GUIWindow guiOutput){
 
-        List<TripOption> outBound = null;
+        List<TripOption> outbound = new ArrayList<TripOption>();
 
-        outBound.add(flightChoiceOutbound);
+        outbound.add(0, flightChoiceOutbound);
     
-        guiItinerary.formatToScreen(outBound, guiOutput.flc.getTripData(), guiOutput.flc.getAircraftData(),
+        guiItinerary.formatToScreen(outbound, guiOutput.flc.getTripData(), guiOutput.flc.getAircraftData(),
                 guiOutput.flc.getCarrierData(), guiOutput.flc.getAirportData(), results);
         guiItinerary.buttons.quitButton(guiItinerary);
         guiItinerary.horizontalPanel.addComponent(results);
