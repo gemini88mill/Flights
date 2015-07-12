@@ -44,7 +44,7 @@ public class Buttons extends Thread {
      * Gives action to what happens when the enter button is pressed.
      * @param guiScreen            GUIScreen
      * @param guiOutput            GUIWindow
-     * @param guiInboundFlight
+     * @param guiInboundFlight     GuiWindow
      * @param destinationBox       TextBox
      * @param departureLocationBox TextBox
      * @param dateOfDepartureBox   TextBox
@@ -53,13 +53,14 @@ public class Buttons extends Thread {
      * @param guiError             GuiWindow
      * @param guiLoad              GUIWindow
      * @param guiWindow            GUIWindow
-     * @param guiItenerary
-     * @param dateOfReturnBox
+     * @param guiItenerary         GuiWindow
+     * @param dateOfReturnBox      TextBox
      */
     public void guiInputEnterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, GUIWindow guiInboundFlight,
                                     final TextBox destinationBox, final TextBox departureLocationBox,
                                     final TextBox dateOfDepartureBox, TextBox passengerBox, ProgressBar progressBar,
-                                    GUIWindow guiError, GUIWindow guiLoad, GUIWindow guiWindow, GUIWindow guiItenerary, TextBox dateOfReturnBox)  {
+                                    GUIWindow guiError, GUIWindow guiLoad, GUIWindow guiWindow, GUIWindow guiItenerary,
+                                    TextBox dateOfReturnBox)  {
 
         final TextArea results = new TextArea(new TerminalSize(400, 300), null);
         final String[] input = new String[4];
@@ -93,21 +94,21 @@ public class Buttons extends Thread {
             * */
             String date = guiWindow.setFlightsClient(input, destinationBox, departureLocationBox, dateOfDepartureBox,
                     passengerBox);
-            
+
             //List<TripOption> initializer
             List<TripOption> tripOptions = null;
 
             //try/catch statement for values entered.
             try {
 
-                tripOptions = guiWindow.attemptTransfer(input);
+                tripOptions = guiWindow.attemptTransfer(input, date);
                 test[0] = guiWindow.dateTester(date);
 
                 //df.departureFlightWindow(guiWindow, tripOptions, results, guiScreen, guiOutput, guiLoad);
                 guiWindow.formatToScreen(tripOptions, guiWindow.flc.tripData, guiWindow.flc.aircraftData,
                         guiWindow.flc.carrierData, guiWindow.flc.airportData, results);
 
-                guiWindow.drawPage(guiOutput, results, guiScreen, guiInboundFlight, guiLoad, tripOptions, guiItenerary);
+                guiWindow.drawPage(guiOutput, results, guiScreen, guiInboundFlight, guiLoad, tripOptions, guiItenerary, dateOfReturnBox);
                 guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
 
             } catch (IllegalAccessException | InstantiationException | GoogleJsonResponseException | ParseException |
@@ -125,19 +126,21 @@ public class Buttons extends Thread {
     }
 
     /**
-     *  Gui Output Enter Button, function that handles the gui output enter event.
-     *  @param guiOutput GuiWindow
-     * @param flightNo TextBox
-     * @param outbound String
-     * @param inbound String
-     * @param date String
-     * @param guiInboundFlight GuiWindow
-     * @param guiLoad GuiWindow
-     * @param tripOptions List<TripOption>
-     * @param guiItenerary
+     * Gui Output Enter Button, function that handles the gui output enter event.
+     * @param guiOutput         GuiWindow
+     * @param flightNo          TextBox
+     * @param outbound          String
+     * @param inbound           String
+     * @param date              String
+     * @param guiInboundFlight  GuiWindow
+     * @param guiLoad           GuiWindow
+     * @param tripOptions       List<TripOption>
+     * @param guiItinerary      GuiWindow
+     * @param dateOfReturnBox
      */
     public void guiOutputEnterButton(GUIWindow guiOutput, TextBox flightNo, String outbound, String inbound,
-                                     String date, GUIWindow guiInboundFlight, GUIWindow guiLoad, List<TripOption> tripOptions, GUIWindow guiItenerary){
+                                     String date, GUIWindow guiInboundFlight, GUIWindow guiLoad,
+                                     List<TripOption> tripOptions, GUIWindow guiItinerary, TextBox dateOfReturnBox){
         guiOutput.addComponent(new Button("ENTER", () -> {
 
             Thread thread = new Thread(){
@@ -147,7 +150,8 @@ public class Buttons extends Thread {
                 }
             };   thread.start();
 
-            guiOutboundEnterLogic(flightNo, outbound, inbound, guiOutput, date, guiInboundFlight, tripOptions, guiLoad, guiItenerary);
+            guiOutboundEnterLogic(flightNo, outbound, inbound, guiOutput, date, guiInboundFlight, tripOptions, guiLoad,
+                    guiItinerary, dateOfReturnBox);
         }));
 
     }
@@ -166,16 +170,18 @@ public class Buttons extends Thread {
      * @param tripOptions           List<TripOption>
      * @param guiLoad               GuiWindow
      * @param guiItenerary          GuiWindow
+     * @param dateOfReturnBox
      */
     private void guiOutboundEnterLogic(TextBox flightNo, String outbound, String inbound, GUIWindow guiOutput,
                                        String date, GUIWindow guiInboundFlight, List<TripOption> tripOptions,
-                                       GUIWindow guiLoad, GUIWindow guiItenerary) {
+                                       GUIWindow guiLoad, GUIWindow guiItenerary, TextBox dateOfReturnBox) {
 
         TextArea results = new TextArea(new TerminalSize(400, 300), null);
 
         TripOption flightChoiceInbound;
 
         String selection = flightNo.getText();
+        String returnDate = dateOfReturnBox.getText();
 
         String flightNoText = flightNo.getText();
         System.out.println(flightNoText);
@@ -191,7 +197,7 @@ public class Buttons extends Thread {
         input[2] = date;
 
         try {
-            tripOption = guiInboundFlight.attemptTransfer(input);
+            tripOption = guiInboundFlight.attemptTransfer(input, returnDate);
 
             flightChoiceInbound = tripOptions.get(Integer.parseInt(selection));
             System.out.println(flightChoiceInbound);

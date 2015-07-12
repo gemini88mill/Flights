@@ -84,7 +84,7 @@ public class LanternaHandler  {
         setGuiError(new GUIWindow("Error", flc, screenInitializer));
         setGuiLoad(new GUIWindow("Loading", flc, screenInitializer));
         setGuiInboundFlight(new GUIWindow("Inbound", flc, screenInitializer));
-        setGuiItenerary(new GUIWindow("Itenerary", flc, screenInitializer));
+        setGuiItenerary(new GUIWindow("Itinerary", flc, screenInitializer));
 
         GUIWindow guiInput = getGuiInput();
         GUIWindow guiOutput = getGuiOutboundFlight();
@@ -116,16 +116,16 @@ public class LanternaHandler  {
      * @param progressBar           ProgressBar
      * @param guiError              GUIWindow
      * @param guiLoad               GUIWindow
-     * @param guiItenerary          GuiWindow
+     * @param guiItinerary          GuiWindow
      */
     public void buttons(GUIWindow guiInput, GUIWindow guiOutput, GUIWindow guiInboundFlight, GUIScreen guiScreen,
                         TextBox destinationBox, TextBox departureLocationBox, TextBox dateOfDepartureBox,
                         TextBox passengerBox, ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad,
-                        GUIWindow guiItenerary, TextBox dateOfReturnBox) throws GoogleJsonResponseException {
+                        GUIWindow guiItinerary, TextBox dateOfReturnBox) throws GoogleJsonResponseException {
 
         guiInput.buttons.guiInputEnterButton(guiScreen, guiOutput, guiInboundFlight, destinationBox,
                 departureLocationBox, dateOfDepartureBox, passengerBox, progressBar, guiError, guiLoad, guiInput,
-                guiItenerary, dateOfReturnBox);
+                guiItinerary, dateOfReturnBox);
 
         guiInput.buttons.quitButton(guiInput);
     }

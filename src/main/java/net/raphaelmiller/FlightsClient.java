@@ -154,9 +154,9 @@ public class FlightsClient {
      *
      * @return List <TripOption> tripResults
      *
-     *
-     * @param input String[]   */
-    public List<TripOption> googleCommunicate(String[] input) throws IllegalAccessException, InstantiationException, GoogleJsonResponseException {
+     *@param input String[]
+     * @param date */
+    public List<TripOption> googleCommunicate(String[] input, String date) throws IllegalAccessException, InstantiationException, GoogleJsonResponseException {
 
 
         try {
@@ -181,7 +181,7 @@ public class FlightsClient {
             SliceInput slice = new SliceInput();
             slice.setOrigin(input[0]);
             slice.setDestination(input[1]);
-            slice.setDate(input[2]);
+            slice.setDate(date);
             slices.add(slice);
 
             //former data sent in from UIInterface.UIMain method, used for raw terminal construction...

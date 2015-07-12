@@ -64,9 +64,9 @@ public class GUIWindow extends Window {
         addComponent(horizontalPanel);
     }
 
-    public List<TripOption> attemptTransfer(String[] input)
+    public List<TripOption> attemptTransfer(String[] input, String returnDate)
             throws IllegalAccessException, InstantiationException, GoogleJsonResponseException, NullPointerException {
-        return sendToGoogle(input);
+        return sendToGoogle(input, returnDate);
     }
 
     public String setFlightsClient(String[] input, TextBox destinationBox, TextBox departureLocationBox,
@@ -185,16 +185,15 @@ public class GUIWindow extends Window {
      * sendToGoogle() method
      * <p>
      * sends information to QPX Express from gui.
-     *
-     * @param input String[]
-     * */
-    private List<TripOption> sendToGoogle(String[] input) throws IllegalAccessException, InstantiationException, GoogleJsonResponseException {
+     *  @param input String[]
+     * @param returnDate*/
+    private List<TripOption> sendToGoogle(String[] input, String date) throws IllegalAccessException, InstantiationException, GoogleJsonResponseException {
         //connection established with doAction()
         //System.out.println(input[1]);
 
         //sending firstPage Data to googleCommunicate...
         List<TripOption> tripResults = null;
-        tripResults = flc.googleCommunicate(input);
+        tripResults = flc.googleCommunicate(input, date);
         //String textValues = UIInterface.displayValues(tripResults, flc.tripData, flc.aircraftData, flc.carrierData, flc.airportData);
         return tripResults;
 
@@ -204,14 +203,15 @@ public class GUIWindow extends Window {
      * drawPage() method
      * <p>
      * opens up new window for data stream from QPX
-     * @param guiOutput GUIWindow
-     * @param results   TextArea
-     * @param guiLoad
-     * @param tripOptions
-     * @param guiItenerary
+     * @param guiOutput     GUIWindow
+     * @param results       TextArea
+     * @param guiLoad       GuiWindow
+     * @param tripOptions   List
+     * @param guiItinerary  GuiWindow
+     * @param dateOfReturnBox
      */
     public void drawPage(GUIWindow guiOutput, TextArea results, GUIScreen guiScreen, GUIWindow guiInboundFlight,
-                         GUIWindow guiLoad, List<TripOption> tripOptions, GUIWindow guiItenerary) {
+                         GUIWindow guiLoad, List<TripOption> tripOptions, GUIWindow guiItinerary, TextBox dateOfReturnBox) {
 
         buttons = new Buttons();
         TextBox flightNo = new TextBox(null, 10);
@@ -219,29 +219,29 @@ public class GUIWindow extends Window {
         GUIWindow returningFlight = new GUIWindow("Return Flight", flc, guiScreen);
         TextArea returnFlightResults = new TextArea();
 
-        drawGuiOutbound(guiOutput, results, flightNo, guiInboundFlight, guiLoad, tripOptions, guiItenerary);
+        drawGuiOutbound(guiOutput, results, flightNo, guiInboundFlight, guiLoad, tripOptions, guiItinerary, dateOfReturnBox);
 
     }
 
 
     /**
-     *
-     * @param guiOutput
+     *  @param guiOutput
      * @param results
      * @param flightNo
      * @param guiInboundFlight
      * @param guiLoad
      * @param tripOptions
      * @param guiItenerary
+     * @param dateOfReturnBox
      */
     private void drawGuiOutbound(GUIWindow guiOutput, TextArea results, TextBox flightNo, GUIWindow guiInboundFlight,
-                                 GUIWindow guiLoad, List<TripOption> tripOptions, GUIWindow guiItenerary) {
+                                 GUIWindow guiLoad, List<TripOption> tripOptions, GUIWindow guiItenerary, TextBox dateOfReturnBox) {
         String outbound = flc.getArrivalIATA();
         String inbound = flc.getDepartureIATA();
         String date = flc.getDateOfDeparture();
 
         guiOutput.buttons.guiOutputEnterButton(guiOutput, flightNo, outbound, inbound, date, guiInboundFlight, guiLoad,
-                tripOptions, guiItenerary);
+                tripOptions, guiItenerary, dateOfReturnBox);
         guiOutput.buttons.backButton(guiScreen, guiOutput);
         guiOutput.buttons.quitButton(guiOutput);
         guiOutput.horizontalPanel.addComponent(results);
@@ -311,11 +311,11 @@ public class GUIWindow extends Window {
      * @param guiScreen         GUIScreen
      * @param guiError          GUIWindow
      * @param guiLoad           GuiWindow
-     * @param guiItenerary      GuiWindow
+     * @param guiItinerary      GuiWindow
      * @param lanternaHandler   LanternaHandler
      */
     public void drawGuiInput(GUIWindow guiOutput, GUIWindow guiInboundFlight, GUIScreen guiScreen, GUIWindow guiError,
-                             GUIWindow guiLoad, GUIWindow guiItenerary, LanternaHandler lanternaHandler) throws GoogleJsonResponseException {
+                             GUIWindow guiLoad, GUIWindow guiItinerary, LanternaHandler lanternaHandler) throws GoogleJsonResponseException {
         //objects used for input capture
 
         lanternaHandler.setDateOfDepartureBox(new TextBox(null, 125));
@@ -330,10 +330,6 @@ public class GUIWindow extends Window {
         TextBox departureDestination = lanternaHandler.getDateOfDepartureBox();
         TextBox returnDateBox = lanternaHandler.getDateOfReturnBox();
 
-        //TextBox destinationBox = new TextBox(null, 125);
-        //TextBox departureLocationBox = new TextBox(null, 125);
-        //TextBox dateOfDepartureBox = new TextBox(null, 125);
-        //TextBox passengerBox = new TextBox(null, 100);
         ProgressBar progressBar = new ProgressBar(100);
 
         //methods for panel drawing
@@ -341,7 +337,7 @@ public class GUIWindow extends Window {
         lanternaHandler.middlePanel(this, departure);
         lanternaHandler.rightPanel(this, departureDestination, returnDateBox);
         lanternaHandler.buttons(this, guiOutput, guiInboundFlight, guiScreen, destination, departure, departureDestination, passengers,
-                progressBar, guiError, guiLoad, guiItenerary, returnDateBox);
+                progressBar, guiError, guiLoad, guiItinerary, returnDateBox);
 
         guiScreen.showWindow(this, CENTER);
     }
