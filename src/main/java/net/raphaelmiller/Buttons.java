@@ -82,16 +82,7 @@ public class Buttons extends Thread {
 
             //sets date to test for date entered to be a acceptable value
 
-            /*--Debug issue--
-            *
-            * String date accepts one value for string to verify the value of the departure Date, but it does not
-            * check the return date, therefore one of two things need to be implemented, 1. use an array to send
-            * two different types of values and check them both independently, or 2. run two methods of
-            * flightClient() method and use the values to check for the correct dates.. 07.11.2015
-            *
-            * Additionally, one could also not use this method at all and allow for the exceptions to catch themselves
-            * and allow the Json to report the error by itself.
-            * */
+
             String date = guiWindow.setFlightsClient(input, destinationBox, departureLocationBox, dateOfDepartureBox,
                     passengerBox);
 

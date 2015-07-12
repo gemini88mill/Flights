@@ -288,11 +288,17 @@ public class GUIWindow extends Window {
     public void drawGuiItinerary(TextArea results, TripOption flightChoiceInbound, GUIWindow guiItinerary,
                                  GUIWindow guiOutput, TripOption flightChoiceOutBound){
 
+        DataLoader dl = new DataLoader();
+
+
+
         List<TripOption> outbound = new ArrayList<>();
 
         outbound.add(0, flightChoiceInbound);
         outbound.add(1, flightChoiceOutBound);
-    
+
+
+        results.appendLine("hello\n\n");
         guiItinerary.formatToScreen(outbound, guiOutput.flc.getTripData(), guiOutput.flc.getAircraftData(),
                 guiOutput.flc.getCarrierData(), guiOutput.flc.getAirportData(), results);
         guiItinerary.buttons.quitButton(guiItinerary);
