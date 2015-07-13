@@ -95,7 +95,7 @@ public class LanternaHandler  {
 
         screenInitializer.getScreen().startScreen();
 
-        guiInput.drawGuiInput(guiOutput, guiInboundFlight, screenInitializer, guiError, guiLoad, guiItenerary, this);
+        guiInput.drawGuiInput(guiOutput, guiInboundFlight, screenInitializer, guiError, guiLoad, guiItenerary);
 
     }
 

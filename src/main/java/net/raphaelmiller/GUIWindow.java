@@ -32,6 +32,7 @@ public class GUIWindow extends Window {
 
     Panel horizontalPanel, leftPanel, rightPanel, middlePanel;
     ErrorHandler eh;
+    LanternaHandler lanternaHandler = new LanternaHandler();
 
     GUIScreen guiScreen;
     FlightsClient flc;
@@ -185,8 +186,7 @@ public class GUIWindow extends Window {
      * sendToGoogle() method
      * <p>
      * sends information to QPX Express from gui.
-     *  @param input String[]
-     * @param returnDate*/
+     *  @param input String[] */
     private List<TripOption> sendToGoogle(String[] input, String date) throws IllegalAccessException, InstantiationException, GoogleJsonResponseException {
         //connection established with doAction()
         //System.out.println(input[1]);
@@ -298,6 +298,7 @@ public class GUIWindow extends Window {
         outbound.add(1, flightChoiceOutBound);
 
 
+
         results.appendLine("hello\n\n");
         guiItinerary.formatToScreen(outbound, guiOutput.flc.getTripData(), guiOutput.flc.getAircraftData(),
                 guiOutput.flc.getCarrierData(), guiOutput.flc.getAirportData(), results);
@@ -318,10 +319,9 @@ public class GUIWindow extends Window {
      * @param guiError          GUIWindow
      * @param guiLoad           GuiWindow
      * @param guiItinerary      GuiWindow
-     * @param lanternaHandler   LanternaHandler
      */
     public void drawGuiInput(GUIWindow guiOutput, GUIWindow guiInboundFlight, GUIScreen guiScreen, GUIWindow guiError,
-                             GUIWindow guiLoad, GUIWindow guiItinerary, LanternaHandler lanternaHandler) throws GoogleJsonResponseException {
+                             GUIWindow guiLoad, GUIWindow guiItinerary) throws GoogleJsonResponseException {
         //objects used for input capture
 
         lanternaHandler.setDateOfDepartureBox(new TextBox(null, 125));
