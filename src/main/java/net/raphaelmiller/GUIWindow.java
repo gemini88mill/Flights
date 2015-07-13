@@ -319,10 +319,14 @@ public class GUIWindow extends Window {
      * @param guiError          GUIWindow
      * @param guiLoad           GuiWindow
      * @param guiItinerary      GuiWindow
+     * @param lh
+     * @param guiWindows
      */
     public void drawGuiInput(GUIWindow guiOutput, GUIWindow guiInboundFlight, GUIScreen guiScreen, GUIWindow guiError,
-                             GUIWindow guiLoad, GUIWindow guiItinerary) throws GoogleJsonResponseException {
+                             GUIWindow guiLoad, GUIWindow guiItinerary, LanternaHandler lh, LanternaHandler guiWindows) throws GoogleJsonResponseException {
         //objects used for input capture
+
+
 
         lanternaHandler.setDateOfDepartureBox(new TextBox(null, 125));
         lanternaHandler.setDepartureLocationBox(new TextBox(null, 125));
@@ -330,11 +334,11 @@ public class GUIWindow extends Window {
         lanternaHandler.setPassengerBox(new TextBox(null, 100));
         lanternaHandler.setDateOfReturnBox(new TextBox(null, 125));
 
-        TextBox passengers = lanternaHandler.getPassengerBox();
-        TextBox departure = lanternaHandler.getDepartureLocationBox();
-        TextBox destination = lanternaHandler.getDestinationBox();
-        TextBox departureDestination = lanternaHandler.getDateOfDepartureBox();
-        TextBox returnDateBox = lanternaHandler.getDateOfReturnBox();
+        TextBox passengers = lh.getPassengerBox();
+        TextBox departure = lh.getDepartureLocationBox();
+        TextBox destination = lh.getDestinationBox();
+        TextBox departureDestination = lh.getDateOfDepartureBox();
+        TextBox returnDateBox = lh.getDateOfReturnBox();
 
         ProgressBar progressBar = new ProgressBar(100);
 

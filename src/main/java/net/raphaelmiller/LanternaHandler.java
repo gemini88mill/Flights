@@ -77,6 +77,8 @@ public class LanternaHandler  {
         setGuiScreen(new GUIScreen(getScreen()));
 
         GUIScreen screenInitializer = getGuiScreen();
+        Terminal terminal = getTerminal();
+        Screen screen = getScreen();
 
         //creates lanterna terminal windows
         setGuiInput(new GUIWindow("Flights", flc, screenInitializer));
@@ -95,7 +97,13 @@ public class LanternaHandler  {
 
         screenInitializer.getScreen().startScreen();
 
-        guiInput.drawGuiInput(guiOutput, guiInboundFlight, screenInitializer, guiError, guiLoad, guiItenerary);
+        LanternaHandler textBoxes = new LanternaHandler(new TextBox(null, 125), new TextBox(null, 125),
+                new TextBox(null, 125), new TextBox(null, 125), new TextBox(null, 125));
+
+        LanternaHandler guiWindows = new LanternaHandler(terminal, screen, guiInput, guiOutput, guiError, guiLoad,
+                guiScreen, guiInboundFlight, guiItenerary);
+
+        guiInput.drawGuiInput(guiOutput, guiInboundFlight, screenInitializer, guiError, guiLoad, guiItenerary, textBoxes, guiWindows);
 
     }
 
