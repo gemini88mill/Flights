@@ -103,7 +103,7 @@ public class LanternaHandler  {
         LanternaHandler guiWindows = new LanternaHandler(terminal, screen, guiInput, guiOutput, guiError, guiLoad,
                 guiScreen, guiInboundFlight, guiItenerary);
 
-        guiInput.drawGuiInput(guiOutput, guiInboundFlight, screenInitializer, guiError, guiLoad, guiItenerary, textBoxes, guiWindows);
+        guiInput.drawGuiInput(screenInitializer, textBoxes, guiWindows);
 
     }
 
@@ -113,32 +113,45 @@ public class LanternaHandler  {
      * buttons() - method
      *
      * method creating buttons for the GUI
-     * @param guiInput              GUIWindow
      * @param destinationBox        TextBox
-     * @param departureLocationBox  TextBox
      * @param dateOfDepartureBox    TextBox
      * @param passengerBox          TextBox
      * @param guiWindow
-     * @param guiWindows
      * @param returnDateBox
      * @param guiScreen             GUIScreen
      * @param guiOutput             GUIWindow
      * @param guiInboundFlight      GuiWindow
-     * @param progressBar           ProgressBar
-     * @param guiError              GUIWindow
      * @param guiLoad               GUIWindow
      * @param guiItinerary          GuiWindow
+     * @param guiInput              GUIWindow
+     * @param guiWindows
+     * @param progressBar           ProgressBar
+     * @param boxes
      */
-    public void buttons(GUIWindow guiInput, TextBox destinationBox, TextBox departureLocationBox, TextBox dateOfDepartureBox,
-                        TextBox passengerBox, GUIWindow guiWindow, LanternaHandler guiWindows, TextBox returnDateBox, GUIScreen guiScreen,
-                        GUIWindow guiOutput, GUIWindow guiInboundFlight, ProgressBar progressBar, GUIWindow guiError,
-                        GUIWindow guiLoad, GUIWindow guiItinerary) throws GoogleJsonResponseException {
+    public void buttons(GUIWindow guiInput, LanternaHandler guiWindows, ProgressBar progressBar, LanternaHandler boxes)
+            throws GoogleJsonResponseException {
 
-        guiInput.buttons.guiInputEnterButton(guiScreen, guiOutput, guiInboundFlight, destinationBox,
-                departureLocationBox, dateOfDepartureBox, passengerBox, progressBar, guiError, guiLoad, guiInput,
-                guiItinerary, returnDateBox);
+        GUIScreen ObjectScreen = guiWindows.getGuiScreen();
+        GUIWindow output = guiWindows.getGuiOutboundFlight();
+        GUIWindow inbound = guiWindows.getGuiInboundFlight();
+        GUIWindow error = guiWindows.getGuiError();
+        GUIWindow load = guiWindows.getGuiLoad();
+        //----------------------only one really used others are through the call stack---------------------------------
+        GUIWindow input = guiWindows.getGuiInput();
+        //-------------------------------------------------------------------------------------------------------------
+        GUIWindow itinerary = guiWindows.getGuiItenerary();
 
-        guiInput.buttons.quitButton(guiInput);
+        TextBox desBox = boxes.getDestinationBox();
+        TextBox depart = boxes.getDepartureLocationBox();
+        TextBox outboundDate = boxes.getDateOfDepartureBox();
+        TextBox passenger = boxes.getPassengerBox();
+        TextBox returnDate = boxes.getDateOfReturnBox();
+
+        input.buttons.guiInputEnterButton(ObjectScreen, output, inbound, desBox,
+                depart, outboundDate, passenger, progressBar, error, load, input,
+                itinerary, returnDate);
+
+        input.buttons.quitButton(guiInput);
     }
 
     /**

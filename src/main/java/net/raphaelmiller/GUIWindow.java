@@ -314,16 +314,14 @@ public class GUIWindow extends Window {
      *
      * method creating the positions and order for the gui
      * @param guiOutput         GUIWindow
-     * @param guiInboundFlight  GuiWindow
-     * @param guiScreen         GUIScreen
      * @param guiError          GUIWindow
      * @param guiLoad           GuiWindow
-     * @param guiItinerary      GuiWindow
+     * @param guiScreen         GUIScreen
      * @param lh
      * @param guiWindows
      */
-    public void drawGuiInput(GUIWindow guiOutput, GUIWindow guiInboundFlight, GUIScreen guiScreen, GUIWindow guiError,
-                             GUIWindow guiLoad, GUIWindow guiItinerary, LanternaHandler lh, LanternaHandler guiWindows) throws GoogleJsonResponseException {
+    public void drawGuiInput(GUIScreen guiScreen, LanternaHandler lh, LanternaHandler guiWindows)
+            throws GoogleJsonResponseException {
         //objects used for input capture
 
 
@@ -342,13 +340,13 @@ public class GUIWindow extends Window {
 
         ProgressBar progressBar = new ProgressBar(100);
 
+        GUIWindow guiInputWindow = guiWindows.getGuiInput();
+
         //methods for panel drawing
         lanternaHandler.leftPanel(this, passengers, destination);
         lanternaHandler.middlePanel(this, departure);
         lanternaHandler.rightPanel(this, departureDestination, returnDateBox);
-        lanternaHandler.buttons(guiWindows.getGuiInput(), destination, departure, returnDateBox, passengers, this,
-                guiWindows, returnDateBox, guiScreen, guiOutput, guiInboundFlight, progressBar, guiError, guiLoad,
-                guiItinerary);
+        lanternaHandler.buttons(guiInputWindow, guiWindows, progressBar, lh);
 
         guiScreen.showWindow(this, CENTER);
     }
