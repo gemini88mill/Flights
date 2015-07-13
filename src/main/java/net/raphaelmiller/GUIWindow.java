@@ -204,49 +204,65 @@ public class GUIWindow extends Window {
      * <p>
      * opens up new window for data stream from QPX
      * @param guiOutput     GUIWindow
-     * @param results       TextArea
      * @param guiLoad       GuiWindow
+     * @param results       TextArea
      * @param tripOptions   List
-     * @param guiItinerary  GuiWindow
-     * @param dateOfReturnBox
+     * @param guiWindows
+     * @param boxes
      */
-    public void drawPage(GUIWindow guiOutput, TextArea results, GUIScreen guiScreen, GUIWindow guiInboundFlight,
-                         GUIWindow guiLoad, List<TripOption> tripOptions, GUIWindow guiItinerary, TextBox dateOfReturnBox) {
+    public void drawPage(TextArea results, List<TripOption> tripOptions, LanternaHandler guiWindows, LanternaHandler boxes) {
 
         buttons = new Buttons();
         TextBox flightNo = new TextBox(null, 10);
-        UIInterface ui = new UIInterface();
-        GUIWindow returningFlight = new GUIWindow("Return Flight", flc, guiScreen);
-        TextArea returnFlightResults = new TextArea();
 
-        drawGuiOutbound(guiOutput, results, flightNo, guiInboundFlight, guiLoad, tripOptions, guiItinerary, dateOfReturnBox);
+        GUIWindow outboundWindow = guiWindows.getGuiOutboundFlight();
+        GUIWindow inboundWindow = guiWindows.getGuiInboundFlight();
+        GUIWindow loadingWindow = guiWindows.getGuiLoad();
+        GUIWindow itinerary = guiWindows.getGuiItenerary();
+
+        TextBox returnDate = boxes.getDateOfReturnBox();
+        TextBox flightChoice = boxes.getFlightChoiceBox();
+
+        TextArea resultsArea = boxes.getResultsArea();
+
+        drawGuiOutbound(tripOptions, guiWindows, boxes);
 
     }
 
 
     /**
-     *  @param guiOutput
+     * @param outBoundWindow
      * @param results
-     * @param flightNo
-     * @param guiInboundFlight
      * @param guiLoad
-     * @param tripOptions
      * @param guiItenerary
-     * @param dateOfReturnBox
+     * @param tripOptions
+     * @param guiWindows
+     * @param boxes
      */
-    private void drawGuiOutbound(GUIWindow guiOutput, TextArea results, TextBox flightNo, GUIWindow guiInboundFlight,
-                                 GUIWindow guiLoad, List<TripOption> tripOptions, GUIWindow guiItenerary, TextBox dateOfReturnBox) {
+    private void drawGuiOutbound(List<TripOption> tripOptions, LanternaHandler guiWindows, LanternaHandler boxes) {
+
         String outbound = flc.getArrivalIATA();
         String inbound = flc.getDepartureIATA();
         String date = flc.getDateOfDeparture();
 
-        guiOutput.buttons.guiOutputEnterButton(guiOutput, flightNo, outbound, inbound, date, guiInboundFlight, guiLoad,
-                tripOptions, guiItenerary, dateOfReturnBox);
-        guiOutput.buttons.backButton(guiScreen, guiOutput);
-        guiOutput.buttons.quitButton(guiOutput);
-        guiOutput.horizontalPanel.addComponent(results);
-        guiOutput.leftPanel.addComponent(new Label("Choose Flight No."));
-        guiOutput.leftPanel.addComponent(flightNo);
+        GUIWindow inboundWindow = guiWindows.getGuiInboundFlight();
+        GUIWindow outBoundWindow = guiWindows.getGuiOutboundFlight();
+        GUIWindow loadingWindow = guiWindows.getGuiLoad();
+        GUIWindow itinerary = guiWindows.getGuiItenerary();
+
+        GUIScreen screen = guiWindows.getGuiScreen();
+
+        TextBox returnDate = boxes.getDateOfReturnBox();
+        TextBox flightChoice = boxes.getFlightChoiceBox();
+        TextArea resultsArea = boxes.getResultsArea();
+
+        outBoundWindow.buttons.guiOutputEnterButton(outbound, inbound, date,
+                tripOptions, guiWindows, boxes);
+        outBoundWindow.buttons.backButton(screen, outBoundWindow);
+        outBoundWindow.buttons.quitButton(outBoundWindow);
+        outBoundWindow.horizontalPanel.addComponent(resultsArea);
+        outBoundWindow.leftPanel.addComponent(new Label("Choose Flight No."));
+        outBoundWindow.leftPanel.addComponent(flightChoice);
     }
 
     /**

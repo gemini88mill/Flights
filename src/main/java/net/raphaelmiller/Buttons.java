@@ -75,6 +75,8 @@ public class Buttons extends Thread {
         TextBox passengers = boxes.getPassengerBox();
         TextBox returnDate = boxes.getDateOfReturnBox();
 
+        TextArea resultsArea = boxes.getResultsArea();
+
 
         // enter button start, creates enter button and creates eventhandlers for said enter button.
         inputWindow.addComponent(new Button("ENTER", () -> {
@@ -107,9 +109,9 @@ public class Buttons extends Thread {
 
                 //df.departureFlightWindow(guiWindow, tripOptions, results, guiScreen, guiOutput, guiLoad);
                 outboundWindow.formatToScreen(tripOptions, outboundWindow.flc.tripData, outboundWindow.flc.aircraftData,
-                        outboundWindow.flc.carrierData, outboundWindow.flc.airportData, results);
+                        outboundWindow.flc.carrierData, outboundWindow.flc.airportData, resultsArea);
 
-                outboundWindow.drawPage(outboundWindow, results, screen, inboundWindow, loadingWindow, tripOptions, itinerary, returnDate);
+                outboundWindow.drawPage(resultsArea, tripOptions, guiWindows, boxes);
                 outboundWindow.guiScreen.showWindow(outboundWindow, GUIScreen.Position.FULL_SCREEN);
 
             } catch (IllegalAccessException | InstantiationException | GoogleJsonResponseException | ParseException |
@@ -129,30 +131,40 @@ public class Buttons extends Thread {
     /**
      * Gui Output Enter Button, function that handles the gui output enter event.
      * @param guiOutput         GuiWindow
-     * @param flightNo          TextBox
+     * @param guiInboundFlight  GuiWindow
+     * @param guiLoad           GuiWindow
+     * @param guiItinerary      GuiWindow
+     * @param dateOfReturnBox
      * @param outbound          String
      * @param inbound           String
      * @param date              String
-     * @param guiInboundFlight  GuiWindow
-     * @param guiLoad           GuiWindow
      * @param tripOptions       List<TripOption>
-     * @param guiItinerary      GuiWindow
-     * @param dateOfReturnBox
+     * @param guiWindows
+     * @param boxes
      */
-    public void guiOutputEnterButton(GUIWindow guiOutput, TextBox flightNo, String outbound, String inbound,
-                                     String date, GUIWindow guiInboundFlight, GUIWindow guiLoad,
-                                     List<TripOption> tripOptions, GUIWindow guiItinerary, TextBox dateOfReturnBox){
-        guiOutput.addComponent(new Button("ENTER", () -> {
+    public void guiOutputEnterButton(String outbound, String inbound, String date, List<TripOption> tripOptions,
+                                     LanternaHandler guiWindows, LanternaHandler boxes){
 
-            Thread thread = new Thread(){
-                public void run(){
+        TextBox flightChoice = boxes.getFlightChoiceBox();
+        TextBox returnDate = boxes.getDateOfReturnBox();
+
+        GUIWindow outboundWindow = guiWindows.getGuiOutboundFlight();
+        GUIWindow inboundFlight = guiWindows.getGuiInboundFlight();
+        GUIWindow loadingWindow = guiWindows.getGuiLoad();
+        GUIWindow itinerary = guiWindows.getGuiItenerary();
+
+        outboundWindow.addComponent(new Button("ENTER", () -> {
+
+            Thread thread = new Thread() {
+                public void run() {
                     System.out.println("thread running");
-                    guiLoad.guiScreen.showWindow(guiLoad, GUIScreen.Position.CENTER);
+                    loadingWindow.guiScreen.showWindow(loadingWindow, GUIScreen.Position.CENTER);
                 }
-            };   thread.start();
+            };
+            thread.start();
 
-            guiOutboundEnterLogic(flightNo, outbound, inbound, guiOutput, date, guiInboundFlight, tripOptions, guiLoad,
-                    guiItinerary, dateOfReturnBox);
+            guiOutboundEnterLogic(flightChoice, outbound, inbound, outboundWindow, date, inboundFlight, tripOptions, loadingWindow,
+                    itinerary, returnDate, guiWindows, boxes);
         }));
 
     }
@@ -172,10 +184,13 @@ public class Buttons extends Thread {
      * @param guiLoad               GuiWindow
      * @param guiItenerary          GuiWindow
      * @param dateOfReturnBox
+     * @param guiWindows
+     * @param boxes
      */
     private void guiOutboundEnterLogic(TextBox flightNo, String outbound, String inbound, GUIWindow guiOutput,
                                        String date, GUIWindow guiInboundFlight, List<TripOption> tripOptions,
-                                       GUIWindow guiLoad, GUIWindow guiItenerary, TextBox dateOfReturnBox) {
+                                       GUIWindow guiLoad, GUIWindow guiItenerary, TextBox dateOfReturnBox,
+                                       LanternaHandler guiWindows, LanternaHandler boxes) {
 
         TextArea results = new TextArea(new TerminalSize(400, 300), null);
 

@@ -3,12 +3,10 @@ package net.raphaelmiller;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.googlecode.lanterna.TerminalFacade;
 import com.googlecode.lanterna.gui.GUIScreen;
-import com.googlecode.lanterna.gui.component.EmptySpace;
-import com.googlecode.lanterna.gui.component.Label;
-import com.googlecode.lanterna.gui.component.ProgressBar;
-import com.googlecode.lanterna.gui.component.TextBox;
+import com.googlecode.lanterna.gui.component.*;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.TerminalSize;
 
 /**
  * Created by raphael on 5/26/15.
@@ -36,6 +34,9 @@ public class LanternaHandler  {
     private TextBox dateOfDepartureBox;
     private TextBox passengerBox;
     private TextBox dateOfReturnBox;
+    private TextBox flightChoiceBox;
+
+    private TextArea resultsArea;
 
     public LanternaHandler(){
 
@@ -55,12 +56,15 @@ public class LanternaHandler  {
     }
 
     public LanternaHandler(TextBox destinationBox, TextBox departureLocationBox, TextBox dateOfDepartureBox,
-                           TextBox passengerBox, TextBox dateOfReturnBox) {
+                           TextBox passengerBox, TextBox dateOfReturnBox, TextBox flightChoiceBox, TextArea resultsArea) {
         this.destinationBox = destinationBox;
         this.departureLocationBox = departureLocationBox;
         this.dateOfDepartureBox = dateOfDepartureBox;
         this.passengerBox = passengerBox;
         this.dateOfReturnBox = dateOfReturnBox;
+        this.flightChoiceBox = flightChoiceBox;
+        this.resultsArea = resultsArea;
+
     }
 
     /**
@@ -98,7 +102,8 @@ public class LanternaHandler  {
         screenInitializer.getScreen().startScreen();
 
         LanternaHandler textBoxes = new LanternaHandler(new TextBox(null, 125), new TextBox(null, 125),
-                new TextBox(null, 125), new TextBox(null, 125), new TextBox(null, 125));
+                new TextBox(null, 125), new TextBox(null, 125), new TextBox(null, 125), new TextBox(null, 10),
+                new TextArea(new TerminalSize(400, 300), null));
 
         LanternaHandler guiWindows = new LanternaHandler(terminal, screen, guiInput, guiOutput, guiError, guiLoad,
                 guiScreen, guiInboundFlight, guiItenerary);
@@ -313,5 +318,21 @@ public class LanternaHandler  {
 
     public void setGuiItenerary(GUIWindow guiItenerary) {
         this.guiItenerary = guiItenerary;
+    }
+
+    public TextBox getFlightChoiceBox() {
+        return flightChoiceBox;
+    }
+
+    public void setFlightChoiceBox(TextBox flightChoiceBox) {
+        this.flightChoiceBox = flightChoiceBox;
+    }
+
+    public TextArea getResultsArea() {
+        return resultsArea;
+    }
+
+    public void setResultsArea(TextArea resultsArea) {
+        this.resultsArea = resultsArea;
     }
 }
