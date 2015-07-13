@@ -114,26 +114,29 @@ public class LanternaHandler  {
      *
      * method creating buttons for the GUI
      * @param guiInput              GUIWindow
-     * @param guiOutput             GUIWindow
-     * @param guiInboundFlight      GuiWindow
-     * @param guiScreen             GUIScreen
      * @param destinationBox        TextBox
      * @param departureLocationBox  TextBox
      * @param dateOfDepartureBox    TextBox
      * @param passengerBox          TextBox
+     * @param guiWindow
+     * @param guiWindows
+     * @param returnDateBox
+     * @param guiScreen             GUIScreen
+     * @param guiOutput             GUIWindow
+     * @param guiInboundFlight      GuiWindow
      * @param progressBar           ProgressBar
      * @param guiError              GUIWindow
      * @param guiLoad               GUIWindow
      * @param guiItinerary          GuiWindow
      */
-    public void buttons(GUIWindow guiInput, GUIWindow guiOutput, GUIWindow guiInboundFlight, GUIScreen guiScreen,
-                        TextBox destinationBox, TextBox departureLocationBox, TextBox dateOfDepartureBox,
-                        TextBox passengerBox, ProgressBar progressBar, GUIWindow guiError, GUIWindow guiLoad,
-                        GUIWindow guiItinerary, TextBox dateOfReturnBox) throws GoogleJsonResponseException {
+    public void buttons(GUIWindow guiInput, TextBox destinationBox, TextBox departureLocationBox, TextBox dateOfDepartureBox,
+                        TextBox passengerBox, GUIWindow guiWindow, LanternaHandler guiWindows, TextBox returnDateBox, GUIScreen guiScreen,
+                        GUIWindow guiOutput, GUIWindow guiInboundFlight, ProgressBar progressBar, GUIWindow guiError,
+                        GUIWindow guiLoad, GUIWindow guiItinerary) throws GoogleJsonResponseException {
 
         guiInput.buttons.guiInputEnterButton(guiScreen, guiOutput, guiInboundFlight, destinationBox,
                 departureLocationBox, dateOfDepartureBox, passengerBox, progressBar, guiError, guiLoad, guiInput,
-                guiItinerary, dateOfReturnBox);
+                guiItinerary, returnDateBox);
 
         guiInput.buttons.quitButton(guiInput);
     }

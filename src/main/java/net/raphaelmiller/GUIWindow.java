@@ -346,8 +346,9 @@ public class GUIWindow extends Window {
         lanternaHandler.leftPanel(this, passengers, destination);
         lanternaHandler.middlePanel(this, departure);
         lanternaHandler.rightPanel(this, departureDestination, returnDateBox);
-        lanternaHandler.buttons(this, guiOutput, guiInboundFlight, guiScreen, destination, departure, departureDestination, passengers,
-                progressBar, guiError, guiLoad, guiItinerary, returnDateBox);
+        lanternaHandler.buttons(guiWindows.getGuiInput(), destination, departure, returnDateBox, passengers, this,
+                guiWindows, returnDateBox, guiScreen, guiOutput, guiInboundFlight, progressBar, guiError, guiLoad,
+                guiItinerary);
 
         guiScreen.showWindow(this, CENTER);
     }
