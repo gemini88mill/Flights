@@ -123,12 +123,11 @@ public class LanternaHandler  {
      * @param guiInboundFlight      GuiWindow
      * @param guiLoad               GUIWindow
      * @param guiItinerary          GuiWindow
-     * @param guiInput              GUIWindow
      * @param guiWindows
      * @param progressBar           ProgressBar
      * @param boxes
      */
-    public void buttons(GUIWindow guiInput, LanternaHandler guiWindows, ProgressBar progressBar, LanternaHandler boxes)
+    public void buttons(LanternaHandler guiWindows, ProgressBar progressBar, LanternaHandler boxes)
             throws GoogleJsonResponseException {
 
         GUIScreen ObjectScreen = guiWindows.getGuiScreen();
@@ -147,11 +146,10 @@ public class LanternaHandler  {
         TextBox passenger = boxes.getPassengerBox();
         TextBox returnDate = boxes.getDateOfReturnBox();
 
-        input.buttons.guiInputEnterButton(ObjectScreen, output, inbound, desBox,
-                depart, outboundDate, passenger, progressBar, error, load, input,
-                itinerary, returnDate);
+        input.buttons.guiInputEnterButton(
+                guiWindows, boxes);
 
-        input.buttons.quitButton(guiInput);
+        input.buttons.quitButton(input);
     }
 
     /**

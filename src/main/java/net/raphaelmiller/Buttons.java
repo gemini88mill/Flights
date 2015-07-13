@@ -46,45 +46,55 @@ public class Buttons extends Thread {
      * @param guiOutput            GUIWindow
      * @param guiInboundFlight     GuiWindow
      * @param destinationBox       TextBox
-     * @param departureLocationBox TextBox
-     * @param dateOfDepartureBox   TextBox
      * @param passengerBox         TextBox
      * @param progressBar          ProgressBar
-     * @param guiError             GuiWindow
      * @param guiLoad              GUIWindow
      * @param guiWindow            GUIWindow
      * @param guiItenerary         GuiWindow
-     * @param dateOfReturnBox      TextBox
+     * @param guiWindows
+     * @param boxes
      */
-    public void guiInputEnterButton(final GUIScreen guiScreen, final GUIWindow guiOutput, GUIWindow guiInboundFlight,
-                                    final TextBox destinationBox, final TextBox departureLocationBox,
-                                    final TextBox dateOfDepartureBox, TextBox passengerBox, ProgressBar progressBar,
-                                    GUIWindow guiError, GUIWindow guiLoad, GUIWindow guiWindow, GUIWindow guiItenerary,
-                                    TextBox dateOfReturnBox)  {
+    public void guiInputEnterButton(LanternaHandler guiWindows, LanternaHandler boxes)  {
 
         final TextArea results = new TextArea(new TerminalSize(400, 300), null);
         final String[] input = new String[4];
         final boolean[] test = {false};
 
+        GUIWindow loadingWindow = guiWindows.getGuiLoad();
+        GUIWindow outboundWindow = guiWindows.getGuiOutboundFlight();
+        GUIWindow errorWindow = guiWindows.getGuiError();
+        GUIWindow itinerary = guiWindows.getGuiItenerary();
+        GUIWindow inboundWindow = guiWindows.getGuiInboundFlight();
+        GUIWindow inputWindow = guiWindows.getGuiInput();
+
+        GUIScreen screen = guiWindows.getGuiScreen();
+
+        TextBox destination = boxes.getDestinationBox();
+        TextBox departureLocation = boxes.getDepartureLocationBox();
+        TextBox departureDate = boxes.getDateOfDepartureBox();
+        TextBox passengers = boxes.getPassengerBox();
+        TextBox returnDate = boxes.getDateOfReturnBox();
+
 
         // enter button start, creates enter button and creates eventhandlers for said enter button.
-        guiWindow.addComponent(new Button("ENTER", () -> {
+        inputWindow.addComponent(new Button("ENTER", () -> {
             //progressBar.setVisible(true);
 
             //loading window thread. starts loading bar window while, QPX is working in the background
-            Thread thread = new Thread(){
-                public void run(){
+            Thread thread = new Thread() {
+                public void run() {
                     System.out.println("thread running");
-                    guiLoad.horizontalPanel.addComponent(new Label("Loading...", Terminal.Color.BLACK, true));
-                    guiLoad.guiScreen.showWindow(guiLoad, GUIScreen.Position.CENTER);
+                    loadingWindow.horizontalPanel.addComponent(new Label("Loading...", Terminal.Color.BLACK, true));
+                    loadingWindow.guiScreen.showWindow(loadingWindow, GUIScreen.Position.CENTER);
                 }
-            };   thread.start();
+            };
+            thread.start();
 
             //sets date to test for date entered to be a acceptable value
 
 
-            String date = guiWindow.setFlightsClient(input, destinationBox, departureLocationBox, dateOfDepartureBox,
-                    passengerBox);
+            String date = outboundWindow.setFlightsClient(input, destination, departureLocation, departureDate,
+                    passengers);
 
             //List<TripOption> initializer
             List<TripOption> tripOptions = null;
@@ -92,20 +102,20 @@ public class Buttons extends Thread {
             //try/catch statement for values entered.
             try {
 
-                tripOptions = guiWindow.attemptTransfer(input, date);
-                test[0] = guiWindow.dateTester(date);
+                tripOptions = outboundWindow.attemptTransfer(input, date);
+                test[0] = outboundWindow.dateTester(date);
 
                 //df.departureFlightWindow(guiWindow, tripOptions, results, guiScreen, guiOutput, guiLoad);
-                guiWindow.formatToScreen(tripOptions, guiWindow.flc.tripData, guiWindow.flc.aircraftData,
-                        guiWindow.flc.carrierData, guiWindow.flc.airportData, results);
+                outboundWindow.formatToScreen(tripOptions, outboundWindow.flc.tripData, outboundWindow.flc.aircraftData,
+                        outboundWindow.flc.carrierData, outboundWindow.flc.airportData, results);
 
-                guiWindow.drawPage(guiOutput, results, guiScreen, guiInboundFlight, guiLoad, tripOptions, guiItenerary, dateOfReturnBox);
-                guiScreen.showWindow(guiOutput, GUIScreen.Position.FULL_SCREEN);
+                outboundWindow.drawPage(outboundWindow, results, screen, inboundWindow, loadingWindow, tripOptions, itinerary, returnDate);
+                outboundWindow.guiScreen.showWindow(outboundWindow, GUIScreen.Position.FULL_SCREEN);
 
             } catch (IllegalAccessException | InstantiationException | GoogleJsonResponseException | ParseException |
                     NullPointerException e) {
 
-                eh.errorWindow(guiError, guiScreen, this);
+                eh.errorWindow(errorWindow, screen, this);
                 e.printStackTrace();
             }
 
