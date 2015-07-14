@@ -266,30 +266,37 @@ public class GUIWindow extends Window {
     }
 
     /**
-     *
-     * @param guiInboundFlight
-     * @param tripOption
      * @param guiOutput
      * @param flightNo
      * @param results
+     * @param tripOption
      * @param flightChoiceInbound
-     * @param guiLoad
-     * @param guiItenerary
+     * @param guiWindows
+     * @param boxes
      */
-    public void drawGuiInbound(GUIWindow guiInboundFlight, List<TripOption> tripOption, GUIWindow guiOutput,
-                               TextBox flightNo, TextArea results, TripOption flightChoiceInbound, GUIWindow guiLoad,
-                               GUIWindow guiItenerary){
+    public void drawGuiInbound(List<TripOption> tripOption, TripOption flightChoiceInbound, LanternaHandler guiWindows,
+                               LanternaHandler boxes){
 
-        guiInboundFlight.formatToScreen(tripOption, guiOutput.flc.getTripData(), guiOutput.flc.getAircraftData(),
-                guiOutput.flc.getCarrierData(), guiOutput.flc.airportData, results);
-        guiInboundFlight.buttons.guiInboundEnterButton(guiInboundFlight, flightChoiceInbound, flightNo, tripOption,
-                guiLoad, guiItenerary, guiOutput );
-        guiInboundFlight.buttons.backButton(guiInboundFlight.guiScreen, guiInboundFlight);
-        guiInboundFlight.buttons.quitButton(guiInboundFlight);
-        guiInboundFlight.horizontalPanel.addComponent(results);
-        guiInboundFlight.leftPanel.addComponent(new Label("Choose Flight No."));
-        guiInboundFlight.leftPanel.addComponent(flightNo);
-        guiInboundFlight.guiScreen.showWindow(guiInboundFlight, GUIScreen.Position.FULL_SCREEN);
+        GUIWindow outboundWindow = guiWindows.getGuiOutboundFlight();
+        GUIWindow inboundWindow = guiWindows.getGuiInboundFlight();
+        GUIWindow loadingWindow = guiWindows.getGuiLoad();
+        GUIWindow itinerary = guiWindows.getGuiItenerary();
+
+        GUIScreen screen = guiWindows.getGuiScreen();
+
+        TextBox flightChoice = boxes.getFlightChoiceBox();
+        TextArea resultArea = boxes.getResultsArea();
+
+        inboundWindow.formatToScreen(tripOption, outboundWindow.flc.getTripData(), outboundWindow.flc.getAircraftData(),
+                outboundWindow.flc.getCarrierData(), outboundWindow.flc.airportData, resultArea);
+        inboundWindow.buttons.guiInboundEnterButton(inboundWindow, flightChoiceInbound, flightChoice, tripOption,
+                loadingWindow, itinerary, outboundWindow );
+        inboundWindow.buttons.backButton(screen, inboundWindow);
+        inboundWindow.buttons.quitButton(inboundWindow);
+        inboundWindow.horizontalPanel.addComponent(resultArea);
+        inboundWindow.leftPanel.addComponent(new Label("Choose Flight No."));
+        inboundWindow.leftPanel.addComponent(flightChoice);
+        inboundWindow.guiScreen.showWindow(inboundWindow, GUIScreen.Position.FULL_SCREEN);
 
     }
 

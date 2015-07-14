@@ -163,8 +163,8 @@ public class Buttons extends Thread {
             };
             thread.start();
 
-            guiOutboundEnterLogic(flightChoice, outbound, inbound, outboundWindow, date, inboundFlight, tripOptions, loadingWindow,
-                    itinerary, returnDate, guiWindows, boxes);
+            guiOutboundEnterLogic(flightChoice, outbound, inbound, date, tripOptions,
+                    guiWindows, boxes);
         }));
 
     }
@@ -174,30 +174,36 @@ public class Buttons extends Thread {
      * Gui Output Enter Button Logic. handles extra logic, different method because new Action Interface is making me
      * declare everything final and although I dont receive any errors, I feel that there is something wrong with the
      * way I would be writing it, therefore, new method.
+     * @param guiOutput             GuiWindow
+     * @param guiInboundFlight      String
+     * @param guiLoad               GuiWindow
+     * @param guiItenerary          GuiWindow
      * @param flightNo              TextBox
      * @param outbound              String
      * @param inbound               String
-     * @param guiOutput             GuiWindow
      * @param date                  String
-     * @param guiInboundFlight      String
      * @param tripOptions           List<TripOption>
-     * @param guiLoad               GuiWindow
-     * @param guiItenerary          GuiWindow
-     * @param dateOfReturnBox
      * @param guiWindows
      * @param boxes
      */
-    private void guiOutboundEnterLogic(TextBox flightNo, String outbound, String inbound, GUIWindow guiOutput,
-                                       String date, GUIWindow guiInboundFlight, List<TripOption> tripOptions,
-                                       GUIWindow guiLoad, GUIWindow guiItenerary, TextBox dateOfReturnBox,
-                                       LanternaHandler guiWindows, LanternaHandler boxes) {
+    private void guiOutboundEnterLogic(TextBox flightNo, String outbound, String inbound, String date,
+                                       List<TripOption> tripOptions, LanternaHandler guiWindows, LanternaHandler boxes) {
+
+        GUIWindow inboundWindow = guiWindows.getGuiInboundFlight();
+        GUIWindow outboundWindow = guiWindows.getGuiOutboundFlight();
+        GUIWindow loadingWindow = guiWindows.getGuiLoad();
+        GUIWindow itinerary = guiWindows.getGuiItenerary();
 
         TextArea results = new TextArea(new TerminalSize(400, 300), null);
+        TextArea resultArea = boxes.getResultsArea();
+
+        TextBox flightChoice = boxes.getFlightChoiceBox();
+        TextBox returnDateBox = boxes.getDateOfReturnBox();
 
         TripOption flightChoiceInbound;
 
-        String selection = flightNo.getText();
-        String returnDate = dateOfReturnBox.getText();
+        String selection = flightChoice.getText();
+        String returnDate = returnDateBox.getText();
 
         String flightNoText = flightNo.getText();
         System.out.println(flightNoText);
@@ -213,13 +219,13 @@ public class Buttons extends Thread {
         input[2] = date;
 
         try {
-            tripOption = guiInboundFlight.attemptTransfer(input, returnDate);
+            tripOption = inboundWindow.attemptTransfer(input, returnDate);
 
             flightChoiceInbound = tripOptions.get(Integer.parseInt(selection));
             System.out.println(flightChoiceInbound);
 
-            guiInboundFlight.drawGuiInbound(guiInboundFlight, tripOption, guiOutput, flightNo, results,
-                    flightChoiceInbound, guiLoad, guiItenerary);
+            inboundWindow.drawGuiInbound(tripOption,
+                    flightChoiceInbound, guiWindows, boxes);
 
         } catch (IllegalAccessException | GoogleJsonResponseException | InstantiationException e) {
             e.printStackTrace();
