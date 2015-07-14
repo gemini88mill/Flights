@@ -197,6 +197,8 @@ public class Buttons extends Thread {
         TextArea results = new TextArea(new TerminalSize(400, 300), null);
         TextArea resultArea = boxes.getResultsArea();
 
+        resultArea.clear();
+
         TextBox flightChoice = boxes.getFlightChoiceBox();
         TextBox returnDateBox = boxes.getDateOfReturnBox();
 
@@ -224,8 +226,7 @@ public class Buttons extends Thread {
             flightChoiceInbound = tripOptions.get(Integer.parseInt(selection));
             System.out.println(flightChoiceInbound);
 
-            inboundWindow.drawGuiInbound(tripOption,
-                    flightChoiceInbound, guiWindows, boxes);
+            inboundWindow.drawGuiInbound(tripOption, flightChoiceInbound, guiWindows, boxes);
 
         } catch (IllegalAccessException | GoogleJsonResponseException | InstantiationException e) {
             e.printStackTrace();
@@ -238,25 +239,30 @@ public class Buttons extends Thread {
      * Gui Inbound enter Button - event listener for enter button selected and pressed.
      * @param guiInboundFlight      GuiWindow
      * @param flightChoiceInbound  TripOption
-     * @param flightNo              String
      * @param tripOption            List
-     * @param guiLoad               GuiWindow
-     * @param guiItenerary          GuiWindow
-     * @param guiOutput             GuiWindow
+     * @param guiWindows
+     * @param boxes
      */
-    public void guiInboundEnterButton(GUIWindow guiInboundFlight, TripOption flightChoiceInbound, TextBox flightNo,
-                                      List<TripOption> tripOption, GUIWindow guiLoad, GUIWindow guiItenerary,
-                                      GUIWindow guiOutput) {
-        guiInboundFlight.addComponent(new Button("ENTER", () -> {
+    public void guiInboundEnterButton(TripOption flightChoiceInbound, List<TripOption> tripOption,
+                                      LanternaHandler guiWindows, LanternaHandler boxes) {
 
-            Thread thread = new Thread(){
-                public void run(){
+        GUIWindow inboundWindow = guiWindows.getGuiInboundFlight();
+        GUIWindow outboundWindow = guiWindows.getGuiOutboundFlight();
+        GUIWindow itinerary = guiWindows.getGuiItenerary();
+
+        TextBox flightChoice = boxes.getFlightChoiceBox();
+
+        inboundWindow.addComponent(new Button("ENTER", () -> {
+
+            Thread thread = new Thread() {
+                public void run() {
                     System.out.println("thread running");
-                    guiLoad.guiScreen.showWindow(guiLoad, GUIScreen.Position.CENTER);
+                    inboundWindow.guiScreen.showWindow(inboundWindow, GUIScreen.Position.CENTER);
                 }
-            };   thread.start();
+            };
+            thread.start();
 
-            guiInboundEnterLogic(flightNo, flightChoiceInbound, tripOption, guiItenerary, guiOutput);
+            guiInboundEnterLogic(flightChoiceInbound, tripOption, guiWindows, boxes);
         }));
     }
 
@@ -268,23 +274,34 @@ public class Buttons extends Thread {
      * @param flightNo
      * @param flightChoiceInbound
      * @param tripOption
-     * @param guiItenerary
-     * @param guiOutput
+     * @param guiWindows
+     * @param boxes
      */
-    private void guiInboundEnterLogic(TextBox flightNo, TripOption flightChoiceInbound, List<TripOption> tripOption, GUIWindow guiItenerary, GUIWindow guiOutput) {
+    private void guiInboundEnterLogic(TripOption flightChoiceInbound, List<TripOption> tripOption,
+                                      LanternaHandler guiWindows, LanternaHandler boxes) {
 
         TripOption flightChoiceOutBound;
+
+        GUIWindow outboundWindow = guiWindows.getGuiOutboundFlight();
+        GUIWindow inboundWindow = guiWindows.getGuiInboundFlight();
+        GUIWindow itinerary = guiWindows.getGuiItenerary();
+
+        TextArea resultArea = boxes.getResultsArea();
+
+        resultArea.clear();
+
+        TextBox flightChoice = boxes.getFlightChoiceBox();
 
         //loading new text area for next page
         TextArea results = new TextArea(new TerminalSize(400, 300), null);
 
         //collects flightNo textBox input and stores it use future use.
-        String selection = flightNo.getText();
+        String selection = flightChoice.getText();
 
         //stores flight choice from previous screen
         flightChoiceOutBound = tripOption.get(Integer.parseInt(selection));
 
-        guiItenerary.drawGuiItinerary(results, flightChoiceInbound, guiItenerary, guiOutput, flightChoiceOutBound);
+        itinerary.drawGuiItinerary(flightChoiceInbound, flightChoiceOutBound, guiWindows, boxes);
     }
 
     /**

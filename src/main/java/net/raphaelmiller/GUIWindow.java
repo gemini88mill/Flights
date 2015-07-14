@@ -289,8 +289,8 @@ public class GUIWindow extends Window {
 
         inboundWindow.formatToScreen(tripOption, outboundWindow.flc.getTripData(), outboundWindow.flc.getAircraftData(),
                 outboundWindow.flc.getCarrierData(), outboundWindow.flc.airportData, resultArea);
-        inboundWindow.buttons.guiInboundEnterButton(inboundWindow, flightChoiceInbound, flightChoice, tripOption,
-                loadingWindow, itinerary, outboundWindow );
+        inboundWindow.buttons.guiInboundEnterButton(flightChoiceInbound, tripOption,
+                guiWindows, boxes );
         inboundWindow.buttons.backButton(screen, inboundWindow);
         inboundWindow.buttons.quitButton(inboundWindow);
         inboundWindow.horizontalPanel.addComponent(resultArea);
@@ -301,33 +301,35 @@ public class GUIWindow extends Window {
     }
 
     /**
-     *
      * @param results
-     * @param flightChoiceInbound
-     * @param guiItinerary
      * @param guiOutput
+     * @param flightChoiceInbound
      * @param flightChoiceOutBound
+     * @param guiWindows
+     * @param boxes
      */
-    public void drawGuiItinerary(TextArea results, TripOption flightChoiceInbound, GUIWindow guiItinerary,
-                                 GUIWindow guiOutput, TripOption flightChoiceOutBound){
+    public void drawGuiItinerary(TripOption flightChoiceInbound, TripOption flightChoiceOutBound,
+                                 LanternaHandler guiWindows, LanternaHandler boxes){
 
         DataLoader dl = new DataLoader();
-
-
-
         List<TripOption> outbound = new ArrayList<>();
+
+        GUIWindow itinerary = guiWindows.getGuiItenerary();
+        GUIWindow outboundWindow = guiWindows.getGuiOutboundFlight();
+
+        TextArea resultsArea = boxes.getResultsArea();
 
         outbound.add(0, flightChoiceInbound);
         outbound.add(1, flightChoiceOutBound);
 
 
 
-        results.appendLine("hello\n\n");
-        guiItinerary.formatToScreen(outbound, guiOutput.flc.getTripData(), guiOutput.flc.getAircraftData(),
-                guiOutput.flc.getCarrierData(), guiOutput.flc.getAirportData(), results);
-        guiItinerary.buttons.quitButton(guiItinerary);
-        guiItinerary.horizontalPanel.addComponent(results);
-        guiItinerary.guiScreen.showWindow(guiItinerary, GUIScreen.Position.FULL_SCREEN);
+        resultsArea.appendLine("hello\n\n");
+        itinerary.formatToScreen(outbound, outboundWindow.flc.getTripData(), outboundWindow.flc.getAircraftData(),
+                outboundWindow.flc.getCarrierData(), outboundWindow.flc.getAirportData(), resultsArea);
+        itinerary.buttons.quitButton(itinerary);
+        itinerary.horizontalPanel.addComponent(resultsArea);
+        itinerary.guiScreen.showWindow(itinerary, GUIScreen.Position.FULL_SCREEN);
 
     }
 
