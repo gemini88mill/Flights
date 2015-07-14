@@ -100,12 +100,15 @@ public class Buttons extends Thread {
 
             //List<TripOption> initializer
             List<TripOption> tripOptions = null;
+            FlightsClient fl = new FlightsClient(null, null, null, null, null);
 
             //try/catch statement for values entered.
             try {
 
                 tripOptions = outboundWindow.attemptTransfer(input, date);
                 test[0] = outboundWindow.dateTester(date);
+
+                
 
                 //df.departureFlightWindow(guiWindow, tripOptions, results, guiScreen, guiOutput, guiLoad);
                 outboundWindow.formatToScreen(tripOptions, outboundWindow.flc.tripData, outboundWindow.flc.aircraftData,
@@ -145,7 +148,7 @@ public class Buttons extends Thread {
     public void guiOutputEnterButton(String outbound, String inbound, String date, List<TripOption> tripOptions,
                                      LanternaHandler guiWindows, LanternaHandler boxes){
 
-        TextBox flightChoice = boxes.getFlightChoiceBox();
+        TextBox flightChoice = boxes.getOutboundFlightChoiceBox();
         TextBox returnDate = boxes.getDateOfReturnBox();
 
         GUIWindow outboundWindow = guiWindows.getGuiOutboundFlight();
@@ -199,7 +202,7 @@ public class Buttons extends Thread {
 
         resultArea.clear();
 
-        TextBox flightChoice = boxes.getFlightChoiceBox();
+        TextBox flightChoice = boxes.getOutboundFlightChoiceBox();
         TextBox returnDateBox = boxes.getDateOfReturnBox();
 
         TripOption flightChoiceInbound;
@@ -237,7 +240,6 @@ public class Buttons extends Thread {
 
     /**
      * Gui Inbound enter Button - event listener for enter button selected and pressed.
-     * @param guiInboundFlight      GuiWindow
      * @param flightChoiceInbound  TripOption
      * @param tripOption            List
      * @param guiWindows
@@ -250,7 +252,7 @@ public class Buttons extends Thread {
         GUIWindow outboundWindow = guiWindows.getGuiOutboundFlight();
         GUIWindow itinerary = guiWindows.getGuiItenerary();
 
-        TextBox flightChoice = boxes.getFlightChoiceBox();
+        TextBox flightChoice = boxes.getOutboundFlightChoiceBox();
 
         inboundWindow.addComponent(new Button("ENTER", () -> {
 
@@ -271,7 +273,6 @@ public class Buttons extends Thread {
      * Gui Inbound Enter Button Logic. handles extra logic, different method because new Action Interface is making me
      * declare everything final and although I dont receive any errors, I feel that there is something wrong with the
      * way I would be writing it, therefore, new method.
-     * @param flightNo
      * @param flightChoiceInbound
      * @param tripOption
      * @param guiWindows
@@ -290,7 +291,8 @@ public class Buttons extends Thread {
 
         resultArea.clear();
 
-        TextBox flightChoice = boxes.getFlightChoiceBox();
+        TextBox flightChoice = boxes.getInboundFlightChoiceBox();
+
 
         //loading new text area for next page
         TextArea results = new TextArea(new TerminalSize(400, 300), null);
@@ -300,6 +302,7 @@ public class Buttons extends Thread {
 
         //stores flight choice from previous screen
         flightChoiceOutBound = tripOption.get(Integer.parseInt(selection));
+        System.out.println(flightChoiceOutBound);
 
         itinerary.drawGuiItinerary(flightChoiceInbound, flightChoiceOutBound, guiWindows, boxes);
     }

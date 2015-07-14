@@ -34,7 +34,8 @@ public class LanternaHandler  {
     private TextBox dateOfDepartureBox;
     private TextBox passengerBox;
     private TextBox dateOfReturnBox;
-    private TextBox flightChoiceBox;
+    private TextBox outboundFlightChoiceBox;
+    private TextBox inboundFlightChoiceBox;
 
     private TextArea resultsArea;
 
@@ -56,14 +57,15 @@ public class LanternaHandler  {
     }
 
     public LanternaHandler(TextBox destinationBox, TextBox departureLocationBox, TextBox dateOfDepartureBox,
-                           TextBox passengerBox, TextBox dateOfReturnBox, TextBox flightChoiceBox, TextArea resultsArea) {
+                           TextBox passengerBox, TextBox dateOfReturnBox, TextBox outboundFlightChoiceBox, TextArea resultsArea, TextBox inboundFlightChoiceBox) {
         this.destinationBox = destinationBox;
         this.departureLocationBox = departureLocationBox;
         this.dateOfDepartureBox = dateOfDepartureBox;
         this.passengerBox = passengerBox;
         this.dateOfReturnBox = dateOfReturnBox;
-        this.flightChoiceBox = flightChoiceBox;
+        this.outboundFlightChoiceBox = outboundFlightChoiceBox;
         this.resultsArea = resultsArea;
+        this.inboundFlightChoiceBox = inboundFlightChoiceBox;
 
     }
 
@@ -103,7 +105,7 @@ public class LanternaHandler  {
 
         LanternaHandler textBoxes = new LanternaHandler(new TextBox(null, 125), new TextBox(null, 125),
                 new TextBox(null, 125), new TextBox(null, 125), new TextBox(null, 125), new TextBox(null, 10),
-                new TextArea(new TerminalSize(400, 300), null));
+                new TextArea(new TerminalSize(400, 300), null), new TextBox(null, 10));
 
         LanternaHandler guiWindows = new LanternaHandler(terminal, screen, guiInput, guiOutput, guiError, guiLoad,
                 guiScreen, guiInboundFlight, guiItenerary);
@@ -320,12 +322,12 @@ public class LanternaHandler  {
         this.guiItenerary = guiItenerary;
     }
 
-    public TextBox getFlightChoiceBox() {
-        return flightChoiceBox;
+    public TextBox getOutboundFlightChoiceBox() {
+        return outboundFlightChoiceBox;
     }
 
-    public void setFlightChoiceBox(TextBox flightChoiceBox) {
-        this.flightChoiceBox = flightChoiceBox;
+    public void setOutboundFlightChoiceBox(TextBox outboundFlightChoiceBox) {
+        this.outboundFlightChoiceBox = outboundFlightChoiceBox;
     }
 
     public TextArea getResultsArea() {
@@ -334,5 +336,13 @@ public class LanternaHandler  {
 
     public void setResultsArea(TextArea resultsArea) {
         this.resultsArea = resultsArea;
+    }
+
+    public TextBox getInboundFlightChoiceBox() {
+        return inboundFlightChoiceBox;
+    }
+
+    public void setInboundFlightChoiceBox(TextBox inboundFlightChoiceBox) {
+        this.inboundFlightChoiceBox = inboundFlightChoiceBox;
     }
 }

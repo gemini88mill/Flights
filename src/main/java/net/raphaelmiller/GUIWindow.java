@@ -203,8 +203,6 @@ public class GUIWindow extends Window {
      * drawPage() method
      * <p>
      * opens up new window for data stream from QPX
-     * @param guiOutput     GUIWindow
-     * @param guiLoad       GuiWindow
      * @param results       TextArea
      * @param tripOptions   List
      * @param guiWindows
@@ -221,7 +219,7 @@ public class GUIWindow extends Window {
         GUIWindow itinerary = guiWindows.getGuiItenerary();
 
         TextBox returnDate = boxes.getDateOfReturnBox();
-        TextBox flightChoice = boxes.getFlightChoiceBox();
+        TextBox flightChoice = boxes.getOutboundFlightChoiceBox();
 
         TextArea resultsArea = boxes.getResultsArea();
 
@@ -231,10 +229,6 @@ public class GUIWindow extends Window {
 
 
     /**
-     * @param outBoundWindow
-     * @param results
-     * @param guiLoad
-     * @param guiItenerary
      * @param tripOptions
      * @param guiWindows
      * @param boxes
@@ -253,7 +247,7 @@ public class GUIWindow extends Window {
         GUIScreen screen = guiWindows.getGuiScreen();
 
         TextBox returnDate = boxes.getDateOfReturnBox();
-        TextBox flightChoice = boxes.getFlightChoiceBox();
+        TextBox flightChoice = boxes.getOutboundFlightChoiceBox();
         TextArea resultsArea = boxes.getResultsArea();
 
         outBoundWindow.buttons.guiOutputEnterButton(outbound, inbound, date,
@@ -266,9 +260,6 @@ public class GUIWindow extends Window {
     }
 
     /**
-     * @param guiOutput
-     * @param flightNo
-     * @param results
      * @param tripOption
      * @param flightChoiceInbound
      * @param guiWindows
@@ -284,13 +275,12 @@ public class GUIWindow extends Window {
 
         GUIScreen screen = guiWindows.getGuiScreen();
 
-        TextBox flightChoice = boxes.getFlightChoiceBox();
+        TextBox flightChoice = boxes.getInboundFlightChoiceBox();
         TextArea resultArea = boxes.getResultsArea();
 
         inboundWindow.formatToScreen(tripOption, outboundWindow.flc.getTripData(), outboundWindow.flc.getAircraftData(),
                 outboundWindow.flc.getCarrierData(), outboundWindow.flc.airportData, resultArea);
-        inboundWindow.buttons.guiInboundEnterButton(flightChoiceInbound, tripOption,
-                guiWindows, boxes );
+        inboundWindow.buttons.guiInboundEnterButton(flightChoiceInbound, tripOption, guiWindows, boxes );
         inboundWindow.buttons.backButton(screen, inboundWindow);
         inboundWindow.buttons.quitButton(inboundWindow);
         inboundWindow.horizontalPanel.addComponent(resultArea);
@@ -301,8 +291,6 @@ public class GUIWindow extends Window {
     }
 
     /**
-     * @param results
-     * @param guiOutput
      * @param flightChoiceInbound
      * @param flightChoiceOutBound
      * @param guiWindows
@@ -310,6 +298,8 @@ public class GUIWindow extends Window {
      */
     public void drawGuiItinerary(TripOption flightChoiceInbound, TripOption flightChoiceOutBound,
                                  LanternaHandler guiWindows, LanternaHandler boxes){
+
+
 
         DataLoader dl = new DataLoader();
         List<TripOption> outbound = new ArrayList<>();
@@ -319,10 +309,10 @@ public class GUIWindow extends Window {
 
         TextArea resultsArea = boxes.getResultsArea();
 
+
+
         outbound.add(0, flightChoiceInbound);
         outbound.add(1, flightChoiceOutBound);
-
-
 
         resultsArea.appendLine("hello\n\n");
         itinerary.formatToScreen(outbound, outboundWindow.flc.getTripData(), outboundWindow.flc.getAircraftData(),
@@ -338,9 +328,6 @@ public class GUIWindow extends Window {
      * drawGuiInput() method
      *
      * method creating the positions and order for the gui
-     * @param guiOutput         GUIWindow
-     * @param guiError          GUIWindow
-     * @param guiLoad           GuiWindow
      * @param guiScreen         GUIScreen
      * @param lh
      * @param guiWindows
@@ -348,8 +335,6 @@ public class GUIWindow extends Window {
     public void drawGuiInput(GUIScreen guiScreen, LanternaHandler lh, LanternaHandler guiWindows)
             throws GoogleJsonResponseException {
         //objects used for input capture
-
-
 
         lanternaHandler.setDateOfDepartureBox(new TextBox(null, 125));
         lanternaHandler.setDepartureLocationBox(new TextBox(null, 125));

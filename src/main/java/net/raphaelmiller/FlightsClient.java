@@ -66,6 +66,15 @@ public class FlightsClient {
         this.passengers = passengers;
     }
 
+    public FlightsClient(List<AircraftData> aircraftData, List<CarrierData> carrierData, List<AirportData> airportData,
+                         List<TripOption> tripResults, List<CityData> tripData) {
+        this.aircraftData = aircraftData;
+        this.carrierData = carrierData;
+        this.airportData = airportData;
+        this.tripResults = tripResults;
+        this.tripData = tripData;
+    }
+
     /**
      * main method - starts program and maintains program chronological structure.
      *
@@ -194,6 +203,7 @@ public class FlightsClient {
 
             TripOptionsRequest request = new TripOptionsRequest();
             request.setSolutions(10);
+            request.setSaleCountry("US");
             request.setPassengers(passengers);
             request.setSlice(slices);
 
@@ -216,6 +226,8 @@ public class FlightsClient {
             aircraftData = list.getTrips().getData().getAircraft();
             carrierData = list.getTrips().getData().getCarrier();
             airportData = list.getTrips().getData().getAirport();
+
+
             //gets trip options to list.
 
 
