@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import static com.googlecode.lanterna.gui.GUIScreen.Position.CENTER;
@@ -278,8 +279,10 @@ public class GUIWindow extends Window {
         TextBox flightChoice = boxes.getInboundFlightChoiceBox();
         TextArea resultArea = boxes.getResultsArea();
 
-        inboundWindow.formatToScreen(tripOption, outboundWindow.flc.getTripData(), outboundWindow.flc.getAircraftData(),
-                outboundWindow.flc.getCarrierData(), outboundWindow.flc.airportData, resultArea);
+
+
+        inboundWindow.formatToScreen(tripOption, inboundWindow.flc.getTripData(), inboundWindow.flc.getAircraftData(),
+                inboundWindow.flc.getCarrierData(), inboundWindow.flc.airportData, resultArea);
         inboundWindow.buttons.guiInboundEnterButton(flightChoiceInbound, tripOption, guiWindows, boxes );
         inboundWindow.buttons.backButton(screen, inboundWindow);
         inboundWindow.buttons.quitButton(inboundWindow);
@@ -306,17 +309,44 @@ public class GUIWindow extends Window {
 
         GUIWindow itinerary = guiWindows.getGuiItenerary();
         GUIWindow outboundWindow = guiWindows.getGuiOutboundFlight();
+        GUIWindow inboundWindow = guiWindows.getGuiInboundFlight();
 
         TextArea resultsArea = boxes.getResultsArea();
 
 
+        List<CityData> outBoundCityData = outboundWindow.flc.getOutboundCityData();
+        List<CarrierData> outboundCarrierData = outboundWindow.flc.getOutBoundCarrierData();
+        List<AircraftData> outBoundAircraftData = outboundWindow.flc.getOutBoundAircraftData();
+        List<AirportData> outBoundAirportData = outboundWindow.flc.getOutboundAirportData();
+
+        List<CityData> inboundCityData = inboundWindow.flc.getInboundCityData();
+        List<CarrierData> inboundCarrierData = inboundWindow.flc.getInboundCarrierData();
+        List<AircraftData> inboundAircraftData = inboundWindow.flc.getInboundAircraftData();
+        List<AirportData> inboundAirportData = inboundWindow.flc.getInboundAirportData();
+
+        List<CityData> jointCityData = new ArrayList<>();
+        List<CarrierData> jointCarrierData = new ArrayList<>();
+        List<AircraftData> jointAircraftData = new ArrayList<>();
+        List<AirportData> jointAirportData = new ArrayList<>();
+
+        System.out.println(inboundCityData);
+        System.out.println(outBoundCityData);
+
+        jointCityData.addAll(inboundCityData);
+        jointCityData.addAll(outBoundCityData);
+        jointCarrierData.addAll(inboundCarrierData);
+        jointCarrierData.addAll(outboundCarrierData);
+        jointAircraftData.addAll(inboundAircraftData);
+        jointAircraftData.addAll(outBoundAircraftData);
+        jointAirportData.addAll(inboundAirportData);
+        jointAirportData.addAll(outBoundAirportData);
 
         outbound.add(0, flightChoiceInbound);
         outbound.add(1, flightChoiceOutBound);
 
         resultsArea.appendLine("hello\n\n");
-        itinerary.formatToScreen(outbound, outboundWindow.flc.getTripData(), outboundWindow.flc.getAircraftData(),
-                outboundWindow.flc.getCarrierData(), outboundWindow.flc.getAirportData(), resultsArea);
+        itinerary.formatToScreen(outbound, jointCityData, jointAircraftData, jointCarrierData, jointAirportData,
+                resultsArea);
         itinerary.buttons.quitButton(itinerary);
         itinerary.horizontalPanel.addComponent(resultsArea);
         itinerary.guiScreen.showWindow(itinerary, GUIScreen.Position.FULL_SCREEN);

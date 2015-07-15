@@ -1,7 +1,7 @@
 package net.raphaelmiller;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
-import com.google.api.services.qpxExpress.model.TripOption;
+import com.google.api.services.qpxExpress.model.*;
 import com.googlecode.lanterna.gui.GUIScreen;
 import com.googlecode.lanterna.gui.component.*;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -14,6 +14,7 @@ import java.util.List;
  * Created by raphael on 6/26/15.
  */
 public class Buttons extends Thread {
+
 
     ErrorHandler eh = new ErrorHandler();
     DepartureFlight df = new DepartureFlight();
@@ -42,15 +43,6 @@ public class Buttons extends Thread {
      * guiInputEnterButton() method
      * <p>
      * Gives action to what happens when the enter button is pressed.
-     * @param guiScreen            GUIScreen
-     * @param guiOutput            GUIWindow
-     * @param guiInboundFlight     GuiWindow
-     * @param destinationBox       TextBox
-     * @param passengerBox         TextBox
-     * @param progressBar          ProgressBar
-     * @param guiLoad              GUIWindow
-     * @param guiWindow            GUIWindow
-     * @param guiItenerary         GuiWindow
      * @param guiWindows
      * @param boxes
      */
@@ -108,7 +100,17 @@ public class Buttons extends Thread {
                 tripOptions = outboundWindow.attemptTransfer(input, date);
                 test[0] = outboundWindow.dateTester(date);
 
-                
+                List<CityData> outBoundCityData = outboundWindow.flc.getTripData();
+                List<CarrierData> outboundCarrierData = outboundWindow.flc.getCarrierData();
+                List<AircraftData> outBoundAircraftData = outboundWindow.flc.getAircraftData();
+                List<AirportData> outBoundAirportData = outboundWindow.flc.getAirportData();
+
+                outboundWindow.flc.outboundCityData = outBoundCityData;
+                outboundWindow.flc.outBoundAircraftData = outBoundAircraftData;
+                outboundWindow.flc.outboundAirportData = outBoundAirportData;
+                outboundWindow.flc.outBoundCarrierData = outboundCarrierData;
+
+                System.out.println(outBoundCityData);
 
                 //df.departureFlightWindow(guiWindow, tripOptions, results, guiScreen, guiOutput, guiLoad);
                 outboundWindow.formatToScreen(tripOptions, outboundWindow.flc.tripData, outboundWindow.flc.aircraftData,
@@ -133,11 +135,6 @@ public class Buttons extends Thread {
 
     /**
      * Gui Output Enter Button, function that handles the gui output enter event.
-     * @param guiOutput         GuiWindow
-     * @param guiInboundFlight  GuiWindow
-     * @param guiLoad           GuiWindow
-     * @param guiItinerary      GuiWindow
-     * @param dateOfReturnBox
      * @param outbound          String
      * @param inbound           String
      * @param date              String
@@ -177,10 +174,6 @@ public class Buttons extends Thread {
      * Gui Output Enter Button Logic. handles extra logic, different method because new Action Interface is making me
      * declare everything final and although I dont receive any errors, I feel that there is something wrong with the
      * way I would be writing it, therefore, new method.
-     * @param guiOutput             GuiWindow
-     * @param guiInboundFlight      String
-     * @param guiLoad               GuiWindow
-     * @param guiItenerary          GuiWindow
      * @param flightNo              TextBox
      * @param outbound              String
      * @param inbound               String
@@ -225,6 +218,18 @@ public class Buttons extends Thread {
 
         try {
             tripOption = inboundWindow.attemptTransfer(input, returnDate);
+
+            List<CityData> inboundCityData = inboundWindow.flc.getTripData();
+            List<CarrierData> inboundCarrierData = inboundWindow.flc.getCarrierData();
+            List<AircraftData> inboundAircraftData = inboundWindow.flc.getAircraftData();
+            List<AirportData> inboundAirportData = inboundWindow.flc.getAirportData();
+
+            inboundWindow.flc.inboundCityData = inboundCityData;
+            inboundWindow.flc.inboundCarrierData = inboundCarrierData;
+            inboundWindow.flc.inboundAircraftData = inboundAircraftData;
+            inboundWindow.flc.inboundAirportData = inboundAirportData;
+
+            System.out.println(inboundCityData);
 
             flightChoiceInbound = tripOptions.get(Integer.parseInt(selection));
             System.out.println(flightChoiceInbound);

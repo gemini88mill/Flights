@@ -55,6 +55,16 @@ public class FlightsClient {
     public List<AirportData> airportData = null;
     public List<TripOption> tripResults = null;
 
+    public List<CityData> outboundCityData;
+    public List<AircraftData> outBoundAircraftData;
+    public List<AirportData> outboundAirportData;
+    public List<CarrierData> outBoundCarrierData;
+
+    public List<CityData> inboundCityData;
+    public List<AircraftData> inboundAircraftData;
+    public List<AirportData> inboundAirportData;
+    public List<CarrierData> inboundCarrierData;
+
     public TripOption outboundFlightChoice = null;
     public TripOption returnFlightChoice = null;
 
@@ -333,4 +343,67 @@ public class FlightsClient {
     }
 
 
+    public List<CityData> getOutboundCityData() {
+        return outboundCityData;
+    }
+
+    public void setOutboundCityData(List<CityData> outboundCityData) {
+        this.outboundCityData = outboundCityData;
+    }
+
+    public List<AircraftData> getOutBoundAircraftData() {
+        return outBoundAircraftData;
+    }
+
+    public void setOutBoundAircraftData(List<AircraftData> outBoundAircraftData) {
+        this.outBoundAircraftData = outBoundAircraftData;
+    }
+
+    public List<AirportData> getOutboundAirportData() {
+        return outboundAirportData;
+    }
+
+    public void setOutboundAirportData(List<AirportData> outboundAirportData) {
+        this.outboundAirportData = outboundAirportData;
+    }
+
+    public List<CarrierData> getOutBoundCarrierData() {
+        return outBoundCarrierData;
+    }
+
+    public void setOutBoundCarrierData(List<CarrierData> outBoundCarrierData) {
+        this.outBoundCarrierData = outBoundCarrierData;
+    }
+
+    public List<CityData> getInboundCityData() {
+        return inboundCityData;
+    }
+
+    public void setInboundCityData(List<CityData> inboundCityData) {
+        this.inboundCityData = inboundCityData;
+    }
+
+    public List<AircraftData> getInboundAircraftData() {
+        return inboundAircraftData;
+    }
+
+    public void setInboundAircraftData(List<AircraftData> inboundAircraftData) {
+        this.inboundAircraftData = inboundAircraftData;
+    }
+
+    public List<AirportData> getInboundAirportData() {
+        return inboundAirportData;
+    }
+
+    public void setInboundAirportData(List<AirportData> inboundAirportData) {
+        this.inboundAirportData = inboundAirportData;
+    }
+
+    public List<CarrierData> getInboundCarrierData() {
+        return inboundCarrierData;
+    }
+
+    public void setInboundCarrierData(List<CarrierData> inboundCarrierData) {
+        this.inboundCarrierData = inboundCarrierData;
+    }
 }
