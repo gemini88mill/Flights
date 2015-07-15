@@ -344,9 +344,10 @@ public class GUIWindow extends Window {
         outbound.add(0, flightChoiceInbound);
         outbound.add(1, flightChoiceOutBound);
 
-        resultsArea.appendLine("hello\n\n");
+
         itinerary.formatToScreen(outbound, jointCityData, jointAircraftData, jointCarrierData, jointAirportData,
                 resultsArea);
+        resultsArea.insertLine(100, "hello");   
         itinerary.buttons.quitButton(itinerary);
         itinerary.horizontalPanel.addComponent(resultsArea);
         itinerary.guiScreen.showWindow(itinerary, GUIScreen.Position.FULL_SCREEN);
