@@ -354,6 +354,18 @@ public class GUIWindow extends Window {
         List<PricingInfo> outboundPrice = null;
         List<PricingInfo> inboundPrice = null;
 
+        /*Next Steps:
+        *
+        * Find pricing for both choices, add them together, (method for adding prices together using QPX API).
+        * find a way to calculate fares for specific legs to find the cheapest price to and from locations offered
+        * as well as refining search to specific alliances, airlines, or destinations.
+        *
+        * add android UI to make information available on mobile.
+        * create a way to check more days while using the same query, daily limit of 50 important factor.
+        *
+        * put the app on the Google Play Store :)
+        * */
+
         outboundPrice = outbound.get(0).getPricing();
         inboundPrice = outbound.get(1).getPricing();
 
@@ -372,6 +384,8 @@ public class GUIWindow extends Window {
     }
 
     private void joinitineraryData() {
+
+
     }
 
 
