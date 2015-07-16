@@ -156,8 +156,8 @@
       <file leaf-file-name="GUIWindow.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7004992" vertical-offset="5861" max-vertical-offset="7200">
-              <caret line="349" column="47" selection-start-line="349" selection-start-column="47" selection-end-line="349" selection-end-column="47" />
+            <state vertical-scroll-proportion="1.141431" vertical-offset="6028" max-vertical-offset="7560">
+              <caret line="373" column="16" selection-start-line="373" selection-start-column="12" selection-end-line="373" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1655,8 +1655,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/raphaelmiller/GUIWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7004992" vertical-offset="5861" max-vertical-offset="7200">
-          <caret line="349" column="47" selection-start-line="349" selection-start-column="47" selection-end-line="349" selection-end-column="47" />
+        <state vertical-scroll-proportion="1.141431" vertical-offset="6028" max-vertical-offset="7560">
+          <caret line="373" column="16" selection-start-line="373" selection-start-column="12" selection-end-line="373" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

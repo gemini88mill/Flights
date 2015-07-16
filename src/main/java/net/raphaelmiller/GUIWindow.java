@@ -294,10 +294,10 @@ public class GUIWindow extends Window {
     }
 
     /**
-     * @param flightChoiceInbound
-     * @param flightChoiceOutBound
-     * @param guiWindows
-     * @param boxes
+     * @param flightChoiceInbound TripOption
+     * @param flightChoiceOutBound TripOption
+     * @param guiWindows LanternaHandler
+     * @param boxes LanternaHandler
      */
     public void drawGuiItinerary(TripOption flightChoiceInbound, TripOption flightChoiceOutBound,
                                  LanternaHandler guiWindows, LanternaHandler boxes){
@@ -313,6 +313,7 @@ public class GUIWindow extends Window {
 
         TextArea resultsArea = boxes.getResultsArea();
 
+        joinitineraryData();
 
         List<CityData> outBoundCityData = outboundWindow.flc.getOutboundCityData();
         List<CarrierData> outboundCarrierData = outboundWindow.flc.getOutBoundCarrierData();
@@ -344,14 +345,33 @@ public class GUIWindow extends Window {
         outbound.add(0, flightChoiceInbound);
         outbound.add(1, flightChoiceOutBound);
 
+        String inboundSaleTotal = outbound.get(0).getSaleTotal();
+        String outboundSaleTotal = outbound.get(1).getSaleTotal();
+
+        System.out.println(inboundSaleTotal);
+        System.out.println(outboundSaleTotal);
+
+        List<PricingInfo> outboundPrice = null;
+        List<PricingInfo> inboundPrice = null;
+
+        outboundPrice = outbound.get(0).getPricing();
+        inboundPrice = outbound.get(1).getPricing();
+
+        System.out.println(outboundPrice);
+        System.out.println(inboundPrice);
+        
+        
 
         itinerary.formatToScreen(outbound, jointCityData, jointAircraftData, jointCarrierData, jointAirportData,
                 resultsArea);
-        resultsArea.insertLine(100, "hello");   
+        resultsArea.insertLine(2, "hello");
         itinerary.buttons.quitButton(itinerary);
         itinerary.horizontalPanel.addComponent(resultsArea);
         itinerary.guiScreen.showWindow(itinerary, GUIScreen.Position.FULL_SCREEN);
 
+    }
+
+    private void joinitineraryData() {
     }
 
 
