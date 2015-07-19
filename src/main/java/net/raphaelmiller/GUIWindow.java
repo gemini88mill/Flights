@@ -206,8 +206,8 @@ public class GUIWindow extends Window {
      * opens up new window for data stream from QPX
      * @param results       TextArea
      * @param tripOptions   List
-     * @param guiWindows
-     * @param boxes
+     * @param guiWindows    LanternaHandler
+     * @param boxes         LanternaHandler
      */
     public void drawPage(TextArea results, List<TripOption> tripOptions, LanternaHandler guiWindows, LanternaHandler boxes) {
 
@@ -230,9 +230,9 @@ public class GUIWindow extends Window {
 
 
     /**
-     * @param tripOptions
-     * @param guiWindows
-     * @param boxes
+     * @param tripOptions       List<TripOption>
+     * @param guiWindows        LanternaHandler
+     * @param boxes             LanternaHandler
      */
     private void drawGuiOutbound(List<TripOption> tripOptions, LanternaHandler guiWindows, LanternaHandler boxes) {
 
@@ -261,10 +261,10 @@ public class GUIWindow extends Window {
     }
 
     /**
-     * @param tripOption
-     * @param flightChoiceInbound
-     * @param guiWindows
-     * @param boxes
+     * @param tripOption                List<TripOption>
+     * @param flightChoiceInbound       TripOption
+     * @param guiWindows                LanternaHandler
+     * @param boxes                     LanternaHandler
      */
     public void drawGuiInbound(List<TripOption> tripOption, TripOption flightChoiceInbound, LanternaHandler guiWindows,
                                LanternaHandler boxes){
@@ -294,15 +294,13 @@ public class GUIWindow extends Window {
     }
 
     /**
-     * @param flightChoiceInbound TripOption
-     * @param flightChoiceOutBound TripOption
-     * @param guiWindows LanternaHandler
-     * @param boxes LanternaHandler
+     * @param flightChoiceInbound       TripOption
+     * @param flightChoiceOutBound      TripOption
+     * @param guiWindows                LanternaHandler
+     * @param boxes                     LanternaHandler
      */
     public void drawGuiItinerary(TripOption flightChoiceInbound, TripOption flightChoiceOutBound,
                                  LanternaHandler guiWindows, LanternaHandler boxes){
-
-
 
         DataLoader dl = new DataLoader();
         List<TripOption> outbound = new ArrayList<>();
@@ -351,8 +349,24 @@ public class GUIWindow extends Window {
         System.out.println(inboundSaleTotal);
         System.out.println(outboundSaleTotal);
 
-        List<PricingInfo> outboundPrice = null;
-        List<PricingInfo> inboundPrice = null;
+
+        List<PricingInfo> outboundPriceList = outbound.get(0).getPricing();
+        List<PricingInfo> inboundPriceList = outbound.get(1).getPricing();
+
+        String outBoundPrice = outboundPriceList.get(0).getSaleTotal();
+        String inboundPrice = inboundPriceList.get(0).getSaleTotal();
+
+        double outVal = Double.parseDouble(outBoundPrice);
+        double inVal = Double.parseDouble(inboundPrice);
+
+        double finalPriceVal = outVal + inVal;
+
+        String finalPriceSet = String.valueOf(finalPriceVal);
+
+        outboundPriceList.add(new PricingInfo());
+        
+
+        //set totalPrice as List<PricingInfo>
 
         /*Next Steps:
         *
@@ -366,17 +380,16 @@ public class GUIWindow extends Window {
         * put the app on the Google Play Store :)
         * */
 
-        outboundPrice = outbound.get(0).getPricing();
-        inboundPrice = outbound.get(1).getPricing();
+        //outboundPrice = outbound.get(0).getPricing();
+        //inboundPrice = outbound.get(1).getPricing();
 
-        System.out.println(outboundPrice);
-        System.out.println(inboundPrice);
+        //System.out.println(outboundPrice);
+        //System.out.println(inboundPrice);
         
         
 
         itinerary.formatToScreen(outbound, jointCityData, jointAircraftData, jointCarrierData, jointAirportData,
                 resultsArea);
-        resultsArea.insertLine(2, "hello");
         itinerary.buttons.quitButton(itinerary);
         itinerary.horizontalPanel.addComponent(resultsArea);
         itinerary.guiScreen.showWindow(itinerary, GUIScreen.Position.FULL_SCREEN);
@@ -394,8 +407,8 @@ public class GUIWindow extends Window {
      *
      * method creating the positions and order for the gui
      * @param guiScreen         GUIScreen
-     * @param lh
-     * @param guiWindows
+     * @param lh                LanternaHandler
+     * @param guiWindows        LanternaHandler
      */
     public void drawGuiInput(GUIScreen guiScreen, LanternaHandler lh, LanternaHandler guiWindows)
             throws GoogleJsonResponseException {

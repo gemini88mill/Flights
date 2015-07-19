@@ -1,5 +1,13 @@
 Flights
 
+Instructions for use: 
+
+1. open .jar
+2. enter in information regarding your flight 
+	--current release uses IATA codes for airports, later editions will use city names. 
+3. enter in leaving and return dates
+4. pick 
+
 This program was created by Raphael Miller using Intellij Idea. All terms of service with google API's apply
 
 https://developers.google.com/terms/ <-- for more information. 
